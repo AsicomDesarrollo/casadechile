@@ -1,0 +1,106 @@
+[15-Feb-2022 13:33:47 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[15-Feb-2022 15:26:05 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[18-Apr-2022 16:25:50 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[18-Apr-2022 16:27:54 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[19-Apr-2022 18:11:42 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 10:20:07 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 10:20:07 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:20:07 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 10:20:27 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 10:20:27 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:20:27 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 10:20:33 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 10:20:33 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:20:33 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 10:30:33 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 10:30:33 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:30:33 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 10:30:33 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 10:30:33 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:30:33 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:46:44 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:47:02 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 10:50:35 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 78
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[06-May-2022 11:15:14 America/Mexico_City] PHP Notice:  Undefined property: stdClass::$id in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 87
+[06-May-2022 11:40:27 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[26-Jan-2023 17:05:02 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[26-Jan-2023 17:06:25 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[27-Jan-2023 15:32:50 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[27-Jan-2023 15:32:52 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[27-Jan-2023 15:34:41 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[27-Jan-2023 15:34:41 America/Mexico_City] PHP Notice:  Trying to get property 'num_rows' of non-object in /home/casadelc/public_html/ventas/core/app/action/guardarPedido-action.php on line 80
+[27-Jan-2023 15:34:50 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
+[27-Jan-2023 15:34:51 America/Mexico_City] PHP Notice:  Undefined index: view in /home/casadelc/public_html/ventas/core/app/layouts/casadelchileLayout/layoutUser.php on line 102
