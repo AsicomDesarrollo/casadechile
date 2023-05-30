@@ -1,161 +1,183 @@
-<?php
 
-//$ventas = ControladorVentas::ctrMostrarTotalVentas();
+<!-- Begin page -->
+<div id="layout-wrapper">
 
-?>
 
-<div class="content-wrapper">
+  <!-- ============================================================== -->
+  <!-- Start right Content here -->
+  <!-- ============================================================== -->
+  <div class="main-content">
+      <div class="page-content">
+          <div class="container-fluid">
 
-  <section class="content-header">
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="card">
+                  <div class="card-body pb-2">
+                    <div class="d-flex flex-wrap gap-2 mb-4 ">
 
-   <h1>
-      Gastos
-    </h1>
+                    <!-- Boton para agregar nuevo empleado -->
+                    <a class="btn btn-soft-primary"  style="cursor: pointer;" onclick="" id = "btnNuevoGasto" ><i class="fas fa-plus"></i> Nuevo gasto</a>
+                  
+                    </div>
 
-    <ol class="breadcrumb">
+                    <table class="table table-bordered table-striped dt-responsive tablaResumen" width="100%">
+        
+                      <thead>
+                    
+                        <tr>
+                        
+                        <th style="width:30px">Id</th>
+                        <th>Concepto</th>
+                        <th>Presupuesto</th>
+                        <th>Gasto</th>
 
-      <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
+                        </tr> 
 
-      <li class="active">Gastos</li>
+                      </thead>   
+                
+                    </table>
 
-    </ol> <br>
+                  </div>
+                </div>
+              </div>
+            </div><!-- end row-->
 
-  
-<!-- Boton para agregar nueva categoria -->
+            <div class="row">
+              <div class="col-xl-12">
+                <div class="card">
+                  <div class="card-body pb-2">
+                    <div class="d-flex flex-wrap gap-2 mb-4 ">
+                    </div>
 
-   <div class="small-box" style="text-align: center; background-color: #AD0808;" id = "btnNuevoGasto">
-              
-      <div class="inner">
-              
-         <h5 style="color: white;">Nuevo Gasto</h5>
+                    <table class="table table-bordered table-striped dt-responsive tablaGastos" width="100%">
+        
+                      <thead>
+                    
+                        <tr>
+                        
+                        <th style="width:30px">Id</th>
+                        <th>Descripción</th>
+                        <th>Monto</th>
+                        <th>Fecha</th>
+                        <th>Acciones</th>
 
-      </div>
-              
-   </div>
+                        </tr> 
 
-  </section>
+                      </thead>   
+                
+                    </table>
+
+                  </div>
+                </div>
+              </div>
+            </div><!-- end row-->
+
+
+
+
+
+
+
 
 <!--=====================================
-Tabla gastos
+MODAL AGREGAR CLIENTE
 ======================================-->
 
 
-  <section class="content">
 
 
-   <div class="small-box" style="text-align: center; background-color: #AD0808;">
-              
-      <div class="inner">
-              
-         <h5 style="color: white;">Gastos mensuales</h5>
+<div class="modal fade bs-empleados-modal-center" id="modalAgregarGasto" tabindex="-1" role="dialog"  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Agregar cliente</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close">
+              </button>
+          </div>
+        <!--=====================================
+        CUERPO DEL MODAL
+        ======================================-->
 
-      </div>
-              
-   </div>
+        <div id="detalleGastos" class="modal-body">
 
-    <div class="box">
+          <div class="box-body">
 
-      <div class="box-body">
+
+            <div class="form-group">
+              <label>Tipo:</label>
+              <select class="form-control" id="agregarTipoGasto" onchange="filtrarTipoGasto('nuevo')">
+
+                <?php
+
+                $gastos = ControladorPresupuesto::ctrMostrarPresupuesto();
+
+                foreach ($gastos as $key => $value) {
+                  
+                  echo '<option value="'.$value["id"].'">'.$value["concepto"].'</option>';
+
+                }
+
+                ?>
+
+              </select>
+            </div> 
+
+            <div class="form-group">
+              <label>Descripción:</label>
+              <input type="text" class="form-control" id="agregarDescGastos">
+            </div>
+
+            <div class="form-group">
+              <label>Monto: </label>
+              <input type="text" class="form-control" id="agregarMontoGastos">
+
+          </div>
+
+          </div>
+        </div>
+
+        <!--=====================================
+        PIE DEL MODAL
+        ======================================-->
         
-        <table class="table table-bordered table-striped dt-responsive tablaResumen" width="100%">
-        
-          <thead>
-         
-            <tr>
-             
-              <th style="width:30px">Id</th>
-              <th>Concepto</th>
-              <th>Presupuesto</th>
-              <th>Gasto</th>
 
-            </tr> 
-
-          </thead>   
-     
-        </table>
+        <div class="modal-footer" style="">
           
-      </div>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
-    </div>
+          <button type="button" class="btn btn-primary pull-right" id="guardarNuevoGasto">Guardar</button>
 
-  </section>
+        </div>
 
-
-<!--=====================================
-Tabla presupuesto
-======================================-->
-
-
-  <section class="content">
-
-       <div class="small-box" style="text-align: center; cursor: pointer; background-color: #AD0808;">
-              
-      <div class="inner">
-              
-         <h5 style="color: white;">Gastos del día </h5>
-
-      </div>
-              
-   </div>
-
-    <div class="box">
-
-      <div class="box-body">
-        
-        <table class="table table-bordered table-striped dt-responsive tablaGastos" width="100%">
-        
-          <thead>
-         
-            <tr>
-             
-              <th style="width:30px">Id</th>
-              <th>Descripción</th>
-              <th>Monto</th>
-              <th>Fecha</th>
-              <th>Acciones</th>
-
-            </tr> 
-
-          </thead>   
-     
-        </table>
-          
-      </div>
-
-    </div>
-
-  </section>
-
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>
 
 
 
 
 
+
+
+
 <!--=====================================
-MODAL DETALLES DE GASTOS
+MODAL DETALLES PRDUCTO
 ======================================-->
 
-<div id="modalDetalles" class="modal fade" role="dialog" aria-hidden="true">
-  
-  <div class="modal-dialog">
-    
-    <div class="modal-content">
-      
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
 
-        <div class="modal-header" style="background:#AD0808; color:white">
-          
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-          <center>
-          <h3 class="modal-title"><strong>Editar Gasto</strong></h3>
-          </center>
-          
-        </div>
 
+
+<div class="modal fade bs-empleados-modal-center" id="modalDetalles" tabindex="-1" role="dialog"  aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">Detalles de gasto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close">
+              </button>
+          </div>
         <!--=====================================
         CUERPO DEL MODAL
         ======================================-->
@@ -202,6 +224,7 @@ MODAL DETALLES DE GASTOS
 
         </div>
 
+
         <!--=====================================
         PIE DEL MODAL
         ======================================-->
@@ -209,103 +232,56 @@ MODAL DETALLES DE GASTOS
 
         <div class="modal-footer" style="">
           
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
 
-          <button type="button" class="btn btn-success pull-right" id="guardarCambios">Guardar</button>
+          <button type="button" class="btn btn-primary pull-right" id="guardarCambios">Actualizar</button>
 
         </div>
 
-    </div>
-
-  </div>
-
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
 </div>
 
-<!--=====================================
-MODAL AGREGAR GASTO
-======================================-->
-
-<div id="modalAgregarGasto" class="modal fade" role="dialog" aria-hidden="true">
-  
-  <div class="modal-dialog">
-    
-    <div class="modal-content">
-      
-        <!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#AD0808; color:white">
-          
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-          <center>
-          <h3 class="modal-title"><strong>Agregar Gasto</strong></h3>
-          </center>
-          
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div id="detalleGastos" class="modal-body">
-
-          <div class="box-body">
 
 
-          <div class="form-group">
-              <label>Tipo:</label>
-              <select class="form-control" id="agregarTipoGasto" onchange="filtrarTipoGasto('nuevo')">
 
-                <?php
 
-                $gastos = ControladorPresupuesto::ctrMostrarPresupuesto();
 
-                foreach ($gastos as $key => $value) {
-                  
-                  echo '<option value="'.$value["id"].'">'.$value["concepto"].'</option>';
 
-                }
 
-                ?>
 
-              </select>
-            </div> 
 
-            <div class="form-group">
-              <label>Descripción:</label>
-              <input type="text" class="form-control" id="agregarDescGastos">
-            </div>
 
-            <div class="form-group">
-              <label>Monto: </label>
-              <input type="text" class="form-control" id="agregarMontoGastos">
 
           </div>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-        
-
-        <div class="modal-footer" style="">
-          
-          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Salir</button>
-
-          <button type="button" class="btn btn-success pull-right" id="guardarNuevoGasto">Guardar</button>
-
-        </div>
-
-    </div>
-
+          <!-- container-fluid -->
+      </div>
+      <!-- End Page-content -->
   </div>
+  <!-- end main content-->
 
 </div>
+<!-- END layout-wrapper -->
 
-</div>
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>
+
+<script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
+<script
+src="https://code.jquery.com/jquery-3.6.0.min.js"
+integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+crossorigin="anonymous"></script>
+
+<script
+src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"
+integrity="sha256-hlKLmzaRlE8SCJC1Kw8zoUbU8BxA+8kR3gseuKfMjxA="
+crossorigin="anonymous"></script>
+
+<script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+<script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
 
 
 
@@ -327,14 +303,15 @@ $(".tablaGastos").DataTable({
    "language": {
 
     "sProcessing":     "Procesando...",
-    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sLengthMenu":     "Mostrar _MENU_ ",
     "sZeroRecords":    "No se encontraron resultados",
     "sEmptyTable":     "Ningún dato disponible en esta tabla",
     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
     "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
     "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
     "sInfoPostFix":    "",
-    "sSearch":         "Buscar:",
+    "sSearch":         "",
+    "searchPlaceholder": "Buscar gasto",
     "sUrl":            "",
     "sInfoThousands":  ",",
     "sLoadingRecords": "Cargando...",
@@ -361,14 +338,15 @@ $(".tablaResumen").DataTable({
    "language": {
 
     "sProcessing":     "Procesando...",
-    "sLengthMenu":     "Mostrar _MENU_ registros",
+    "sLengthMenu":     "Mostrar _MENU_ ",
     "sZeroRecords":    "No se encontraron resultados",
     "sEmptyTable":     "Ningún dato disponible en esta tabla",
     "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_",
     "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0",
     "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
     "sInfoPostFix":    "",
-    "sSearch":         "Buscar:",
+    "sSearch":         "",
+    "searchPlaceholder": "Buscar gasto",
     "sUrl":            "",
     "sInfoThousands":  ",",
     "sLoadingRecords": "Cargando...",

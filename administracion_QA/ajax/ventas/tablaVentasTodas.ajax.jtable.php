@@ -40,6 +40,8 @@ class TablaVentas{
     $jTableResult['data'] = "Lista de tikets abiertos";
     $jTableResult['TotalRecordCount'] = $query_total;
     $jTableResult['Records'] = $datosTiket;
+
+
     print json_encode($jTableResult);
 
 

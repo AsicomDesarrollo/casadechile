@@ -10,31 +10,19 @@
       <div class="page-content">
           <div class="container-fluid">
 
-            <span class="col-xs-0 col-sm-0 col-md-4 col-lg-4"> </span>
 
-            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4" onclick="buscarPorFecha()" style="cursor: pointer;">
 
-              <div class="small-box bg-red">
-                      
-                <div class="inner">
-                        
-                  <h3>Buscar por fecha</h3>
 
-                  <p>Click para buscar información</p>
-                      
-                </div>
 
-                <div class="icon">
-                      
-                  <i class="fa fa-shopping-bag"></i>
-                      
-                </div>
 
-              </div>
 
-            </div>
 
-            <span class="col-xs-0 col-sm-0 col-md-4 col-lg-4"> </span>
+
+
+
+
+
+
 
             <div class="row">
               <div class="col-xl-12">
@@ -423,110 +411,6 @@ MODAL AGREGAR BONOS
 
 
 
-
-<!--=====================================
-MODAL AGREGAR BONOS
-======================================-->
-
-
-
-
-<div class="modal fade bs-empleados-modal-center" id="modalBuscarPorFecha" tabindex="-1" role="dialog"  aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title">Agregar cliente</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"
-                  aria-label="Close">
-              </button>
-          </div>
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-
-<!--=====================================
-        CABEZA DEL MODAL
-        ======================================-->
-
-        <div class="modal-header" style="background:#AD0808; color:white">
-          
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-          <center>
-            <h3 class="modal-title"><strong>Buscar entradas por fecha</strong></h3>
-
-            <br>
-
-            <div class="form-group">
-
-              <input type="date" id="modalFecha" class="form-control">
-            
-            </div>
-
-            <br>
-
-            <button type="button" class="btn btn-default col-xs-12 col-sm-12 col-md-12 col-lg-12" id="modalResultadoBuscar">BUSCAR</button>
-
-            <br>
-            <br>
-            <br>
-
-            <h4 class="modal-title"><strong id="modalResultadoTotal">Total: $ 0</strong></h4>
-
-            <br>
-
-          </center>
-          
-        </div>
-
-        <!--=====================================
-        CUERPO DEL MODAL
-        ======================================-->
-
-        <div class="modal-body">
-
-          <table class="table table-bordered table-striped dt-responsive tablaVentasEncontradas" width="100%">
-        
-            <thead>
-           
-              <tr>
-               
-                <th style="width:30px">Folio</th>
-                <th>Producto</th>
-                <th>Peso</th>
-                <th>Precio por kg</th>
-                <th>Proveedor</th>
-                <th>Estatus</th>
-                <th>Total</th>
-                <th>Adeuda</th>              
-                <th>Fecha</th>
-                <th>Acciones</th>
-
-              </tr> 
-
-            </thead>   
-       
-          </table>
-
-        </div>
-
-        <!--=====================================
-        PIE DEL MODAL
-        ======================================-->
-        
-
-        <div class="modal-footer" style="">
-          
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-
-          <button type="button" class="btn btn-primary pull-right" id="guardarNuevoCliente">Guardar</button>
-
-        </div>
-
-      </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div>
 
 
 

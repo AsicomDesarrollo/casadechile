@@ -131,8 +131,10 @@ class TablaVentas{
 	$datosJson.=  ']
 		  
 	}'; 
+
+	print_r($datosJson);
   	
-  	echo $datosJson;	
+  //	echo $datosJson;	
 
   }
 
