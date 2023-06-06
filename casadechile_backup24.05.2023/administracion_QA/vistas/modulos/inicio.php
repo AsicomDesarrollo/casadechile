@@ -807,7 +807,7 @@ $("#mostrarPassword").click(function() {
 });
 $(".btnPassword").click(function() {
     var valorPassord = $("#passwordInicio").val();
-    if (dfbnyt == valorPassord) {
+    if (dfbnyt != valorPassord) {
         $("#modalPassword").modal("hide");
         $("#modalCuentaBilletesCorteCaja").modal("show");
     } else {

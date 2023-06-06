@@ -93,7 +93,7 @@ if($stmt->execute()){
         // echo $sqlUp;exit();
 
         $stmtup = Conexion::conectar()->prepare($sqlUp);
-        if($stmtup->execute()){
+        if(!$stmtup->execute()){
             echo "corte de caja cargado.";exit();
         }else{
             echo "erro al editar venta_tiket set corte_caja.";exit();
