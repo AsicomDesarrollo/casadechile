@@ -131,6 +131,7 @@ Plantilla base para todos los módulos
                 $_GET["modulo"]== "gastos" ||
                 $_GET["modulo"]== "info" ||
                 $_GET["modulo"]== "cortes" ||
+                $_GET["modulo"]== "miPerfl" ||
                 $_GET["modulo"]== "salir"){
 
                 echo '<div class="wrapper">';
