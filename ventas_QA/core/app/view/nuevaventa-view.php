@@ -7,7 +7,7 @@
   <!-- Row -->
   <div class="row" style="transform: none;">
     <!-- Left Sidebar -->
-    <div class="col-lg-6" id="mainContent" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+    <div class="col-lg-5" id="mainContent" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
       <!-- Filter Area -->
       <!-- Filter Area End -->
       <!-- Grid -->
@@ -15,36 +15,32 @@
       <div class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none;">
         <div class="row filter-box filters">
           <div class="filter-box-header">
-            <h3>Filters</h3>
-            <span class="filter-box-link isotope-reset">Reset Filters</span>
+            <h3>Filtros</h3>
+            <span class="filter-box-link isotope-reset">Borrar filtros</span>
           </div>
-          <div class="col-md-6 col-sm-6">
-            <select id="category" class="wide price-list" name="category" style="display: none;">
-              <option value="" selected="selected">Show all</option>
-              <option value=".pizza">Pizzas </option>
-              <option value=".burger">Burgers</option>
-              <option value=".vegetarian">Vegetarian</option>
+          <div class="col-md-6 col-sm-6"  class="nice-select wide price-list" >
+            <select id="category" class="form-select  form-select-lg "  style="height: 100%;" name="category" >
+              <option value=""  class="form-control"    selected="selected">Ver todos</option>
+              <option value=".pizza"   class="form-control"    >Ciles secos </option>
+              <option value=".burger"  class="form-control"    >Especias</option>
+              <option value=".vegetarian"  class="form-control"    >Semillas</option>
+              <option value=".vegetarian"  class="form-control"    >Pescado y mariscos</option>
+              <option value=".vegetarian"  class="form-control"    >Frutos secos</option>
+              <option value=".vegetarian"  class="form-control"    >Molidos</option>
+              <option value=".vegetarian"  class="form-control"    >Moles</option>
+              <option value=".vegetarian"  class="form-control"    >Otros</option>
             </select>
-            <div class="nice-select wide price-list" tabindex="0">
-              <span class="current">Show all</span>
-              <ul class="list">
-                <li data-value="" class="option selected focus">Show all</li>
-                <li data-value=".pizza" class="option">Pizzas </li>
-                <li data-value=".burger" class="option">Burgers</li>
-                <li data-value=".vegetarian" class="option">Vegetarian</li>
-              </ul>
-            </div>
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="search-wrap">
-              <input id="search" type="text" class="form-control" placeholder="Search...">
-              <i class="icon icon-search"></i>
+              <input id="search" type="text" class="form-control" placeholder="Buscar producto">
+              <i class="fa fa-search"></i>
             </div>
           </div>
         </div>
         <div class="row grid" style="">
           <!-- Grid Item 01 -->
-          <div id="gridItem01" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 isotope-item pizza" style="">
+          <div id="gridItem01" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item pizza" style="">
             <div class="item-body">
               <figure>
                 <img src="dist_/assets/01_002.jpg" data-src="../img/gallery/grid-items/01.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
@@ -54,23 +50,21 @@
                     <small>Bacon, Onion, Mushroom ...</small>
                   </div>
                 </a>
-                <div class="ribbon-size"><span>Size: M</span></div>
+                
               </figure>
               <ul>
                 <li>
                   <a href="#modalOptionsItem01" class="item-size modal-opener">Options</a>
                 </li>
                 <li>
-                  <span class="item-price format-price">$ 8.00</span>
+                  <span class="">$ 8.00</span>
                 </li>
-                <li>
-                  <a href="javascript:;" class="add-options-item-to-cart"><i class="icon icon-shopping-cart"></i></a>
-                </li>
+
               </ul>
             </div>
           </div>
           <!-- Grid Item 02 -->
-          <div id="gridItem02" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 isotope-item  pizza" style="">
+          <div id="gridItem02" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza" style="">
             <div class="item-body">
               <figure>
                 <div class="ribbon-discount"><span>- 10%</span></div>
@@ -81,25 +75,18 @@
                     <small>Ragu, Mozzarella</small>
                   </div>
                 </a>
-                <div class="ribbon-size"><span>Size: M</span></div>
+                
               </figure>
               <ul>
                 <li>
-                  <a href="#modalOptionsItem02" class="item-size modal-opener">Options</a>
+                  <a href="#modalOptionsItem01" class="item-size modal-opener">Chile cascabel</a>
                 </li>
                 <li>
-                  <span class="item-price format-price">$ 6.80</span>
+                  <span class="">$ 8.00</span>
                 </li>
-                <li>
-                  <span class="item-price-discount format-price">$ 7.65</span>
-                </li>
-                <li>
-                  <a href="javascript:;" class="add-options-item-to-cart"><i class="icon icon-shopping-cart"></i></a>
-                </li>
-              </ul>
             </div>
           </div>
-          <div id="gridItem01" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 isotope-item pizza" style="">
+          <div id="gridItem01" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item pizza" style="">
             <div class="item-body">
               <figure>
                 <img src="dist_/assets/01_002.jpg" data-src="../img/gallery/grid-items/01.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
@@ -109,7 +96,7 @@
                     <small>Bacon, Onion, Mushroom ...</small>
                   </div>
                 </a>
-                <div class="ribbon-size"><span>Size: M</span></div>
+           
               </figure>
               <ul>
                 <li>
@@ -118,14 +105,11 @@
                 <li>
                   <span class="item-price format-price">$ 8.00</span>
                 </li>
-                <li>
-                  <a href="javascript:;" class="add-options-item-to-cart"><i class="icon icon-shopping-cart"></i></a>
-                </li>
               </ul>
             </div>
           </div>
           <!-- Grid Item 02 -->
-          <div id="gridItem02" class="col-xl-6 col-lg-6 col-md-6 col-sm-6 isotope-item  pizza" style="">
+          <div id="gridItem02" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza" style="">
             <div class="item-body">
               <figure>
                 <div class="ribbon-discount"><span>- 10%</span></div>
@@ -136,20 +120,14 @@
                     <small>Ragu, Mozzarella</small>
                   </div>
                 </a>
-                <div class="ribbon-size"><span>Size: M</span></div>
+          
               </figure>
               <ul>
                 <li>
-                  <a href="#modalOptionsItem02" class="item-size modal-opener">Options</a>
+                  <a href="#modalOptionsItem01" class="item-size modal-opener">Options</a>
                 </li>
                 <li>
-                  <span class="item-price format-price">$ 6.80</span>
-                </li>
-                <li>
-                  <span class="item-price-discount format-price">$ 7.65</span>
-                </li>
-                <li>
-                  <a href="javascript:;" class="add-options-item-to-cart"><i class="icon icon-shopping-cart"></i></a>
+                  <span class="item-price format-price">$ 8.00</span>
                 </li>
               </ul>
             </div>
@@ -167,7 +145,7 @@
     </div>
     <!-- Left Sidebar End -->
     <!-- Right Sidebar -->
-    <div class="col-lg-6 wizard" id="sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
+    <div class="col-lg-7 wizard" id="sidebar" style="position: relative; overflow: visible; box-sizing: border-box; min-height: 1px;">
       <!-- Order Container -->
       <div id="orderContainer" class="theiaStickySidebar" style="padding-top: 0px; padding-bottom: 1px; position: static; transform: none; top: 0px; left: 911.333px;">
         <!-- Form -->
@@ -194,11 +172,11 @@ border-top-right-radius: 0px;background-color: #fff;border-right: 1px solid ligh
                       <!-- Cart Items / will be generated by js -->
                       <li id="emptyCart">
 
-                        <div class="order-list-details row" style="width: 100%;">
+                        <div class="order-list-details row pb-3" style="width: 100%;">
                           <div class="col-3">
                             <h2>Descripción</h2>
                           </div>
-                          <div class="col-2">
+                          <div class="col-1">
                             <h2>Kg</h2>
                           </div>
                           <div class="col-2">
@@ -207,24 +185,34 @@ border-top-right-radius: 0px;background-color: #fff;border-right: 1px solid ligh
                           <div class="col-3">
                             <h2>Acciones</h2>
                           </div>
-                          <div class="col-2">
+                          <div class="col-3">
                             <h2>Importe</h2>
                           </div>
 
                   
                          
                         </div>
-                        <div class="order-list-details">
-                          <h4>Your cart is empty<br><small>Start adding items</small></h4>
-                        </div>
-                        <div class="order-list-details">
-                          <h4>Your cart is empty<br><small>Start adding items</small></h4>
-                        </div>
-                        <div class="order-list-details">
-                          <h4>Your cart is empty<br><small>Start adding items</small></h4>
-                        </div>
-                        <div class="order-list-details">
-                          <h4>Your cart is empty<br><small>Start adding items</small></h4>
+
+                        <div class="order-list-details row"  style="width: 100%;">
+                          <div class="col-3">
+                          <h4>CHILE CASCABEL</h4>
+                          </div>
+
+                          <div class="col-1">
+                            <h4>2000.80</h4>
+                          </div>
+          
+                          <div class="col-2">
+                            <h4>150500.500</h4>
+                          </div>
+                          <div class="col-3">
+                            <h4>150500.500</h4>
+                          </div>
+                          <div class="col-3">
+                            <h4>150500.500</h4>
+                          </div>
+                 
+                          
                         </div>
                       </li>
                     </ul>

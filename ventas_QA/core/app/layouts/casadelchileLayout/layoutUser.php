@@ -52,7 +52,7 @@ header('Content-Type: text/html; charset=utf-8');
 
   <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="vistas/bower_components/jquery-ui/jquery-ui.min.js"></script>
-  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+ <!--  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
   <script src="vistas/bower_components/carousel/owl.carousel.min.js"></script>
   <script src="vistas/dist/js/adminlte.min.js"></script>
   <script src="vistas/plugins/iCheck/icheck.min.js"></script>
@@ -89,7 +89,8 @@ header('Content-Type: text/html; charset=utf-8');
 <link href="vistas/dist_/assets/css/iconfont.min.css" rel="stylesheet">
 
 <!-- Vendor CSS -->
-<link href="vistas/dist_/assets/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="vistas/dist_/assets/plugins/bootstrap5.3.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="vistas/dist_/assets/css/menu.css" rel="stylesheet">
 <link href="vistas/dist_/assets/css/hamburgers.min.css" rel="stylesheet">
 <link href="vistas/dist_/assets/css/mmenu.min.css" rel="stylesheet">
@@ -170,7 +171,7 @@ JS PERSONALIZADO
 <script src="vistas/dist_/assets/js/gestorNotificaciones.js"></script>
 
 <script src="vistas/dist_/assets/js/jquery.min.js"></script>
-    <script src="vistas/dist_/assets/js/bootstrap.min.js"></script>
+    <script src="vistas/dist_/assets/plugins/bootstrap5.3.0/js/bootstrap.min.js"></script>
     <script src="vistas/dist_/assets/js/easing.min.js"></script>
     <script src="vistas/dist_/assets/js/parsley.min.js"></script>
     <script src="vistas/dist_/assets/js/jquery.nice-select.min.js"></script>
