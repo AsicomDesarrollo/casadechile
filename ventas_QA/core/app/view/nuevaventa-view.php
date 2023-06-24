@@ -39,99 +39,37 @@
           </div>
         </div>
         <div class="row grid" style="">
-          <!-- Grid Item 01 -->
-          <div id="gridItem01" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item pizza" style="">
-            <div class="item-body">
-              <figure>
-                <img src="dist_/assets/01_002.jpg" data-src="../img/gallery/grid-items/01.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
-                <a href="#modalDetailsItem01" class="item-body-link modal-opener">
-                  <div class="item-title">
-                    <h3>Aspen</h3>
-                    <small>Bacon, Onion, Mushroom ...</small>
-                  </div>
-                </a>
-                
-              </figure>
-              <ul>
-                <li>
-                  <a href="#modalOptionsItem01" class="item-size modal-opener">Options</a>
-                </li>
-                <li>
-                  <span class="">$ 8.00</span>
-                </li>
 
-              </ul>
-            </div>
-          </div>
+
           <!-- Grid Item 02 -->
           <div id="gridItem02" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza" style="">
             <div class="item-body">
               <figure>
-                <div class="ribbon-discount"><span>- 10%</span></div>
-                <img src="dist_/assets/02_002.jpg" data-src="../img/gallery/grid-items/02.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
+               <!--  <div class="ribbon-discount"><span>- 10%</span></div> -->
+                <img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
                 <a href="#modalDetailsItem02" class="item-body-link modal-opener">
                   <div class="item-title">
-                    <h3>Bolognese</h3>
-                    <small>Ragu, Mozzarella</small>
-                  </div>
-                </a>
+                    <h3>CHILE CASCABEL</h3>
                 
-              </figure>
-              <ul>
-                <li>
-                  <a href="#modalOptionsItem01" class="item-size modal-opener">Chile cascabel</a>
-                </li>
-                <li>
-                  <span class="">$ 8.00</span>
-                </li>
-            </div>
-          </div>
-          <div id="gridItem01" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item pizza" style="">
-            <div class="item-body">
-              <figure>
-                <img src="dist_/assets/01_002.jpg" data-src="../img/gallery/grid-items/01.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
-                <a href="#modalDetailsItem01" class="item-body-link modal-opener">
-                  <div class="item-title">
-                    <h3>Aspen</h3>
-                    <small>Bacon, Onion, Mushroom ...</small>
-                  </div>
-                </a>
-           
-              </figure>
-              <ul>
-                <li>
-                  <a href="#modalOptionsItem01" class="item-size modal-opener">Options</a>
-                </li>
-                <li>
-                  <span class="item-price format-price">$ 8.00</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <!-- Grid Item 02 -->
-          <div id="gridItem02" class="col-xl-3 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza" style="">
-            <div class="item-body">
-              <figure>
-                <div class="ribbon-discount"><span>- 10%</span></div>
-                <img src="dist_/assets/02_002.jpg" data-src="../img/gallery/grid-items/02.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">
-                <a href="#modalDetailsItem02" class="item-body-link modal-opener">
-                  <div class="item-title">
-                    <h3>Bolognese</h3>
-                    <small>Ragu, Mozzarella</small>
                   </div>
                 </a>
           
               </figure>
-              <ul>
+              <ul style="
+              
+                                                      padding-bottom: 32px;
+                                                     
+                                                     ">
                 <li>
-                  <a href="#modalOptionsItem01" class="item-size modal-opener">Options</a>
+                  <span  class="modal-opener" >
+                                                      $ 180.00
+                  </span>
                 </li>
-                <li>
-                  <span class="item-price format-price">$ 8.00</span>
-                </li>
+          
               </ul>
             </div>
           </div>
+        
         </div>
         <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
           <div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
