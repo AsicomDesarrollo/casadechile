@@ -18,27 +18,10 @@ header('Content-Type: text/html; charset=utf-8');
   PLUGINS DE CSS
   ======================================-->
   
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/carousel/owl.theme.default.css">
-  <link rel="stylesheet" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   
-  <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="vistas/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="vistas/dist/css/skins/skin-blue.min.css">
-  <link rel="stylesheet" href="vistas/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
-  <link rel="stylesheet" href="vistas/bower_components/jvectormap/jquery-jvectormap.css">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <link rel="stylesheet" href="vistas/plugins/bootstrap-slider/slider.css">
-  <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/plugins/tags/bootstrap-tagsinput.css">
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="vistas/plugins/dropzone/dropzone.css">
+ 
 
   <!--=====================================
   CSS PERSONALIZADO
@@ -54,24 +37,9 @@ header('Content-Type: text/html; charset=utf-8');
   <script src="vistas/bower_components/jquery-ui/jquery-ui.min.js"></script>
  <!--  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
   <script src="vistas/bower_components/carousel/owl.carousel.min.js"></script>
-  <script src="vistas/dist/js/adminlte.min.js"></script>
-  <script src="vistas/plugins/iCheck/icheck.min.js"></script>
   <!--<script src="vistas/bower_components/raphael/raphael.min.js"></script>-->
-  <script src="vistas/bower_components/morris.js/morris.min.js"></script>
-  <script src="vistas/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-  <script src="vistas/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-  <script src="vistas/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-  <script src="vistas/bower_components/chart.js/Chart.js"></script>
   <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
-  <!--<script src="vistas/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>-->
-  <script src="vistas/plugins/bootstrap-slider/bootstrap-slider.js"></script>
-  <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
-  <script src="vistas/plugins/tags/bootstrap-tagsinput.min.js"></script>
-  <!--<script src="vistas/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>-->
-  <script src="vistas/plugins/dropzone/dropzone.js"></script>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
   <script src="vistas/js/onback.js"></script>
@@ -91,9 +59,6 @@ header('Content-Type: text/html; charset=utf-8');
 <!-- Vendor CSS -->
 
 <link href="vistas/dist_/assets/plugins/bootstrap5.3.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="vistas/dist_/assets/css/menu.css" rel="stylesheet">
-<link href="vistas/dist_/assets/css/hamburgers.min.css" rel="stylesheet">
-<link href="vistas/dist_/assets/css/mmenu.min.css" rel="stylesheet">
 <link href="vistas/dist_/assets/css/magnific-popup.css" rel="stylesheet">
 <link href="vistas/dist_/assets/css/float-labels.min.css" rel="stylesheet">
 

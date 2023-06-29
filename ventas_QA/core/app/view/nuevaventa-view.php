@@ -4,6 +4,48 @@
   -->
 <!-- Container -->
 <div class="container" style="transform: none;">
+
+
+
+
+
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon1">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+  <span class="input-group-text" id="basic-addon2">@example.com</span>
+</div>
+
+<label for="basic-url" class="form-label">Your vanity URL</label>
+<div class="input-group mb-3">
+  <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text">$</span>
+  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+  <span class="input-group-text">.00</span>
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+  <span class="input-group-text">@</span>
+  <input type="text" class="form-control" placeholder="Server" aria-label="Server">
+</div>
+
+<div class="input-group">
+  <span class="input-group-text">With textarea</span>
+  <textarea class="form-control" aria-label="With textarea"></textarea>
+</div>
+
+
+
+
+
   <!-- Row -->
   <div class="row  d-flex " style="transform: none;">
     <!-- Left Sidebar -->
@@ -41,35 +83,38 @@
         </div>
         <div class="row grid" id="contenedorProductos" >
 
-          <?php $categorias=Productos::mostrarCategorias();
-          foreach ($categorias as $key=>$value){
-              echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <?php $categorias = Productos::mostrarCategorias();
+foreach ($categorias as $key => $value)
+{
+  echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                       <center>
-                        <h3 style="color: #e06345; margin-top: 30px; margin-bottom: 30px;">'.$value["nombre"].'</h3>
+                        <h3 style="color: #e06345; margin-top: 30px; margin-bottom: 30px;">' . $value["nombre"] . '</h3>
                       </center>
                     </div>
-                    <br>'; 
-              $productos = Productos::mostrarProductosCategoria($value["id"]);
-              $conCol=0; 
-              foreach ($productos as $key=>$producto){
-                  if($producto["imagen"]==""){ 
-                      echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="'.$producto["id"].'" nombre="'.$producto["nombre"].'" precio="'.$producto["precio"].'" minimo="'.$producto["minimo"].'" maximo="'.$producto["maximo"].'" imagen="'.$producto["imagen"].'" categoria="'.$producto["categoria"].'">
+                    <br>';
+  $productos = Productos::mostrarProductosCategoria($value["id"]);
+  $conCol = 0;
+  foreach ($productos as $key => $producto)
+  {
+    if ($producto["imagen"] == "")
+    {
+      echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' . $producto["id"] . '" nombre="' . $producto["nombre"] . '" precio="' . $producto["precio"] . '" minimo="' . $producto["minimo"] . '" maximo="' . $producto["maximo"] . '" imagen="' . $producto["imagen"] . '" categoria="' . $producto["categoria"] . '">
                               <div class="item-body">
                                 <figure>
                                   <img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">';
-                  }
-                  else{
-                       echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="'.$producto["id"].'" nombre="'.$producto["nombre"].'" precio="'.$producto["precio"].'" minimo="'.$producto["minimo"].'" maximo="'.$producto["maximo"].'" imagen="'.$producto["imagen"].'" categoria="'.$producto["categoria"].'" style="cursor: pointer;">
+    }
+    else
+    {
+      echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' . $producto["id"] . '" nombre="' . $producto["nombre"] . '" precio="' . $producto["precio"] . '" minimo="' . $producto["minimo"] . '" maximo="' . $producto["maximo"] . '" imagen="' . $producto["imagen"] . '" categoria="' . $producto["categoria"] . '" style="cursor: pointer;">
                               <div class="item-body">
                                 <figure>
-                                  <img src="vistas/img/plantilla/'.$producto["imagen"].'" style="width: 50%" class="img-responsive">';
-                  }
-  
+                                  <img src="vistas/img/plantilla/' . $producto["imagen"] . '" style="width: 50%" class="img-responsive">';
+    }
 
-                        echo '                
+    echo '                
                                   <a href="#modalDetailsItem02" class="item-body-link modal-opener">
                                     <div class="item-title">
-                                      <h3>'.$producto["nombre"].'</h3>
+                                      <h3>' . $producto["nombre"] . '</h3>
                                   
                                     </div>
                                   </a>
@@ -77,15 +122,15 @@
                                 <ul style="padding-bottom: 32px;">
                                   <li>
                                     <span  class="modal-opener" >
-                                      $ '.$producto["precio"].'
+                                      $ ' . $producto["precio"] . '
                                     </span>
                                   </li>
           
                                 </ul>
                               </div>
-                            </div>'; 
-              }
-          } ?>
+                            </div>';
+  }
+} ?>
           
         
         </div>
@@ -117,15 +162,15 @@
               
                 <label>Nombre del cliente</label><br>
                 <select class="form-select  form-select-lg pt-2"  style="height: 100%;" id="nombreCliente" name="nombreCliente" >      
-                <?php $clientes=Clientes::mostrarTodos();?>
+                <?php $clientes = Clientes::mostrarTodos(); ?>
                 <?php
-    
-                  echo '<option value="Venta General">Venta General</option>';
-              
-                  foreach ($clientes as $key) {
-                      echo '<option value="'.$key['id'].'">'.$key['nombre'].'</option>';
-                  }
-                ?>
+echo '<option value="Venta General">Venta General</option>';
+
+foreach ($clientes as $key)
+{
+  echo '<option value="' . $key['id'] . '">' . $key['nombre'] . '</option>';
+}
+?>
                 </select>
               </div>
 
@@ -240,26 +285,17 @@
 </div>
 <!-- Container End -->
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog" id="waitDialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                   Some Stuff. 
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-            </div>
-        </div> 
 
 
-<div id="modalProducto" class="modal fade" role="dialog">
+
+
+
+
+
+
+
+
+<!-- <div class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background:#fbf2c7; color:white">
@@ -295,7 +331,20 @@
         data-dismiss="modal">Salir</button></div>
     </div>
   </div>
-</div>
+</div> -->
+
+
+
+<!-- Modal -->
+
+
+
+
+
+
+
+
+
 <div id="modalPromo" class="modal fade" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -381,6 +430,85 @@
     </div>
   </div>
 </div>
+
+  
+        <div id="modalProducto" class="modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="tituloModal"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                <div class="modal-body">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                  <div class="form-group" style="display: none;">
+                    <label>Id</label>
+                    <input type="text" class="form-control"  id="idModal" placeholder="id">
+                  </div>
+            
+                  <div class="input-group mb-3">
+                    
+                    <span class="input-group-text"> <label id="etiquetaNuevaUnidad"></label> </span>
+                    <input type="number" class="form-control"  id="pesoModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'peso')">
+                  </div>
+                  <div class="input-group mb-3 search-wrap">
+                    
+                    <span class="input-group-text"><label>Precio $ </label></span>
+                    <input type="number" class="form-control"  id="precioModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'precio','btnAgregar')">
+
+                  </div>
+                  <small class="text-warning">
+                      Recuerda que el costo debe estar dentro del máximo y el mínimo establecido
+                  </small>
+                  <div class="form-group" style="display: none;">
+                    <label>Precio Maximo</label>
+                    <input type="number" class="form-control" id="maximoModal" placeholder="Precio máximo establecido" disabled>
+                    <small class="form-text text-muted">Precio máximo establecido para este producto</small>
+                  </div>
+                  <div class="form-group">
+                    <label>
+                      <small class="form-text text-muted">
+                        Precio mínimo establecido para este producto
+                      </small>
+                    </label>
+                    <input type="numer" class="form-control" id="minimoModal" placeholder="Precio mínimo de venta" disabled style="background: transparent;border: none;font-size: 2em;">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
   $("body").css("background-image", "url(/ventas/vistas/img/plantilla/fondoventa.jpg)");
   $("body").css("background-repeat", "no-repeat");
@@ -396,19 +524,9 @@
   var subtotal;
   var listaPedido = [];
 
-  $(".agregarBTNN").click(function() {
 
-var myModal = document.getElementById('staticBackdrop');
-  var modal = bootstrap.Modal.getOrCreateInstance(myModal);
-  modal.show(); });
   
   $(".agregarProducto").click(function() {
-
-    var myModal = document.getElementById('staticBackdrop');
-      var modal = bootstrap.Modal.getOrCreateInstance(myModal);
-      modal.show();
-
-
 
 
       titulo = $(this).attr("nombre");
@@ -426,6 +544,8 @@ var myModal = document.getElementById('staticBackdrop');
           contentType: false,
           processData: false,
           success: function(respuesta) {
+
+            console.info(respuesta);
               $.each(respuesta, function(id, val) {
                   switch (id) {
                       case 'id':
@@ -457,6 +577,13 @@ var myModal = document.getElementById('staticBackdrop');
               $("#pesoModal").val("");
               $("#precioModal").val(minimo);
               $("#minimoModal").val(minimo);
+
+
+              var modal1 = new bootstrap.Modal(document.getElementById('modalProducto'));
+    
+        // show Modal
+          modal1.show();
+
           }
       }); 
       if(titulo.includes("ACHIOTE") == true) {
@@ -469,11 +596,6 @@ var myModal = document.getElementById('staticBackdrop');
           console.log("otros");
           $("#etiquetaNuevaUnidad").text("Peso en Kg");
       }
-
-
-      var myModal = document.getElementById('staticBackdrop');
-      var modal = bootstrap.Modal.getOrCreateInstance(myModal)
-      modal.show()
 
 
 
@@ -1262,24 +1384,26 @@ var myModal = document.getElementById('staticBackdrop');
   
 </script>
 <?php
-  if(isset($_REQUEST['folio'])){
-     //si existe el folio y debe traer datos.
-     $venta = Productos::todalaVenta($_REQUEST['folio']);
-  foreach ($venta as $key => $value) {
-      $venta[$key]['pesostring'] = $value['peso'];
+if (isset($_REQUEST['folio']))
+{
+  //si existe el folio y debe traer datos.
+  $venta = Productos::todalaVenta($_REQUEST['folio']);
+  foreach ($venta as $key => $value)
+  {
+    $venta[$key]['pesostring'] = $value['peso'];
   }
   // core::preprint($venta,'venta con pesostring');
-  
-     $venta= json_encode($venta);
-     echo "<script> var ventaJson = '".$venta."'; </script>";
-  
+  $venta = json_encode($venta);
+  echo "<script> var ventaJson = '" . $venta . "'; </script>";
+
   //    core::preprint($venta,'venta en encode');
-     //correr todo para rellenar el tiket //!urgente
-     //para borrar debes cambiar estatus a todos los productos de el timestamp y ponerlos inactivos, luego
-     // correr el foreach de los productos en el json desde js y cambiar estatus a abierto.
-     //asi se eliminan los prodyctos borrados desde el interfaz, sin borrarlos de la BD y queda antecedente.
-     ///?hacer que guarde el producto y cambios con la tecla enter
-  ?>
+  //correr todo para rellenar el tiket //!urgente
+  //para borrar debes cambiar estatus a todos los productos de el timestamp y ponerlos inactivos, luego
+  // correr el foreach de los productos en el json desde js y cambiar estatus a abierto.
+  //asi se eliminan los prodyctos borrados desde el interfaz, sin borrarlos de la BD y queda antecedente.
+  ///?hacer que guarde el producto y cambios con la tecla enter
+  
+?>
 <script>
   //ventaJson = productos desde la BD
   var listaPedido = [];
@@ -1410,10 +1534,10 @@ var myModal = document.getElementById('staticBackdrop');
           }, 0); 
   });
 </script>
-<?php   
-  }
-  
-  ?>
+<?php
+}
+
+?>
 <script>
   $(document).ready(function() {
            $('.js-example-basic-single').select2();
