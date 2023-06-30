@@ -20,14 +20,16 @@ header('Content-Type: text/html; charset=utf-8');
   
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
  
 
   <!--=====================================
   CSS PERSONALIZADO
   ======================================-->
-.
-  <link rel="stylesheet" href="vistas/css/plantilla.css">
+
+  <!-- Main CSS -->
+  <link href="vistas/dist_/assets/css/style.css" rel="stylesheet">
 
   <!--=====================================
   PLUGINS DE JAVASCRIPT
@@ -35,35 +37,17 @@ header('Content-Type: text/html; charset=utf-8');
 
   <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
   <script src="vistas/bower_components/jquery-ui/jquery-ui.min.js"></script>
- <!--  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> -->
-  <script src="vistas/bower_components/carousel/owl.carousel.min.js"></script>
-  <!--<script src="vistas/bower_components/raphael/raphael.min.js"></script>-->
-  <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <!-- Custom Font Icons -->
+  <script src="https://kit.fontawesome.com/b8f324a3a5.js" crossorigin="anonymous"></script>
 
-  <script src="vistas/js/onback.js"></script>
+  <!-- Vendor CSS -->
+
+  <link href="vistas/dist_/assets/plugins/bootstrap5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vistas/dist_/assets/css/magnific-popup.css" rel="stylesheet">
+  <link href="vistas/dist_/assets/css/float-labels.min.css" rel="stylesheet">
 
 
-
-
-<!-- Google Fonts - Jost -->
-<link href="vistas/dist_/assets/css/css2.css" rel="stylesheet">
-
-<!-- Font Awesome CSS -->
-<link href="vistas/dist_/assets/css/font-awesome.min.css" rel="stylesheet">
-
-<!-- Custom Font Icons -->
-<link href="vistas/dist_/assets/css/iconfont.min.css" rel="stylesheet">
-
-<!-- Vendor CSS -->
-
-<link href="vistas/dist_/assets/plugins/bootstrap5.3.0/css/bootstrap.min.css" rel="stylesheet">
-<link href="vistas/dist_/assets/css/magnific-popup.css" rel="stylesheet">
-<link href="vistas/dist_/assets/css/float-labels.min.css" rel="stylesheet">
-
-<!-- Main CSS -->
-<link href="vistas/dist_/assets/css/style.css" rel="stylesheet">
 
 </head>
 
@@ -82,11 +66,21 @@ Plantilla base para todos los módulos
 
 </style>
 
-<body class="login-page fondoInicio" style="background-color: #ffffff;">
+
+
+<body class="login-page " id="page" style="background-color: #ffffff;">
+
+<!-- Preloader -->
+<!-- <div id="preloader">
+        <div data-loader="circle-side"></div>
+    </div> -->
+    <!-- Preloader End -->
 
 <?php
 
   if(isset($_SESSION["id"]) && $_SESSION["id"] >0){
+
+    include "layout_header.php";
 
     Route::view($_GET['view']);
 
@@ -122,6 +116,20 @@ Plantilla base para todos los módulos
  
 ?>
 
+
+
+  <!-- Back to top button -->
+  <div id="toTop">
+      
+
+    <i class="fa-sharp fa-solid fa-arrow-up"></i>
+
+
+  </div>
+
+
+
+
 <!--=====================================
 JS PERSONALIZADO
 ======================================-->
@@ -136,29 +144,9 @@ JS PERSONALIZADO
 <script src="vistas/dist_/assets/js/gestorNotificaciones.js"></script>
 
 <script src="vistas/dist_/assets/js/jquery.min.js"></script>
-    <script src="vistas/dist_/assets/plugins/bootstrap5.3.0/js/bootstrap.min.js"></script>
-    <script src="vistas/dist_/assets/js/easing.min.js"></script>
-    <script src="vistas/dist_/assets/js/parsley.min.js"></script>
-    <script src="vistas/dist_/assets/js/jquery.nice-select.min.js"></script>
-    <script src="vistas/dist_/assets/js/jquery.priceformat.min.js"></script>
-    <script src="vistas/dist_/assets/js/ResizeSensor.min.js"></script>
-    <script src="vistas/dist_/assets/js/theia-sticky-sidebar.min.js"></script>
-    <script src="vistas/dist_/assets/js/mmenu.min.js"></script>
-    <script src="vistas/dist_/assets/js/jquery.magnific-popup.min.js"></script>
-    <script src="vistas/dist_/assets/js/float-labels.min.js"></script>
-    <script src="vistas/dist_/assets/js/jquery-ui-1.8.22.min.js"></script>
-    <script src="vistas/dist_/assets/js/jquery.wizard.js"></script>
-    <script src="vistas/dist_/assets/js/isotope.pkgd.min.js"></script>
-    <script src="vistas/dist_/assets/js/scrollreveal.min.js"></script>
-    <script src="vistas/dist_/assets/js/lazyload.min.js"></script>
-    <script src="vistas/dist_/assets/js/sticky-kit.min.js"></script>
+<script src="vistas/dist_/assets/plugins/bootstrap5.3.0/js/bootstrap.min.js"></script>
 
-    <!-- Stripe Javascript Files -->
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="assets/js/stripe-func.js"></script>
 
-    <!-- Main Javascript File -->
-    <script src="../js/scripts.js"></script>
 
 </body>
 </html>

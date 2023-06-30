@@ -683,7 +683,7 @@ ul#menuIcons li a:hover {
 	width: 149px;
 	height: 35px;
 	display: block;
-	background: url(../img/logo.svg) no-repeat 0 0;
+	background: url(../../../../../administracion_QA/vistas/dist/assets/images/logo/logo.png) no-repeat 0 0;
 	background-size: 149px 35px;
 	text-indent: -9999px;
 }
@@ -1777,7 +1777,7 @@ a.btn-2:hover, .btn-2:hover {
 	border-radius: 10px;
 }
 
-input.form-control.qty {
+input.qty {
 	padding-left: 35px;
 	height: 28px;
 }
@@ -2023,7 +2023,7 @@ input.qtyminus {
 
 /* Fields, Textareas */
 
-input.form-control, select.form-control, textarea.form-control {
+/* input.form-control, select.form-control, textarea.form-control {
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none;
@@ -2038,7 +2038,7 @@ input.form-control, select.form-control, textarea.form-control {
 	font-weight: 400;
 	padding: 0;
 	resize: none;
-}
+} */
 
 input.form-control:focus, textarea.form-control:focus {
 	background: transparent;
@@ -2051,9 +2051,9 @@ input.form-control:focus, textarea.form-control:focus {
 	transition: all 0.9s ease;
 }
 
-input.form-control:disabled {
+/* input.form-control:disabled {
 	border: none;
-}
+} */
 
 .total {
 	text-align: right;

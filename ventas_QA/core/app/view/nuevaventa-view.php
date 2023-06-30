@@ -3,49 +3,19 @@
   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> 
   -->
 <!-- Container -->
-<div class="container" style="transform: none;">
+<div class="container " style="transform: none;">
 
+  <div class="row" style="margin-bottom: 20px;">
+      <span class="col-xs-4 col-sm-4 col-md-2 col-lg-2"
+          style="margin-top: 20px;">
+          <a href="?view=index"> 
+            <span class="btn btn-danger">
+              <i style="font-size:1.2em" class="fas fa-long-arrow-alt-left"></i> Regresar 
+            </span>
+          </a>
+      </span>
 
-
-
-
-<div class="input-group mb-3">
-  <span class="input-group-text" id="basic-addon1">@</span>
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-</div>
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-  <span class="input-group-text" id="basic-addon2">@example.com</span>
-</div>
-
-<label for="basic-url" class="form-label">Your vanity URL</label>
-<div class="input-group mb-3">
-  <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
-  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
-</div>
-
-<div class="input-group mb-3">
-  <span class="input-group-text">$</span>
-  <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-  <span class="input-group-text">.00</span>
-</div>
-
-<div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-  <span class="input-group-text">@</span>
-  <input type="text" class="form-control" placeholder="Server" aria-label="Server">
-</div>
-
-<div class="input-group">
-  <span class="input-group-text">With textarea</span>
-  <textarea class="form-control" aria-label="With textarea"></textarea>
-</div>
-
-
-
-
-
+  </div>
   <!-- Row -->
   <div class="row  d-flex " style="transform: none;">
     <!-- Left Sidebar -->
@@ -75,7 +45,7 @@
           </div>
           <div class="col-md-6 col-sm-6">
             <div class="search-wrap">
-              <input id="search" type="text" class="form-control" placeholder="Buscar producto" id="buscarProducto" 
+              <input type="text" class="form-control" placeholder="Buscar producto" id="buscarProducto" 
                       onkeyup="buscar()">
               <i class="fa fa-search"></i>
             </div>
@@ -84,56 +54,58 @@
         <div class="row grid" id="contenedorProductos" >
 
           <?php $categorias = Productos::mostrarCategorias();
-foreach ($categorias as $key => $value)
-{
-  echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                      <center>
-                        <h3 style="color: #e06345; margin-top: 30px; margin-bottom: 30px;">' . $value["nombre"] . '</h3>
-                      </center>
-                    </div>
-                    <br>';
-  $productos = Productos::mostrarProductosCategoria($value["id"]);
-  $conCol = 0;
-  foreach ($productos as $key => $producto)
-  {
-    if ($producto["imagen"] == "")
-    {
-      echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' . $producto["id"] . '" nombre="' . $producto["nombre"] . '" precio="' . $producto["precio"] . '" minimo="' . $producto["minimo"] . '" maximo="' . $producto["maximo"] . '" imagen="' . $producto["imagen"] . '" categoria="' . $producto["categoria"] . '">
-                              <div class="item-body">
-                                <figure>
-                                  <img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">';
-    }
-    else
-    {
-      echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' . $producto["id"] . '" nombre="' . $producto["nombre"] . '" precio="' . $producto["precio"] . '" minimo="' . $producto["minimo"] . '" maximo="' . $producto["maximo"] . '" imagen="' . $producto["imagen"] . '" categoria="' . $producto["categoria"] . '" style="cursor: pointer;">
-                              <div class="item-body">
-                                <figure>
-                                  <img src="vistas/img/plantilla/' . $producto["imagen"] . '" style="width: 50%" class="img-responsive">';
-    }
+            foreach ($categorias as $key => $value)
+            {
+              echo '<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                  <center>
+                                    <h3 style="color: #e06345; margin-top: 30px; margin-bottom: 30px;">' . $value["nombre"] . '</h3>
+                                  </center>
+                                </div>
+                                <br>';
+              $productos = Productos::mostrarProductosCategoria($value["id"]);
+              $conCol = 0;
+              foreach ($productos as $key => $producto)
+              {
+                if ($producto["imagen"] == "")
+                {
+                  echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' . $producto["id"] . '" nombre="' . $producto["nombre"] . '" precio="' . $producto["precio"] . '" minimo="' . $producto["minimo"] . '" maximo="' . $producto["maximo"] . '" imagen="' . $producto["imagen"] . '" categoria="' . $producto["categoria"] . '">
+                                          <div class="item-body">
+                                            <figure>
+                                              <img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded">';
+                }
+                else
+                {
+                  echo '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' . $producto["id"] . '" nombre="' . $producto["nombre"] . '" precio="' . $producto["precio"] . '" minimo="' . $producto["minimo"] . '" maximo="' . $producto["maximo"] . '" imagen="' . $producto["imagen"] . '" categoria="' . $producto["categoria"] . '" style="cursor: pointer;">
+                                          <div class="item-body">
+                                            <figure>
+                                              <img src="vistas/img/plantilla/' . $producto["imagen"] . '" style="width: 50%" class="img-responsive">';
+                }
 
-    echo '                
-                                  <a href="#modalDetailsItem02" class="item-body-link modal-opener">
-                                    <div class="item-title">
-                                      <h3>' . $producto["nombre"] . '</h3>
-                                  
-                                    </div>
-                                  </a>
-                                </figure>
-                                <ul style="padding-bottom: 32px;">
-                                  <li>
-                                    <span  class="modal-opener" >
-                                      $ ' . $producto["precio"] . '
-                                    </span>
-                                  </li>
-          
-                                </ul>
-                              </div>
-                            </div>';
-  }
-} ?>
+                echo '                
+                                              <a href="#modalDetailsItem02" class="item-body-link modal-opener">
+                                                <div class="item-title">
+                                                  <h3>' . $producto["nombre"] . '</h3>
+                                              
+                                                </div>
+                                              </a>
+                                            </figure>
+                                            <ul style="padding-bottom: 32px;">
+                                              <li>
+                                                <span  class="modal-opener" >
+                                                  $ ' . $producto["precio"] . '
+                                                </span>
+                                              </li>
+                      
+                                            </ul>
+                                          </div>
+                                        </div>';
+              }
+            } ?>
           
         
         </div>
+        <div class="row grid" id="contenedorBusqueda"></div>
+
         <div class="resize-sensor" style="position: absolute; inset: 0px; overflow: hidden; z-index: -1; visibility: hidden;">
           <div class="resize-sensor-expand" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; z-index: -1; visibility: hidden;">
             <div style=" transition: all 0s ease 0s; width: 833px; height: 1819px;"></div>
@@ -154,23 +126,23 @@ foreach ($categorias as $key => $value)
           <!-- Step 1: Order Summary -->
           <div id="#orderSummaryStep" class="step wizard-step current" style="">
             <div class="order-header">
-              <h3 class="wizard-header"  name="folio" id="nota" nota="" >Nota de venta</h3>
+              <h3 class="wizard-header" name="folio" id="nota" nota=""  >Nota de venta</h3>
             </div>
             <div class="order-header" style="border-top-left-radius: 0px;border-top-right-radius: 0px;background-color: #fff;border-right: 1px solid lightgray;border-left: 1px solid lightgray;">
-              <h3 class="wizard-header pb-1"  name="folio" id="folio" folio=""  style="color:#121921">Folio: </h3>    
+              <h3 class="wizard-header pb-1" name="folio" id="folio" folio="" style="color:#121921">Folio: <?php echo $_GET["folio"] ?></h3>    
               <div class="container p-5">
               
                 <label>Nombre del cliente</label><br>
                 <select class="form-select  form-select-lg pt-2"  style="height: 100%;" id="nombreCliente" name="nombreCliente" >      
                 <?php $clientes = Clientes::mostrarTodos(); ?>
                 <?php
-echo '<option value="Venta General">Venta General</option>';
+                    echo '<option value="Venta General">Venta General</option>';
 
-foreach ($clientes as $key)
-{
-  echo '<option value="' . $key['id'] . '">' . $key['nombre'] . '</option>';
-}
-?>
+                    foreach ($clientes as $key)
+                    {
+                      echo '<option value="' . $key['id'] . '">' . $key['nombre'] . '</option>';
+                    }
+                  ?>
                 </select>
               </div>
 
@@ -190,44 +162,28 @@ foreach ($clientes as $key)
 
                         <div class="order-list-details row pb-3" style="width: 100%;">
                           <div class="col-3">
-                            <h2>Descripción</h2>
+                            <h2 style="font-size: x-large;">Descripción</h2>
                           </div>
                           <div class="col-1">
-                            <h2>Kg</h2>
+                            <h2 style="font-size: x-large;">Kg</h2>
                           </div>
                           <div class="col-2">
-                            <h2>Costo</h2>
+                            <h2 style="font-size: x-large;">Costo</h2>
                           </div>
                           <div class="col-3">
-                            <h2>Acciones</h2>
+                            <h2 style="font-size: x-large;text-align: center;">Acciones</h2>
                           </div>
                           <div class="col-3">
-                            <h2>Importe</h2>
+                            <h2 style="font-size: x-large;text-align: center;">Importe</h2>
                           </div>
 
                   
                          
                         </div>
 
-                        <div class="order-list-details row"  style="width: 100%;">
-                          <div class="col-3">
-                          <h4>CHILE CASCABEL</h4>
-                          </div>
-
-                          <div class="col-1">
-                            <h4>2000.80</h4>
-                          </div>
-          
-                          <div class="col-2">
-                            <h4>150500.500</h4>
-                          </div>
-                          <div class="col-3">
-                            <h4>150500.500</h4>
-                          </div>
-                          <div class="col-3">
-                            <h4>150500.500</h4>
-                          </div>
-                 
+                        <div class="order-list-details " id="divPedido"  style="width: 100%;">
+ 
+                            
                           
                         </div>
                       </li>
@@ -239,20 +195,15 @@ foreach ($clientes as $key)
               <!-- Delivery Fee -->
               <div class="row">
                 <div class="col-md-12 col-sm-12">
+
                   <label class="cbx radio-wrapper no-edges">
-                  <input type="radio" value="delivery" name="transfer" checked="checked" data-parsley-multiple="transfer"> <span class="checkmark"></span>
-                  <span class="radio-caption">Delivery</span><span class="option-price format-price transfer">$ 10.00</span>
+                  <input type="radio" value="delivery" name="transfer" checked="checked" data-parsley-multiple="transfer"><span class="radio-caption">TOTAL $</span><span class="option-price format-price transfer" style="padding-right: 20px;"> <strong  id="total"></strong></span>
                   </label>
                 </div>
               </div>
               <!-- Delivery Fee -->
               <!-- Total -->
-              <div class="row total-container">
-                <div class="col-md-12 p-0">
-                  <span class="totalTitle">Total</span><span class="totalValue format-price float-right">$ 0.00</span>
-                  <input type="hidden" id="totalOrderSummary" class="total format-price" name="total" value="$ 0.00" data-parsley-errors-container="#totalError" data-parsley-empty-order="" disabled="disabled">
-                </div>
-              </div>
+              
               <div id="totalError"></div>
               <!-- Total End -->
               <!-- Forward Button -->
@@ -436,62 +387,56 @@ foreach ($clientes as $key)
           <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="tituloModal"></h5>
+                    <h5 class="modal-title " style="color:#e97d01;" id="tituloModal"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                <div class="modal-body">
+                <div class="modal-body row">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                
-                  <div class="form-group" style="display: none;">
-                    <label>Id</label>
-                    <input type="text" class="form-control"  id="idModal" placeholder="id">
-                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="form-group" style="display: none;">
+                      <label>Id</label>
+                      <input type="text" class="form-control"  id="idModal" placeholder="id">
+                    </div>
             
-                  <div class="input-group mb-3">
+                    <div class="input-group mb-3">
+                      
+                      <span class="input-group-text"> <label id="etiquetaNuevaUnidad"></label> </span>
+                      <input type="number" class="form-control" placeholder="0.00" id="pesoModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'peso')">
+                    </div>
+                    <div class="input-group mb-3 search-wrap">
                     
-                    <span class="input-group-text"> <label id="etiquetaNuevaUnidad"></label> </span>
-                    <input type="number" class="form-control"  id="pesoModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'peso')">
+                      <span class="input-group-text"><label>Precio $ </label></span>
+                      <input type="number" class="form-control"  id="precioModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'precio','btnAgregar')">
+
+                    </div>
                   </div>
-                  <div class="input-group mb-3 search-wrap">
-                    
-                    <span class="input-group-text"><label>Precio $ </label></span>
-                    <input type="number" class="form-control"  id="precioModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'precio','btnAgregar')">
+                  <div class="col-md-6 col-sm-12">
+
+                    <img class="rounded mx-auto d-block" src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" width="72%">
 
                   </div>
-                  <small class="text-warning">
-                      Recuerda que el costo debe estar dentro del máximo y el mínimo establecido
-                  </small>
-                  <div class="form-group" style="display: none;">
-                    <label>Precio Maximo</label>
-                    <input type="number" class="form-control" id="maximoModal" placeholder="Precio máximo establecido" disabled>
-                    <small class="form-text text-muted">Precio máximo establecido para este producto</small>
+                  <div class="col-12 pt-3">
+                    <small class="text-warning">
+                        Recuerda que el costo debe estar dentro del máximo y el mínimo establecido
+                    </small>
+                    <div class="form-group" style="display: none;">
+                      <label>Precio Maximo</label>
+                      <input type="number" class="form-control" id="maximoModal" placeholder="Precio máximo establecido" disabled>
+                      <small class="form-text text-muted">Precio máximo establecido para este producto</small>
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        <small class="form-text text-muted">
+                          Precio mínimo establecido para este producto
+                        </small>
+                      </label>
+                      <input type="numer" class="form-control" id="minimoModal" placeholder="Precio mínimo de venta" disabled style="background: transparent;border: none;font-size: 2em;">
+                    </div>
                   </div>
-                  <div class="form-group">
-                    <label>
-                      <small class="form-text text-muted">
-                        Precio mínimo establecido para este producto
-                      </small>
-                    </label>
-                    <input type="numer" class="form-control" id="minimoModal" placeholder="Precio mínimo de venta" disabled style="background: transparent;border: none;font-size: 2em;">
-                  </div>
+         
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary">Agregar</button>
+                  <button type="button" class="btn-form-func forward  btnAgregar" id="btnAgregarFocus" >Agregar</button>
                 </div>
             </div>
           </div>
@@ -648,7 +593,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Peso incorrecto',
               text: 'Debes ingresar un peso',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else if (precio < minimo || precio > maximo) {
@@ -656,7 +602,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Costo incorrecto',
               text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else {
@@ -689,19 +636,7 @@ foreach ($clientes as $key)
                           "subtotal": subtotal
                       });
                       $("#divPedido").append(
-                          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-                          idArray + " maximo=" + maximo + " minimo=" + minimo +
-                          " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-                          tituloArray +
-                          "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-                          tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo +
-                          "' minimo='" + minimo + "' id='" + idArray +
-                          "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-                          precio +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-                          peso +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-                          subtotal + "</h5></center></div></div>");
+                          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'> <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'> <h5 style='color: #333333; margin-top: 15px;' class='titulo'>" + tituloArray +  "</h5></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'>  <span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar'   idProducto=" + idArray + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span> <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>  <button class='btn btn-default editarProducto'  nombre='" +  tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idArray + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal'>" +  subtotal + "</h4> </div> </div> ");
                   } else {
                       listaPedido.push({
                           "id": idArray,
@@ -786,7 +721,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Peso incorrecto',
               text: 'Debes ingresar un peso',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else if (precio < minimo || precio > maximo) {
@@ -794,7 +730,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Costo incorrecto',
               text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else {
@@ -892,7 +829,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Peso incorrecto',
               text: 'Debes ingresar un peso',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else if (precio==0 || precio=='') { //! ninguna validación para precio mínimo
@@ -900,7 +838,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Precio incorrecto',
               text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else {
@@ -975,7 +914,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Peso incorrecto',
               text: 'Debes ingresar un peso',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else if (precio==0 || precio=='' || precio < minimo) {
@@ -983,7 +923,8 @@ foreach ($clientes as $key)
               icon: 'error',
               title: 'Precio incorrecto',
               text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Regresar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else {
@@ -999,47 +940,19 @@ foreach ($clientes as $key)
           json = JSON.stringify(listaPedido);
           console.log(json);
           $("#divPedido").append(
-              "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
               
-              
-              "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-              idActual + " maximo=" + maximo + " minimo=" + minimo +
-              " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>"+
-              "<button class='btn btn-danger borrar' idProducto=" +
-              idActual + " maximo=" + maximo + " minimo=" + minimo +
-              "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button>"+
-              "</span>"+
-  
-             /*  <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-              titulo +
-              "</h5></div>"+ */
-  
-              /* "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-danger borrar' idProducto=" +
-              idActual + " maximo=" + maximo + " minimo=" + minimo +
-              "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button></div>"+ */
-  
-  
-              "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-warning promo' nombre='" +
+
+
+
+              "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button class='btn btn-default editarProducto'  nombre='" +  titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button class='btn btn-warning promo' nombre='" +
               titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
               minimo + "' id='" + idActual +
-              "' style=' border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-tag'></i></button></div>"+
-  
-              "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-info editarProducto' nombre='" +
-              titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
-              minimo + "' id='" + idActual +
-              "' style='border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-pen'></i></button></div>"+
-  
-              "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-              titulo +
-              "</h5></div>"+
-  
-  
-              "<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-              precio +
-              "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-              peso +
-              "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-              subtotal + "</h5></center></div></div>");
+              "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" +  subtotal + '</h4> </div> </div> ');
+
+
+
+
+
           total += subtotal;
           $("#total").text(total);
           $("#modalProducto").modal('hide');
@@ -1341,13 +1254,21 @@ foreach ($clientes as $key)
                       }); 
       if (thisImagen == "") {
                           $("#contenedorBusqueda").append(
-                              '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 agregarProducto" id="' +
+                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
                               thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
                               '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
                               '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
-                              '" style="cursor: pointer;"><center><img src="vistas/img/plantilla/categoria.png" style="width: 50%" class="img-responsive"><span><h5>$ ' +
-                              thisPrecio + '</h5></span><span><h5>' + thisNombre +
-                              '</h5></span></center></div>');
+                              '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+                              thisPrecio + '</span></li></ul></div></div>');
+                              
+                              
+                              
+                              
+                              
+                              
+                              
+                        
                       } else {
                           $("#contenedorBusqueda").append(
                               '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 agregarProducto" id="' +
@@ -1360,12 +1281,12 @@ foreach ($clientes as $key)
                               thisPrecio + '</h5></span><span><h5>' + thisNombre +
                               '</h5></span></center></div>');
                       } conCol++;
-                      if (conCol == 4) {
+/*                       if (conCol == 4) {
                           $("#contenedorBusqueda").append(
                               '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
                               );
                           conCol = 0;
-                      }
+                      } */
                   });
               }
           })
