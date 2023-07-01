@@ -34,7 +34,7 @@
             <!-- end col -->
             <style>
 .auth-bg-login{
-              background-image: url(vistas/dist/assets/images/wallpapers/chile-wall.jpg);
+              background-image: url(vistas/dist/assets/images/wallpapers/chiles_frescos.jpg);
               background-position: center;
               background-size: cover;
               background-repeat: no-repeat;
@@ -44,7 +44,7 @@
 
             </style>
             <div class="col-xxl-9 col-lg-8 col-md-7">
-                <div class="auth-bg-login bg-light py-md-5 p-4 d-flex">
+                <div class="auth-bg-login auth-bg bg-light py-md-5 p-4 d-flex">
                     <div class="bg-overlay-gradient"></div>
                     <!-- end bubble effect -->
                     <div class="row justify-content-center g-0 align-items-center w-100">
@@ -56,16 +56,16 @@
                                             <h5 class="mb-0">¡ Bienvenido de nuevo !</h5>
                                             <p class="text-muted mt-2">Ingrese para continuar</p>
                                         </div>
-                                        <form class="mt-4 pt-2">
+                                        <form action="" method="post" class="mt-4 pt-2">
                                             <div class="form-floating form-floating-custom mb-3">
-                                                <input type="text" class="form-control" id="input-username" placeholder="correo electronico">
+                                                <input type="text" class="form-control" id="input-username"  name="ingEmail" placeholder="correo electronico">
                                                 <label for="input-username">Correo electronico</label>
                                                 <div class="form-floating-icon">
                                                     <i class="uil uil-users-alt"></i>
                                                 </div>
                                             </div>
                                             <div class="form-floating form-floating-custom mb-3 auth-pass-inputgroup">
-                                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña">
+                                                <input type="password" class="form-control" id="password-input" placeholder="Contraseña"  name="ingPassword" >
                                                 <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
                                                     <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
                                                 </button>
@@ -94,6 +94,12 @@
                                                 <p class="text-muted mb-0">¿No tienes una cuenta? </p>
                                                 <small class="fw-semibold text-decoration-underline"> Comunicate con el administrador del sitio. </small>
                                             </div>
+
+                                            <?php
+
+                                            $login = new ControladorAdministradores();
+                                            $login -> ctrIngresoAdministrador();
+                                            ?>
         
                                         </form><!-- end form -->
                                     </div>

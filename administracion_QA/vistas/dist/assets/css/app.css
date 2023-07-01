@@ -26,7 +26,7 @@ File: Main Css File
   --bs-sidebar-dark-menu-item-active-bg-color: #2c2c45;
   --bs-header-bg: #ffffff;
   --bs-header-item-color: #555b6d;
-  --bs-header-dark-bg: radial-gradient(at 50% -20%,#3f1e59,#311748) fixed;
+  --bs-header-dark-bg: radial-gradient(at 50% -20%,#594b1e,#483b17) fixed;
   --bs-header-dark-item-color: #e9ecef;
   --bs-topbar-search-bg: #f8f7fc;
   --bs-footer-bg: #ffffff;
@@ -121,7 +121,7 @@ File: Main Css File
   --bs-sidebar-dark-menu-item-active-bg-color: #2c2c45;
   --bs-header-bg: #ffffff;
   --bs-header-item-color: #555b6d;
-  --bs-header-dark-bg: radial-gradient(at 50% -20%,#24243c,#222236) fixed;
+  --bs-header-dark-bg: radial-gradient(at 50% -20%,#594b1e,#483b17) fixed; 
   --bs-header-dark-item-color: #e9ecef;
   --bs-topbar-search-bg: #f8f7fc;
   --bs-footer-bg: #24243c;
