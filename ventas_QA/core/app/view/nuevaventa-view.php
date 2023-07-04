@@ -181,7 +181,7 @@
                          
                         </div>
 
-                        <div class="order-list-details " id="divPedido"  style="width: 100%;">
+                        <div class="order-list-details " id="divPedido_"  style="width: 100%;">
  
                             
                           
@@ -246,54 +246,83 @@
 
 
 
-<!-- <div class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header" style="background:#fbf2c7; color:white">
-        <button type="button" class="close"
-          data-dismiss="modal">&times;</button>
-        <center>
-          <h3 class="modal-title" style="color: #e06345"><strong id="tituloModal"></strong></h3>
-        </center>
-      </div>
-      <center><img src="vistas/img/plantilla/categoria.png"
-        style="width: 25%; margin-top: 40px; margin-bottom: 40px;" class="img-responsive"></center>
-      <div style="margin-left: 40px; margin-right: 40px;">
-        <div class="form-group" style="display: none;"><label>Id</label><input type="text" class="form-control"
-          id="idModal" placeholder="id"></div>
-        <div class="form-group"><label id="etiquetaNuevaUnidad"></label><input type="number"
-          class="form-control" id="pesoModal" placeholder="" onkeyup="ocultar(event, 'peso')"></div>
-        <div class="form-group"><label>Precio</label><input type="number" class="form-control" id="precioModal"
-          aria-describedby="emailHelp" placeholder="Ingresa el precio de venta"
-          onkeyup="ocultar(event, 'precio','btnAgregar')"><small class="form-text text-muted">Recuerda que el costo
-          debe estar dentro del máximo y el mínimo establecido</small>
-        </div>
-        <div class="form-group" style="display: none;"><label>Precio Maximo</label><input type="number"
-          class="form-control" id="maximoModal" placeholder="Precio máximo establecido" disabled><small
-          class="form-text text-muted">Precio máximo establecido para este producto</small></div>
-        <div class="form-group"><label><small class="form-text text-muted">Precio mínimo establecido para este producto</small></label><input type="numer" class="form-control"
-          id="minimoModal" placeholder="Precio mínimo de venta" disabled style="background: transparent;border: none;font-size: 2em;">
-        </div>
-        <span
-          class="btn btn-success btnAgregar" id="btnAgregarFocus"
-          style="width: 100%; margin-top: 2px; margin-bottom: 20px;font-size: 2em;">Agregar al pedido</span>
-      </div>
-      <div class="modal-footer"><button type="button" class="btn btn-danger pull-left"
-        data-dismiss="modal">Salir</button></div>
-    </div>
-  </div>
-</div> -->
-
-
 
 <!-- Modal -->
 
 
+  
+<div id="modalPromo" class="modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title " style="color:#e97d01;" id="tituloModalp"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                <div class="modal-body row">
+
+                  <div class="col-md-11 col-sm-12">
+                    <div class="form-group" style="display: none;">
+                      <label>Id</label>
+                      <input type="text" class="form-control"  id="idModalp" placeholder="id">
+                    </div>
+            
+                    <div class="input-group mb-3">
+                      
+                      <span class="input-group-text"> <label id="etiquetaNuevaUnidad"></label> </span>
+                      <input type="number" class="form-control" id="pesoModalp" placeholder="" onkeyup="ocultar(event, 'peso')" disabled>
+
+                    </div>
+                    <div class="input-group mb-3 search-wrap">
+                    
+                      <span class="input-group-text"><label>Por cada KG Descontar </label></span>
+                      <input type="number" class="form-control"  id="precioModalp"  style="border: solid 1px lightgray;"  onkeyup="ocultar(event, 'precio','btnAgregarDescuento')" >
+                     
+
+                    </div>
+                  </div>
+
+                  <div class="col-12 pt-3">
+                    <small class="text-warning">
+                        Recuerda que el costo debe estar dentro del máximo y el mínimo establecido
+                    </small>
+                    <div class="form-group" style="display: none;">
+                      <label>Precio Maximo</label>
+                      <input type="number" class="form-control" id="maximoModalp" placeholder="Precio máximo establecido" disabled>
+                      <small class="form-text text-muted">Precio máximo establecido para este producto</small>
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        <small class="form-text text-muted">
+                          Precio mínimo establecido para este producto
+                        </small>
+                      </label>
+                      <input type="numer" class="form-control" id="minimoModalp" placeholder="Precio mínimo de venta" disabled style="background: transparent;border: none;font-size: 2em;">
+                    </div>
+                  </div>
+         
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn-form-func forward  btnAgregarDescuento" id="btnAgregarDescuento" >Agregar <i class="fa-sharp fa-solid fa-plus"></i></button>
+                </div>
+            </div>
+          </div>
+        </div>
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- 
 
 
 <div id="modalPromo" class="modal fade" role="dialog">
@@ -381,7 +410,7 @@
     </div>
   </div>
 </div>
-
+ -->
   
         <div id="modalProducto" class="modal" tabindex="-1">
           <div class="modal-dialog">
@@ -400,7 +429,7 @@
             
                     <div class="input-group mb-3">
                       
-                      <span class="input-group-text"> <label id="etiquetaNuevaUnidad"></label> </span>
+                      <span class="input-group-text"> <label id="etiquetaNuevaUnidad">Kg </label> </span>
                       <input type="number" class="form-control" placeholder="0.00" id="pesoModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'peso')">
                     </div>
                     <div class="input-group mb-3 search-wrap">
@@ -552,7 +581,7 @@
           $('#pesoModal').focus();
       }, 150); */
   }); 
-  $("#divPedido").on("click", ".editarProducto", function() {
+  $("#divPedido_").on("click", ".editarProducto", function() {
       titulo = $(this).attr("nombre");
       peso = $(this).attr("peso");
       precio = parseFloat($(this).attr("precio"));
@@ -613,7 +642,7 @@
           var pesosProducto = $(".cuerpoPedido .peso");
           var subsProducto = $(".cuerpoPedido .subtotal");
           listaPedido = [];
-          $("#divPedido").empty();
+          $("#divPedido_").empty();
           if (idProducto.length != 0) {
               total = 0;
               for (var i = 0; i < idProducto.length; i++) {
@@ -635,7 +664,7 @@
                           "peso": peso,
                           "subtotal": subtotal
                       });
-                      $("#divPedido").append(
+                      $("#divPedido_").append(
                           "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'> <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'> <h5 style='color: #333333; margin-top: 15px;' class='titulo'>" + tituloArray +  "</h5></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'>  <span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar'   idProducto=" + idArray + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span> <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>  <button class='btn btn-default editarProducto'  nombre='" +  tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idArray + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal'>" +  subtotal + "</h4> </div> </div> ");
                   } else {
                       listaPedido.push({
@@ -648,7 +677,7 @@
                           "subtotal": subArray
                       });
                       subtotal = precioArray * pesoArray;
-                      $("#divPedido").append(
+                      $("#divPedido_").append(
                           "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
                           idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
                           " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
@@ -674,7 +703,19 @@
   }); 
   
   //editar PROMOCION
-  $("#divPedido").on("click", ".promo", function() {
+ $("#divPedido_").on("click", ".promocion", function() {
+    
+  //$(".promo").click(function() { 
+
+
+
+
+      var modal1 = new bootstrap.Modal(document.getElementById('modalPromo'));
+      console.info (modal1);    
+      // show Modal
+      modal1.show();
+
+
       titulo = $(this).attr("nombre");
       peso = $(this).attr("peso");
       precio = parseFloat($(this).attr("precio"));
@@ -699,7 +740,7 @@
           console.log("otros");
           $("#etiquetaModalUnidad").text("Peso en Kg");
       }
-      $("#modalPromo").modal('show');
+
       setTimeout(() => {
           $('#precioModalp').focus();
           $('#precioModalp').select();
@@ -741,7 +782,7 @@
           var pesosProducto = $(".cuerpoPedido .peso");
           var subsProducto = $(".cuerpoPedido .subtotal");
           listaPedido = [];
-          $("#divPedido").empty();
+          $("#divPedido_").empty();
           if (idProducto.length != 0) {
               total = 0;
               for (var i = 0; i < idProducto.length; i++) {
@@ -763,7 +804,7 @@
                           "peso": peso,
                           "subtotal": subtotal
                       });
-                      $("#divPedido").append(
+                      $("#divPedido_").append(
                           "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
                           idArray + " maximo=" + maximo + " minimo=" + minimo +
                           " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
@@ -788,7 +829,7 @@
                           "subtotal": subArray
                       });
                       subtotal = precioArray * pesoArray;
-                      $("#divPedido").append(
+                      $("#divPedido_").append(
                           "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
                           idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
                           " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
@@ -808,14 +849,14 @@
               $("#total").text(total);
               json = JSON.stringify(listaPedido);
               console.log(json);
-              $("#modalPromo").modal('hide');
+              //$("#modalPromo").modal('hide');
           }
       }
   }); 
   
   // btnAgregarDescuento
   //** */
-  $(".btnAgregarDescuento").click(function() { //a gregar producto al pedido
+  $(".btnAgregarDescuento").click(function() { //al gregar producto al pedido
       peso = $("#pesoModalp").val();
       if($("#precioModalp").val()=='') {precio = 0;}
       else{
@@ -854,8 +895,16 @@
           });
           json = JSON.stringify(listaPedido);
           console.log(json);
-          $("#divPedido").append(
-              "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
+          $("#divPedido_").append(
+
+
+
+
+
+              "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo ' style='color:#e97d01'>DESCUENTO: " + titulo +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio text-danger'>-" +  precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-10' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal text-danger' style='text-align: right;padding-right: 31px;' >" +  subtotal + "</h4> </div> </div>");
+
+
+             /*  "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
               
               //eliminar promo
               "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
@@ -885,9 +934,13 @@
               peso +
               "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
               subtotal + "</h5></center></div></div>");
+ */
+
+
+
           total += subtotal;
           $("#total").text(total);
-          $("#modalPromo").modal('hide');
+          //$("#modalPromo").modal('hide');
           $("#buscarProducto").val("");
           $("#contenedorProductos").show();
           $("#contenedorBusqueda").hide();
@@ -939,12 +992,12 @@
           });
           json = JSON.stringify(listaPedido);
           console.log(json);
-          $("#divPedido").append(
+          $("#divPedido_").append(
               
 
 
 
-              "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button class='btn btn-default editarProducto'  nombre='" +  titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button class='btn btn-warning promo' nombre='" +
+              "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" +  titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
               titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
               minimo + "' id='" + idActual +
               "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" +  subtotal + '</h4> </div> </div> ');
@@ -953,16 +1006,18 @@
 
 
 
-          total += subtotal;
-          $("#total").text(total);
-          $("#modalProducto").modal('hide');
-          $("#buscarProducto").val("");
-          $("#contenedorProductos").show();
-          $("#contenedorBusqueda").hide();
+            total += subtotal;
+            $("#total").text(total);
+            $("#modalProducto").modal('hide');
+            $("#buscarProducto").val("");
+            $("#contenedorProductos").show();
+            $("#contenedorBusqueda").hide();
       }
   }); 
-  $("#divPedido").on("click", ".borrar", function() {
-      $(this).parent().remove();
+  $("#divPedido_").on("click", ".borrar", function() {
+
+      $(this).parent().parent().parent().parent().remove();
+
       var idProducto = $(".cuerpoPedido span");
       var titulosProducto = $(".cuerpoPedido .titulo");
       var preciosProducto = $(".cuerpoPedido .precio");
@@ -1051,6 +1106,7 @@
                               $("#folio").attr("folio",respuesta.folio);
                               $("#nota").text("Nota de Venta: "+respuesta.nota);
                               $("#nota").attr("nota",respuesta.nota);
+                              $("#folio").attr("nota",nombreCliente);
                               //window.location.href = "inicio";
                           }
                       })
@@ -1350,10 +1406,10 @@ if (isset($_REQUEST['folio']))
           "subtotal": subtotal
       });
       json = JSON.stringify(listaPedido);
-      //console.log(json);
+      console.log(json);
   
       if (titulo.split(':')[0] == "DESCUENTO"){ //SI ES DESCUENTO, PONE EL ITEM DE DESCUENTO, SI ES COMPRA NORMAL LA DEJA NORMAL.
-          $("#divPedido").append(
+          $("#divPedido_").append(
               "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
               
               //eliminar promo
@@ -1388,7 +1444,7 @@ if (isset($_REQUEST['folio']))
           $("#total").text(total);
       }
       else{
-      $("#divPedido").append(
+      $("#divPedido_").append(
           "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
           
           "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
@@ -1443,16 +1499,30 @@ if (isset($_REQUEST['folio']))
   }
   var sample1 = 'Venta General';
   $(document).ready(function() {
-          $('.js-example-basic-single').select2();
+
+    json = JSON.parse  (ventaJson);
+      
+
+      $.each(json, function(i, item) {
+          console.log(item);
+          $("#divPedido_").append(
+
+
+            "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + item.title +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +   item.peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +   item.precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + item.id + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" +  item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + item.id + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
+            item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" +
+            minimo + "' id='" + item.id +
+            "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" +  subtotal + '</h4> </div> </div> ');
+
+      });
+
+      
           setTimeout(() => {
-              $('.js-example-basic-single').select2();
-              var jsonVentas1= JSON.parse(ventaJson);
-              
-              jsonVentas1.forEach(element => {
-                  rellenarPedido(element);
-                  sample1=element;
-              });
-          }, 0); 
+
+
+
+
+
+          },1000); 
   });
 </script>
 <?php

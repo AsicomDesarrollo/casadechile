@@ -133,15 +133,15 @@ Plantilla base para todos los módulos
 <!--=====================================
 JS PERSONALIZADO
 ======================================-->
-<script src="vistas/dist_/assets/js/plantilla.js"></script>
-<script src="vistas/dist_/assets/js/gestorComercio.js"></script>
-<script src="vistas/dist_/assets/js/gestorProductos.js"></script>
-<script src="vistas/dist_/assets/js/gestorVentas.js"></script>
-<script src="vistas/dist_/assets/js/gestorUsuarios.js"></script>
-<script src="vistas/dist_/assets/js/gestorAdministradores.js"></script>
-<script src="vistas/dist_/assets/js/gestorPersonal.js"></script>
-<script src="vistas/dist_/assets/js/gestorSucursales.js"></script>
-<script src="vistas/dist_/assets/js/gestorNotificaciones.js"></script>
+<script src="vistas/js/plantilla.js"></script>
+<script src="vistas/js/gestorComercio.js"></script>
+<script src="vistas/js/gestorProductos.js"></script>
+<script src="vistas/js/gestorVentas.js"></script>
+<script src="vistas/js/gestorUsuarios.js"></script>
+<script src="vistas/js/gestorAdministradores.js"></script>
+<script src="vistas/js/gestorPersonal.js"></script>
+<script src="vistas/js/gestorSucursales.js"></script>
+<script src="vistas/js/gestorNotificaciones.js"></script>
 
 <script src="vistas/dist_/assets/js/jquery.min.js"></script>
 <script src="vistas/dist_/assets/plugins/bootstrap5.3.0/js/bootstrap.min.js"></script>
