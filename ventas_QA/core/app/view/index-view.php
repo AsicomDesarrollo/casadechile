@@ -12,61 +12,71 @@ font-size: 0.7em !important;
 }
 </style>
 
-<div class="container" style="margin-bottom: 5%;">
+<div class="container">
     <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-4 col-md-offset-2">
-            <div style="text-align: center; margin-top: 150px; background-color: #1f4655; border-radius: 15px;">
+
+    <div class="container pt-5">
+        <div class="col-12">
+            <h2> 
+                <strong>
+                    Hola,  <?php echo $_SESSION["nombre"] . " " .  $_SESSION["paterno"] . " " .  $_SESSION["materno"] ?>
+                <br>
+                <span style="font-size: large;"><?php echo $_SESSION["email"] ?></span>
+            </strong>
+            </h2>
+        </div>
+
+    </div>
+        
+        <div class="col-xs-6 col-sm-6 col-md-6 ">
+            <div class="wizard-form wizard-branch wizard-wrapper fl-form fl-style-1">
                 <br>
                 <center>
                     <img src="vistas/img/plantilla/logo.png" class="img-responsive" width="50%"
                         style="margin-top: 50px; margin-bottom: 50px;">
                 </center>
                 <br>
-                <a href="?view=nuevaventa">
-                    <button class="btn btn-primary" style="margin-top: 30px; background-color: #6ca846; border: none; font-size: 28px; margin-bottom: 50px;">Nueva venta</button>
-                </a>
+              
+                    <a type="button" name="forward" class="btn-form-func forward"  href="?view=nuevaventa"  >
+                        <span class="btn-form-func-content">Nueva venta</span>
+                        <span class="icon"><i class="fa fa-chevron-right" aria-hidden="true"></i></span>
+                    </a>
+              
                 <br>
             </div>
         </div>
 
-        <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5">
-            <div style="margin-top: 150px; background-color: #1f4655; border-radius: 15px; padding:15px; color:aliceblue !important" class="p-5">
-                <h1>Folios Anteriores</h1>
-                <ul listaFolios>
-                    <?php
-                    $folios = Productos::ultimosFolios();
-                    if (count($folios)>0){
-                        foreach ($folios as $key => $value) {
-                            echo "<a href='./?view=nuevaventa&folio=".$value['folio']."' ><li><h1>".$value['id']." - <span>".$value['cliente']."</span></h1> </li>";
-                        }                    
-                    }else{
-                        echo "<h1 style='color:#dd4b39c7'>No tienes ventas</h1>";
-                    }
-                    ?>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+            <div style="margin-top:30px; border-radius: 15px;" class="p-5">
+            
 
-                </ul>
+                <div class="card" style="  border: 2px solid #e97d01;">
+                    <div class="card-header" style="border-bottom: 1px solid #e97d01; background-color:#e97d01">
+                        <h1 class="text-light text-center"> <strong>Folios Anteriores</strong> </h1>
+                    </div>
+                    <ul class="list-group list-group-flush" listaFolios>
+                        <?php
+                        $folios = Productos::ultimosFolios(); 
+                        if (count($folios)>0){
+                            foreach ($folios as $key => $value) {
+                                echo "<li  class='list-group-item' style='border-bottom: 1px solid #e97d01;' ><a href='./?view=nuevaventa&folio=".$value['folio']."' ><h1>".$value['id']." - <span>".$value['cliente']."</span></h1> </a></li>";
+                            }                    
+                        }else{
+                            echo "<h1 style='color:#dd4b39c7'>No tienes ventas</h1>";
+                        }
+                        ?>
+
+                    </ul>
+                </div>
+
+
+
                
                 <br>
             </div>
         </div>
         
     </div>
-    <a href="./?action=salir">
-        <span class="btn btn-danger"
-            style="width: 100%; margin-top: 5%; padding-top: 15px; padding-bottom: 15px;">SALIR</span>
-    </a>
+
 </div>
 
-<script type="text/javascript">
-bajb_backdetect.OnBack = function() {
-
-    window.location = "./?action=salir";
-
-}
-
-$("body").css("background-image", "url(vistas/img/plantilla/fondoinicio2.jpg)");
-
-$("body").css("background-repeat", "no-repeat");
-
-$("body").css("background-size", "cover");
-</script>

@@ -31,16 +31,16 @@
             <span class="filter-box-link isotope-reset">Borrar filtros</span>
           </div>
           <div class="col-md-6 col-sm-6"  class="nice-select wide price-list" >
-            <select id="category" class="form-select  form-select-lg "  style="height: 100%;" name="category" >
-              <option value=""  class="form-control"    selected="selected">Ver todos</option>
-              <option value=".pizza"   class="form-control"    >Ciles secos </option>
-              <option value=".burger"  class="form-control"    >Especias</option>
-              <option value=".vegetarian"  class="form-control"    >Semillas</option>
-              <option value=".vegetarian"  class="form-control"    >Pescado y mariscos</option>
-              <option value=".vegetarian"  class="form-control"    >Frutos secos</option>
-              <option value=".vegetarian"  class="form-control"    >Molidos</option>
-              <option value=".vegetarian"  class="form-control"    >Moles</option>
-              <option value=".vegetarian"  class="form-control"    >Otros</option>
+            <select  class="form-select  form-select-lg " id="buscarProductoCategoria"  style="height: 100%;" name="category" >
+              <option value="0"  class="form-control"    selected="selected">Ver todos</option>
+              <option value="1"   class="form-control"    >Ciles secos </option>
+              <option value="2"  class="form-control"    >Especias</option>
+              <option value="3"  class="form-control"    >Semillas</option>
+              <option value="4"  class="form-control"    >Pescado y mariscos</option>
+              <option value="5"  class="form-control"    >Frutos secos</option>
+              <option value="6"  class="form-control"    >Molidos</option>
+              <option value="7"  class="form-control"    >Moles</option>
+              <option value="8"  class="form-control"    >Otros</option>
             </select>
           </div>
           <div class="col-md-6 col-sm-6">
@@ -129,7 +129,9 @@
               <h3 class="wizard-header" name="folio" id="nota" nota=""  >Nota de venta</h3>
             </div>
             <div class="order-header" style="border-top-left-radius: 0px;border-top-right-radius: 0px;background-color: #fff;border-right: 1px solid lightgray;border-left: 1px solid lightgray;">
-              <h3 class="wizard-header pb-1" name="folio" id="folio" folio="" style="color:#121921">Folio: <?php echo $_GET["folio"] ?></h3>    
+              <h3 class="wizard-header pb-1" name="folio" id="folio" folio="" style="color:#121921">Folio: <?php 
+              $resultado = empty($_GET["folio"]) ? '' :  $_GET["folio"] ;
+              echo  $resultado  ?></h3>    
               <div class="container p-5">
               
                 <label>Nombre del cliente</label><br>
@@ -268,7 +270,7 @@
             
                     <div class="input-group mb-3">
                       
-                      <span class="input-group-text"> <label id="etiquetaNuevaUnidad"></label> </span>
+                      <span class="input-group-text"> <label id="etiquetaNuevaUnidad">$ </label> </span>
                       <input type="number" class="form-control" id="pesoModalp" placeholder="" onkeyup="ocultar(event, 'peso')" disabled>
 
                     </div>
@@ -1227,7 +1229,7 @@
                           break;
                   }
               }); 
-  $("#idModal").val(idActual);
+              $("#idModal").val(idActual);
               $("#tituloModal").text(titulo);
               $("#pesoModal").val("");
               $("#precioModal").val(precio);
@@ -1266,6 +1268,8 @@
               contentType: false,
               processData: false,
               success: function(respuesta) {
+
+                console.info(respuesta);
                   $("#contenedorBusqueda").empty();
                   $("#contenedorBusqueda").append(
                       '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
@@ -1308,7 +1312,7 @@
                                   break;
                           }
                       }); 
-      if (thisImagen == "") {
+                       if (thisImagen == "") {
                           $("#contenedorBusqueda").append(
                               '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
                               thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
@@ -1317,37 +1321,140 @@
                               '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
                               '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
                               thisPrecio + '</span></li></ul></div></div>');
-                              
-                              
-                              
-                              
-                              
-                              
-                              
-                        
+
                       } else {
-                          $("#contenedorBusqueda").append(
-                              '<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 agregarProducto" id="' +
+
+                        $("#contenedorBusqueda").append(
+                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
                               thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
                               '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
                               '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
-                              '" style="cursor: pointer;"><center><img src="vistas/img/plantilla/' +
-                              thisImagen +
-                              '" style="width: 50%" class="img-responsive"><span><h5>$' +
-                              thisPrecio + '</h5></span><span><h5>' + thisNombre +
-                              '</h5></span></center></div>');
-                      } conCol++;
-/*                       if (conCol == 4) {
-                          $("#contenedorBusqueda").append(
-                              '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
-                              );
-                          conCol = 0;
-                      } */
+                              '"><div class="item-body"><figure><img src="'+thisImagen+'" data-src="'+thisImagen+'" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+                              thisPrecio + '</span></li></ul></div></div>');
+
+
+                      } 
+
                   });
               }
           })
       }
   }
+
+
+
+
+ $("#buscarProductoCategoria").change(function()
+ {    
+      var buscar = $("#buscarProductoCategoria").val();
+
+      //console.info(buscar);
+      if (buscar == "") {
+          $("#contenedorProductos").show();
+          $("#contenedorBusqueda").hide();
+      } else {
+          $("#contenedorProductos").hide();
+          $("#contenedorBusqueda").show();
+          var datosCobro = new FormData();
+          datosCobro.append("valor", buscar);
+          $.ajax({
+              url: "./?action=buscar_producto_categoria",
+              method: "POST",
+              data: datosCobro,
+              dataType: "json",
+              cache: false,
+              contentType: false,
+              processData: false,
+              success: function(respuesta) {
+
+                console.info(respuesta);
+                  $("#contenedorBusqueda").empty();
+                  $("#contenedorBusqueda").append(
+                      '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
+                      );
+                  var i = 0;
+                  var conCol = 0;
+                  
+                  $.each(respuesta, function(arreglo, valor) {
+                      var thisID;
+                      var thisNombre;
+                      var thisPrecio;
+                      var thisMinimo;
+                      var thisMaximo;
+                      var thisImagen;
+                      var thisCategoria;
+                      $.each(valor, function(id, val) {
+                          switch (id) {
+                              case 'id':
+                                  thisID = val;
+                                  break;
+                              case 'nombre':
+                                  thisNombre = val;
+                                  break;
+                              case 'precio':
+                                  thisPrecio = val;
+                                  break;
+                              case 'minimo':
+                                  thisMinimo = val;
+                                  break;
+                              case 'maximo':
+                                  thisMaximo = val;
+                                  break;
+                              case 'imagen':
+                                  thisImagen = val;
+                                  break;
+                              case 'categoria':
+                                  thisCategoria = val;
+                                  break;
+
+                              default:
+                                  break;
+                          }
+                      }); 
+                       if (thisImagen == "") {
+                          $("#contenedorBusqueda").append(
+                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
+                              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
+                              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
+                              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
+                              '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+                              thisPrecio + '</span></li></ul></div></div>');
+
+                      } else {
+
+                        $("#contenedorBusqueda").append(
+                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
+                              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
+                              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
+                              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
+                              '"><div class="item-body"><figure><img src="'+thisImagen+'" data-src="'+thisImagen+'" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+                              thisPrecio + '</span></li></ul></div></div>');
+
+
+                      } 
+
+                  });
+              }
+          })
+      }
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   function ocultar(event, origen,btnFin='no') {
       if (origen == "peso" && event.keyCode == 13) {
@@ -1359,7 +1466,7 @@
       }
   }
   
-</script>
+</script>  
 <?php
 if (isset($_REQUEST['folio']))
 {
@@ -1387,6 +1494,9 @@ if (isset($_REQUEST['folio']))
   
   
   function rellenarPedido(ele) { //a gregar producto al pedido
+
+    console.info("hola mundo");
+
   ele.titulo = ele.title;
   var idActual = ele.idActual;
   var titulo = ele.titulo;
@@ -1394,7 +1504,9 @@ if (isset($_REQUEST['folio']))
   var maximo = ele.maximo;
   var minimo = ele.minimo;
   var peso = ele.peso;
+  var subtotal = '';
   subtotal = peso * precio;
+
   
       listaPedido.push({
           "id": ele.idActual,
@@ -1407,7 +1519,8 @@ if (isset($_REQUEST['folio']))
       });
       json = JSON.stringify(listaPedido);
       console.log(json);
-  
+
+
       if (titulo.split(':')[0] == "DESCUENTO"){ //SI ES DESCUENTO, PONE EL ITEM DE DESCUENTO, SI ES COMPRA NORMAL LA DEJA NORMAL.
           $("#divPedido_").append(
               "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
@@ -1501,10 +1614,13 @@ if (isset($_REQUEST['folio']))
   $(document).ready(function() {
 
     json = JSON.parse  (ventaJson);
-      
+    
+    
 
       $.each(json, function(i, item) {
           console.log(item);
+          var subtotal = item.precio * item.peso;
+          total += subtotal;
           $("#divPedido_").append(
 
 
@@ -1512,6 +1628,7 @@ if (isset($_REQUEST['folio']))
             item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" +
             minimo + "' id='" + item.id +
             "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" +  subtotal + '</h4> </div> </div> ');
+            $("#total").text(total);
 
       });
 
@@ -1530,6 +1647,18 @@ if (isset($_REQUEST['folio']))
 
 ?>
 <script>
+
+
+
+
+
+
+
+
+
+
+
+
   $(document).ready(function() {
            $('.js-example-basic-single').select2();
               

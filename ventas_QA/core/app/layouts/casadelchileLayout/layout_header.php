@@ -11,10 +11,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li class="nav-item">
-                <a class="nav-link active"  target="_blank"  aria-current="page" href="#">Inicio</a>
+                <a class="nav-link active"  target="_blank"  aria-current="page" href="./?view=index">Inicio</a>
             </li>    
             <li class="nav-item">
-                <a class="nav-link active"  target="_blank"  aria-current="page" href="#">Nueva venta</a>
+                <a class="nav-link active"  target="_blank"  aria-current="page" href="./?view=nuevaventa">Nueva venta</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" target="_blank"   href="../administracion_QA">Ir administracion</a>
@@ -23,11 +23,13 @@
 
         </ul>
         <form class="d-flex">
-            <a class="btn btn-1" style="border: solid 1px;" >Cerrar sesión</a>
+            <a class="btn btn-1" href="./?action=salir" style="border: solid 1px;" >Cerrar sesión</a>
         </form>
     </div>
   </div>
 </nav>
-    
+
+
+
 
 

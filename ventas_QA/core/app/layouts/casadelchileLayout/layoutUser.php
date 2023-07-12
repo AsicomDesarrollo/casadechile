@@ -82,6 +82,8 @@ Plantilla base para todos los módulos
 
     include "layout_header.php";
 
+
+
     Route::view($_GET['view']);
 
     include "layout_footer.php";
