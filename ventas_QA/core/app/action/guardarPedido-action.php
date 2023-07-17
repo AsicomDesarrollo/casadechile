@@ -18,7 +18,8 @@ $idCliente = $_POST["cliente"]!='Venta General'?$_POST["cliente"]:intval(0);
 $folioVenta = isset($_POST["folio"])?$_POST["folio"]:null;
 $notaVenta = isset($_POST["nota"])?$_POST["nota"]:null;
 
-
+var_dump($pedido);
+die();
 $montoTotal = 0; foreach ($pedido as $producto => $values) {
 $montoTotal= intval($montoTotal) + (intval($values->peso) * intval($values->precio));}
 
@@ -38,17 +39,21 @@ if($folioVenta==null){
     $query=Database::ExeDoIt($sql);
     $venta_tiket = Model::many_assoc($query[0]);
     //echo json_encode($venta_tiket);
+
+    var_dump($pedido);
+
+
     foreach ($pedido as $producto => $values) {
         $sql="insert into compras (id_venta,cliente_id,producto,title,peso,precio,estatus,fecha)";
         $sql.="values('".$timeStamp."',".$idCliente.",".$values->id.",'".$values->titulo."','".intval($values->peso)."',".intval($values->precio).",'abierto','".$time."')";
         $query = Database::ExeDoIt($sql);
-        //core::preprint($sql);exit();
+        core::preprint($sql);exit();
     }
     $data =  [
         'folio'=>$venta_tiket[0]['folio'],
         'nota'=>$venta_tiket[0]['id'],
     ];
-    echo  json_encode($data);
+   //echo  json_encode($data);
     exit(); //termina de insertar nueva compra/venta/nuevo tiket y productos
 
 }

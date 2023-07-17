@@ -52,14 +52,14 @@ font-size: 0.7em !important;
 
                 <div class="card" style="  border: 2px solid #e97d01;">
                     <div class="card-header" style="border-bottom: 1px solid #e97d01; background-color:#e97d01">
-                        <h1 class="text-light text-center"> <strong>Folios Anteriores</strong> </h1>
+                        <h1 class="text-light text-center"> <strong>Folios de venta <i class="fas fa-shopping-bag"></i></strong> </h1>
                     </div>
                     <ul class="list-group list-group-flush" listaFolios>
                         <?php
                         $folios = Productos::ultimosFolios(); 
                         if (count($folios)>0){
                             foreach ($folios as $key => $value) {
-                                echo "<li  class='list-group-item' style='border-bottom: 1px solid #e97d01;' ><a href='./?view=nuevaventa&folio=".$value['folio']."' ><h1>".$value['id']." - <span>".$value['cliente']."</span></h1> </a></li>";
+                                echo "<li  class='list-group-item' style='border-bottom: 1px solid #e97d01;' ><a href='./?view=nuevaventa&folio=".$value['folio']."&nota=".$value['id']."' ><h1>".$value['id']." - <span>".$value['cliente']."</span></h1> </a></li>";
                             }                    
                         }else{
                             echo "<h1 style='color:#dd4b39c7'>No tienes ventas</h1>";

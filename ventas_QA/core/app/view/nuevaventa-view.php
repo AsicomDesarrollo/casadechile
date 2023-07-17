@@ -126,12 +126,14 @@
           <!-- Step 1: Order Summary -->
           <div id="#orderSummaryStep" class="step wizard-step current" style="">
             <div class="order-header">
-              <h3 class="wizard-header" name="folio" id="nota" nota=""  >Nota de venta</h3>
+              <h3 class="wizard-header" name="folio" id="nota" nota=""  >Nota de venta : <?php 
+              $nota = empty($_GET["nota"]) ? '' :  $_GET["nota"] ;
+              echo  $nota  ?></h3>
             </div>
             <div class="order-header" style="border-top-left-radius: 0px;border-top-right-radius: 0px;background-color: #fff;border-right: 1px solid lightgray;border-left: 1px solid lightgray;">
               <h3 class="wizard-header pb-1" name="folio" id="folio" folio="" style="color:#121921">Folio: <?php 
               $resultado = empty($_GET["folio"]) ? '' :  $_GET["folio"] ;
-              echo  $resultado  ?></h3>    
+              echo  $resultado  ?> <span class="btn btn-danger" style="float: inline-end;">Borrar todos </span></h3>    
               <div class="container p-5">
               
                 <label>Nombre del cliente</label><br>
@@ -1064,7 +1066,8 @@
               icon: 'error',
               title: 'Nombre incorrecto',
               text: 'Debes ingresar un nombre a la orden',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else if (total == 0) {
@@ -1072,18 +1075,30 @@
               icon: 'error',
               title: 'Upsss',
               text: 'Debes agregar al menos 1 producto a la orden',
-              confirmButtonText: 'OK',
+              confirmButtonText: 'Aceptar',
+              confirmButtonColor: '#e97d01',
               footer: 'Sentimos las molestias'
           })
       } else {
           $("#salvarPedido").prop("disabled", true);
           var datosCobro = new FormData();
-          datosCobro.append("json", json);
+          console.info(json);
+
+          json.forEach((value) => { 
+
+              datosCobro.append('json[]',JSON.stringify(value)); 
+          });
+
+
+          
+          /* datosCobro.append("json", json); */
           datosCobro.append("cliente", nombreCliente);
           if ($("#folio").attr("folio")){
               datosCobro.append("folio", $("#folio").attr("folio"));
               datosCobro.append("nota", $("#nota").attr("nota"));
           }
+
+          console.info(datosCobro);          
           $.ajax({
               url: "./?action=guardarPedido",//?i=0
               method: "POST",
@@ -1098,18 +1113,20 @@
                           icon: 'success',
                           title: '¡Orden generada!',
                           text: 'El cliente puede pasar a caja a pagar con su nombre o puedes seguir editando.',
-                          confirmButtonText: 'OK',
+                          confirmButtonText: 'Aceptar',
+                          confirmButtonColor: '#e97d01',
                           allowOutsideClick: false
                       }).then((result) => {
                           if (result.isConfirmed) {
                               respuesta= JSON.parse(respuesta);
-                              console.log(respuesta);
+                              //console.log(respuesta);
                               $("#folio").text("Folio: "+respuesta.folio);
                               $("#folio").attr("folio",respuesta.folio);
                               $("#nota").text("Nota de Venta: "+respuesta.nota);
                               $("#nota").attr("nota",respuesta.nota);
                               $("#folio").attr("nota",nombreCliente);
-                              //window.location.href = "inicio";
+                              window.location.href = "inicio";
+                              
                           }
                       })
                   } else {
@@ -1117,7 +1134,8 @@
                           icon: 'error',
                           title: 'Ha ocurrido un error',
                           text: 'Por favor intentalo nuevamente',
-                          confirmButtonText: 'OK',
+                          confirmButtonText: 'Aceptar',
+                          confirmButtonColor: '#e97d01',
                           footer: 'Sentimos las molestias'
                       })
                   } $("#salvarPedido").prop("disabled", false);
