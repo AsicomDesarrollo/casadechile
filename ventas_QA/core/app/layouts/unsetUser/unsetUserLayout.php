@@ -13,25 +13,38 @@
   PLUGINS DE CSS
   ======================================-->
   
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/carousel/owl.theme.default.css">
-  <link rel="stylesheet" href="vistas/bower_components/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/Ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="vistas/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="vistas/dist/css/skins/skin-blue.min.css">
-  <link rel="stylesheet" href="vistas/plugins/iCheck/square/blue.css">
-  <link rel="stylesheet" href="vistas/bower_components/morris.js/morris.css">
-  <link rel="stylesheet" href="vistas/bower_components/jvectormap/jquery-jvectormap.css">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css">
-  <link rel="stylesheet" href="vistas/plugins/bootstrap-slider/slider.css">
-  <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
-  <link rel="stylesheet" href="vistas/plugins/tags/bootstrap-tagsinput.css">
-  <link rel="stylesheet" href="vistas/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-  <link rel="stylesheet" href="vistas/plugins/dropzone/dropzone.css">
+  <!--=====================================
+  PLUGINS DE CSS
+  ======================================-->
+  
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+ 
+
+  <!--=====================================
+  CSS PERSONALIZADO
+  ======================================-->
+
+  <!-- Main CSS -->
+  <link href="vistas/dist_/assets/css/style.css" rel="stylesheet">
+
+  <!--=====================================
+  PLUGINS DE JAVASCRIPT
+  ======================================-->
+
+  <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="vistas/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
+  <!-- Custom Font Icons -->
+  <script src="https://kit.fontawesome.com/b8f324a3a5.js" crossorigin="anonymous"></script>
+
+  <!-- Vendor CSS -->
+
+  <link href="vistas/dist_/assets/plugins/bootstrap5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vistas/dist_/assets/css/magnific-popup.css" rel="stylesheet">
+  <link href="vistas/dist_/assets/css/float-labels.min.css" rel="stylesheet">
 
   <!--=====================================
   CSS PERSONALIZADO
@@ -42,32 +55,8 @@
   <!--=====================================
   PLUGINS DE JAVASCRIPT
   ======================================-->
-
-  <script src="vistas/bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="vistas/bower_components/jquery-ui/jquery-ui.min.js"></script>
-  <script src="vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="vistas/bower_components/carousel/owl.carousel.min.js"></script>
-  <script src="vistas/dist/js/adminlte.min.js"></script>
-  <script src="vistas/plugins/iCheck/icheck.min.js"></script>
-  <!--<script src="vistas/bower_components/raphael/raphael.min.js"></script>-->
-  <script src="vistas/bower_components/morris.js/morris.min.js"></script>
-  <script src="vistas/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
-  <script src="vistas/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-  <script src="vistas/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-  <script src="vistas/bower_components/chart.js/Chart.js"></script>
-  <script src="vistas/plugins/sweetalert2/sweetalert2.all.js"></script>
-  <!--<script src="vistas/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>-->
-  <script src="vistas/plugins/bootstrap-slider/bootstrap-slider.js"></script>
-  <script src="vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-  <script src="vistas/bower_components/datatables.net-bs/js/responsive.bootstrap.min.js"></script>
-  <script src="vistas/plugins/tags/bootstrap-tagsinput.min.js"></script>
-  <!--<script src="vistas/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>-->
-  <script src="vistas/plugins/dropzone/dropzone.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-  <script src="vistas/js/onback.js"></script>
+  <script src="vistas/dist_/assets/js/jquery.min.js"></script>
+  <script src="vistas/dist_/assets/plugins/bootstrap5.3.0/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -77,15 +66,11 @@ Plantilla base para todos los módulos
 
 <style type="text/css">
   
-.fondoInicio{
 
-  /*background-image: linear-gradient(35deg, rgba(25,207,134,1) 0%, rgba(131,131,249,1) 61%, rgba(160,96,250,1) 100%);*/
-background: transparent;
-}
 
 </style>
 
-<body class="login-page fondoInicio" style="background-color: #ffffff;">
+<body class="login-page fondoInicio" >
 
 <!--
 Módulo de log in
@@ -93,7 +78,7 @@ Módulo de log in
 
 </style>
 
-<img src="vistas/img/plantilla/fondologin3.png" class="img-responsive" style="height: 120%; position: absolute; left: 0%; top: -20%; z-index: -10;">
+<!-- <img src="vistas/img/plantilla/fondologin3.png" class="img-responsive" style="height: 120%; position: absolute; left: 0%; top: -20%; z-index: -10;"> -->
 
 <!--<img src="vistas/img/plantilla/derecha.png" class="img-responsive" style="width: 30%; position: absolute; right: 5%;">-->
 <!-- 
@@ -106,7 +91,7 @@ Módulo de log in
             exit(); */
             
             ?> -->
-<div class="container">
+<!-- <div class="container">
   
   <div class="row">
 
@@ -116,7 +101,7 @@ Módulo de log in
 
       <div style="text-align: center; margin-top: 150px;">
           
-        <h1 style="color: #bd4729;">Bienvenido</h1><h4 style="color: #bd4729;">Ingrese para continuar</h4>
+        <h1 style="color: #bd4729;">Bienvenido</h1><h4 style="color: #bd4729;">Ingrese para continuar__s</h4>
 
         <br>
 
@@ -143,9 +128,97 @@ Módulo de log in
     
   </div>
 
-</div>
+</div> -->
 
 
+
+
+<div class="auth-bg-basic d-flex align-items-center min-vh-100">
+            <div class="bg-overlay bg-light"></div>
+            <div class="container">
+                <div class="d-flex flex-column min-vh-100 py-5 px-3">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-5">
+                            <div class="text-center text-muted mb-2">
+                                <div class="pb-3">
+                                    <a href="index.html">
+                                        <span class="logo-lg">
+                                            <img  src="./../administracion_QA/vistas/dist/assets/images/logo/logo.png" class="img-fluid my-auto" width="190" > 
+                                        </span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center my-auto">
+                        <div class="col-md-8 col-lg-6 col-xl-5">
+                            <div class="card bg-transparent shadow-none border-0">
+                                <div class="card-body" style="border: 1px solid orange;border-radius: 4%;">
+                                    <div class="py-3">
+                                        <div class="text-center">
+                                            <h5 class="mb-0">¡ Bienvenido de nuevo panel de ventas !</h5>
+                                            <p class="text-muted mt-2">Ingrese para continuar</p>
+                                        </div>
+                                        <form class="mt-4 pt-2"  id="formLog" method="post" >
+                                            <div class="form-floating form-floating-custom mb-3">
+                                                <input type="text" class="form-control" name="logemail" id="input-username" placeholder="Ingresa tu correo " required>
+                                                <label for="input-username">Correo electronico</label>
+                                                <div class="form-floating-icon">
+                                                    <i class="uil uil-users-alt"></i>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-floating form-floating-custom mb-3 auth-pass-inputgroup">
+                                                <input type="password" name="logpass"  class="form-control" id="password-input" placeholder="Ingresa tu contraseña" required>
+                                                <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
+                                                    <i class="mdi mdi-eye-outline fas fa-eye font-size-18 text-muted"></i>
+                                                </button>
+                                                <label for="password-input">Contraseña</label>
+                                                <div class="form-floating-icon">
+                                                    <i class="uil uil-padlock"></i>
+                                                </div>
+                                            </div>
+        
+                                            <div class="form-check form-check-primary font-size-16 py-1">
+                                                <input class="form-check-input" type="checkbox" id="remember-check">
+                                                <div class="float-end">
+                                                    <a href="auth-resetpassword-basic.html" class="text-muted text-decoration-underline font-size-14">¿Olvido su contraseña?</a>
+                                                </div>
+                                                <label class="form-check-label font-size-14" for="remember-check">
+                                                    Recordarme
+                                                </label>
+                                            </div>
+        
+                                            <div class="mt-3">
+                                                <button id="logIn" name="logIn" class="btn btn-primary w-100" type="button" >Inicio sesion</button>
+                                            </div>
+    
+
+    
+                                            <div class="mt-4 pt-3 text-center">
+                                                <p class="text-muted mb-0">¿No tienes una cuenta? </p>
+                                                <small class="fw-semibold text-decoration-underline"> Comunicate con el administrador del sitio. </small>
+                                            </div>
+        
+                                        </form><!-- end form -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="mt-4 mt-md-5 text-center">
+                             <p class="mb-0">© <script>document.write(new Date().getFullYear())</script> Casadelchile Todos los derechos reservados. creado por ASICOM GRAPHICS</p>
+                            </div>
+                        </div>
+                    </div> <!-- end row -->
+                </div>
+            </div>
+            <!-- end container fluid -->
+        </div>
 
 <!--=====================================
 JS PERSONALIZADO
@@ -158,6 +231,8 @@ JS PERSONALIZADO
 
         datos = JSON.stringify({'user':formLog.logemail.value,'pass':formLog.logpass.value});
         datos = ({'user':formLog.logemail.value,'pass':formLog.logpass.value});
+
+        console.info(datos);
         if (formLog.reportValidity()){
             $.ajax({
               url: "./?action=login",
@@ -181,7 +256,7 @@ JS PERSONALIZADO
                       });
                       // Swal.fire("Esta es una alerta");
                   }else{
-                    Swal.fire( { icon: 'warning', title: "Error", text: "Tus datos no son correctos o no estas registrado", confirmButtonText: "¡Cerrar!"} );
+                    Swal.fire( { icon: 'warning', title: "Error", text: "Tus datos no son correctos o no estas registrado", colorconfirmbuttontext: '#e97d01', confirmButtonText: "Aceptar" } );
                   }
               }
             })

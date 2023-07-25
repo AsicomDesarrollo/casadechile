@@ -8,9 +8,11 @@ if(isset($_POST['user'])){
     $sql = "select pass,id,email,nombre,paterno,materno from empleados where email= '". $email ."' AND estatus='1' ";
     $query = $con->query($sql);
     $resultado = mysqli_num_rows($query);
-                //$opciones = [ 'cost' => 12 ];
-                //$hash = password_hash($pass, PASSWORD_BCRYPT, $opciones);
-                //print_r( $hash);
+
+/*     var_dump($resultado);
+                $opciones = [ 'cost' => 12 ];
+                $hash = password_hash($pass, PASSWORD_BCRYPT, $opciones);
+                print_r( $hash); */
     if ($resultado==1){
         //existe el usuario
         $hash= $query->fetch_assoc();
@@ -21,6 +23,7 @@ if(isset($_POST['user'])){
             $_SESSION['paterno']= $hash['paterno'];
             $_SESSION['materno']= $hash['materno'];
             print 'successLogin';
+            //var_dump( $_SESSION);
         } else {
             print 'errorLogin';
         }

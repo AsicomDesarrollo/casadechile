@@ -19,7 +19,7 @@ Módulo de log in
 
       <div style="text-align: center; margin-top: 150px;">
           
-        <h1 style="color: #bd4729;">Bienvenido</h1><h4 style="color: #bd4729;">Ingrese para continuar</h4>
+        <h1 style="color: #bd4729;">Bienvenido__</h1><h4 style="color: #bd4729;">Ingrese para continuar_____s</h4>
 
         <br>
 
