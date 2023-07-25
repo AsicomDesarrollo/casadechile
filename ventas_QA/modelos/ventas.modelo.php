@@ -8,16 +8,19 @@ class ModeloVentas{
 	MOSTRAR ULTIMO ID VENTA
 	=============================================*/	
 
-	static public function mdlGuardarCompra($tabla, $id, $cliente, $idProducto, $peso, $precio){
+	static public function mdlGuardarCompra($tabla, $id_venta, $cliente, $idProducto, $peso, $precio , $tipo_pago){
 
 		date_default_timezone_set("America/Mexico_City");
 		$fecha = date("Y-m-d H:i:s");
-
 		$estatus = "Pendiente";
+		if($tipo_pago != "Pendiente") {
+			$estatus = $tipo_pago ;
+		}
+	
 
-		$id = (int) $id + 1;
+		$id = (int) $id_venta + 1;
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_venta, cliente, producto, peso, precio, estatus, fecha) VALUES (:idVenta, :cliente, :producto, :peso, :precio, :estatus, :fecha)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_venta, cliente, producto, peso, precio, estatus, fecha  ) VALUES (:idVenta, :cliente, :producto, :peso, :precio, :estatus, :fecha  )");
 
 		$stmt->bindParam(":idVenta", $id, PDO::PARAM_STR);
 		$stmt->bindParam(":cliente", $cliente, PDO::PARAM_STR);
@@ -27,9 +30,25 @@ class ModeloVentas{
 		$stmt->bindParam(":estatus", $estatus, PDO::PARAM_STR);
 		$stmt->bindParam(":fecha", $fecha, PDO::PARAM_STR);
 
+
+
+
 		if($stmt->execute()){
 
-			return "ok";
+			$stmt_2 = Conexion::conectar()->prepare("UPDATE venta_tiket SET metodoPago =  '$estatus' WHERE folio = '$id_venta' ");
+
+			//echo "UPDATE venta_tiket SET metodoPago =  '$estatus' WHERE folio = '$id_venta' ";
+			$stmt_2->execute();
+			//if($stmt_2->execute()){
+
+				//var_dump($rows = $stmt->fetchAll());
+				return "ok";
+
+			//}else{
+
+			//	return "error";
+			
+			//}
 
 		}else{
 
@@ -54,9 +73,9 @@ class ModeloVentas{
 
 		return $stmt -> fetch();
 
-		$stmt -> close();
+		# $stmt -> close();
 
-		$stmt = null;
+		# $stmt = null;
 
 	}
 

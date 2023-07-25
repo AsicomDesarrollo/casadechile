@@ -482,433 +482,419 @@
 
 
 
+<script type = "text/javascript" >
+$("body").css("background-image", "url(/ventas/vistas/img/plantilla/fondoventa.jpg)");
+$("body").css("background-repeat", "no-repeat");
+$("body").css("background-size", "cover");
+var json;
+var total = 0;
+var idActual;
+var titulo;
+var peso;
+var precio;
+var maximo;
+var minimo;
+var subtotal;
+var listaPedido = [];
 
 
+$(".agregarProducto").click(function () {
 
 
+  titulo = $(this).attr("nombre");
+  maximo = parseFloat($(this).attr("maximo"));
+  minimo = parseFloat($(this).attr("minimo"));
+  idActual = $(this).attr("id");
+  var datosCobro = new FormData();
+  datosCobro.append("valor", idActual);
+  $.ajax({
+    url: "./?action=traerproducto",
+    method: "POST",
+    data: datosCobro,
+    dataType: "json",
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {
 
-<script type="text/javascript">
-  $("body").css("background-image", "url(/ventas/vistas/img/plantilla/fondoventa.jpg)");
-  $("body").css("background-repeat", "no-repeat");
-  $("body").css("background-size", "cover");
-  var json;
-  var total = 0;
-  var idActual;
-  var titulo;
-  var peso;
-  var precio;
-  var maximo;
-  var minimo;
-  var subtotal;
-  var listaPedido = [];
-
-
-  
-  $(".agregarProducto").click(function() {
-
-
-      titulo = $(this).attr("nombre");
-      maximo = parseFloat($(this).attr("maximo"));
-      minimo = parseFloat($(this).attr("minimo"));
-      idActual = $(this).attr("id");
-      var datosCobro = new FormData();
-      datosCobro.append("valor", idActual);
-      $.ajax({
-          url: "./?action=traerproducto",
-          method: "POST",
-          data: datosCobro,
-          dataType: "json",
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function(respuesta) {
-
-            console.info(respuesta);
-              $.each(respuesta, function(id, val) {
-                  switch (id) {
-                      case 'id':
-                          idActual = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      case 'nombre':
-                          titulo = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      case 'precio':
-                          precio = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      case 'minimo':
-                          minimo = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      default:
-                          break;
-                  }
-              }); 
-              $("#idModal").val(idActual);
-              $("#tituloModal").text(titulo);
-              $("#pesoModal").val("");
-              $("#precioModal").val(minimo);
-              $("#minimoModal").val(minimo);
+      console.info(respuesta);
+      $.each(respuesta, function (id, val) {
+        switch (id) {
+          case 'id':
+            idActual = val;
+            console.log(id);
+            console.log(val);
+            break;
+          case 'nombre':
+            titulo = val;
+            console.log(id);
+            console.log(val);
+            break;
+          case 'precio':
+            precio = val;
+            console.log(id);
+            console.log(val);
+            break;
+          case 'minimo':
+            minimo = val;
+            console.log(id);
+            console.log(val);
+            break;
+          default:
+            break;
+        }
+      });
+      $("#idModal").val(idActual);
+      $("#tituloModal").text(titulo);
+      $("#pesoModal").val("");
+      $("#precioModal").val(minimo);
+      $("#minimoModal").val(minimo);
 
 
-              var modal1 = new bootstrap.Modal(document.getElementById('modalProducto'));
-    
-        // show Modal
-          modal1.show();
+      var modal1 = new bootstrap.Modal(document.getElementById('modalProducto'));
 
-          }
-      }); 
-      if(titulo.includes("ACHIOTE") == true) {
-          console.log("achiote");
-          $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
-      } else if (titulo.includes("MOLE ") == true) {
-          console.log("mole");
-          $("#etiquetaNuevaUnidad").text("Piezas");
-      } else {
-          console.log("otros");
-          $("#etiquetaNuevaUnidad").text("Peso en Kg");
-      }
-
-
-
-
-
-
-/*       $("#modalProducto").modal('show');
-      setTimeout(() => {
-          $('#pesoModal').focus();
-      }, 150); */
-  }); 
-  $("#divPedido_").on("click", ".editarProducto", function() {
-      titulo = $(this).attr("nombre");
-      peso = $(this).attr("peso");
-      precio = parseFloat($(this).attr("precio"));
-      maximo = parseFloat($(this).attr("maximo"));
-      minimo = parseFloat($(this).attr("minimo"));
-      idActual = $(this).attr("id");
-      $("#idEditar").val(idActual);
-      $("#tituloEditar").text(titulo);
-      $("#pesoEditar").val(peso);
-      $("#maximoEditar").val(maximo);
-      $("#precioEditar").val($(this).attr("precio"));
-      $("#minimoEditar").val(minimo);
-      console.log(titulo);
-      if (titulo.includes("ACHIOTE") == true) {
-          console.log("achiote");
-          $("#etiquetaEditarUnidad").text("Paquetes (Emplayado con 10 cajas)");
-      } else if (titulo.includes("MOLE ") == true) {
-          console.log("mole");
-          $("#etiquetaEditarUnidad").text("Piezas");
-      } else {
-          console.log("otros");
-          $("#etiquetaEditarUnidad").text("Peso en Kg");
-      }
-      $("#modalEditar").modal('show')
-  }); 
-  $(".btnModificar").click(function() {
-      peso = parseFloat($("#pesoEditar").val());
-      precio = parseFloat($("#precioEditar").val());
-      maximo = parseFloat($("#maximoEditar").val());
-      minimo = parseFloat($("#minimoEditar").val());
-      idActual = $("#idEditar").val();
-      console.log(peso);
-      console.log(precio);
-      console.log(idActual);
-      subtotal = peso * precio;
-      if (peso == "" || peso == 0) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Peso incorrecto',
-              text: 'Debes ingresar un peso',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else if (precio < minimo || precio > maximo) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Costo incorrecto',
-              text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else {
-          var idProducto = $(".cuerpoPedido span");
-          var titulosProducto = $(".cuerpoPedido .titulo");
-          var preciosProducto = $(".cuerpoPedido .precio");
-          var pesosProducto = $(".cuerpoPedido .peso");
-          var subsProducto = $(".cuerpoPedido .subtotal");
-          listaPedido = [];
-          $("#divPedido_").empty();
-          if (idProducto.length != 0) {
-              total = 0;
-              for (var i = 0; i < idProducto.length; i++) {
-                  var idArray = $(idProducto[i]).attr("idProducto");
-                  var maximoArray = $(idProducto[i]).attr("maximo");
-                  var minimoArray = $(idProducto[i]).attr("minimo");
-                  var tituloArray = $(titulosProducto[i]).html();
-                  var precioArray = $(preciosProducto[i]).html();
-                  var pesoArray = $(pesosProducto[i]).html();
-                  var subArray = $(subsProducto[i]).html();
-                  if (idArray == idActual) {
-                      subtotal = precio * peso;
-                      listaPedido.push({
-                          "id": idArray,
-                          "titulo": tituloArray,
-                          "precio": precio,
-                          "maximo": maximo,
-                          "minimo": minimo,
-                          "peso": peso,
-                          "subtotal": subtotal
-                      });
-                      $("#divPedido_").append(
-                          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'> <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'> <h5 style='color: #333333; margin-top: 15px;' class='titulo'>" + tituloArray +  "</h5></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'>  <span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar'   idProducto=" + idArray + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span> <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>  <button class='btn btn-default editarProducto'  nombre='" +  tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idArray + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal'>" +  subtotal + "</h4> </div> </div> ");
-                  } else {
-                      listaPedido.push({
-                          "id": idArray,
-                          "titulo": tituloArray,
-                          "precio": precioArray,
-                          "maximo": maximoArray,
-                          "minimo": minimoArray,
-                          "peso": pesoArray,
-                          "subtotal": subArray
-                      });
-                      subtotal = precioArray * pesoArray;
-                      $("#divPedido_").append(
-                          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-                          idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
-                          " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-                          tituloArray +
-                          "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-                          tituloArray + "' peso='" + pesoArray + "' precio='" + precioArray + "' maximo='" +
-                          maximoArray + "' minimo='" + minimoArray + "' id='" + idArray +
-                          "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-                          precioArray +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-                          pesoArray +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-                          subArray + "</h5></center></div></div>");
-                  }
-                  total += subtotal;
-              }
-              $("#total").text(total);
-              json = JSON.stringify(listaPedido);
-              console.log(json);
-              $("#modalEditar").modal('hide');
-          }
-      }
-  }); 
-  
-  //editar PROMOCION
- $("#divPedido_").on("click", ".promocion", function() {
-    
-  //$(".promo").click(function() { 
-
-
-
-
-      var modal1 = new bootstrap.Modal(document.getElementById('modalPromo'));
-      console.info (modal1);    
       // show Modal
       modal1.show();
 
+    }
+  });
+  if (titulo.includes("ACHIOTE") == true) {
+    console.log("achiote");
+    $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
+  } else if (titulo.includes("MOLE ") == true) {
+    console.log("mole");
+    $("#etiquetaNuevaUnidad").text("Piezas");
+  } else {
+    console.log("otros");
+    $("#etiquetaNuevaUnidad").text("Peso en Kg");
+  }
 
-      titulo = $(this).attr("nombre");
-      peso = $(this).attr("peso");
-      precio = parseFloat($(this).attr("precio"));
-      maximo = parseFloat($(this).attr("maximo"));
-      minimo = parseFloat($(this).attr("minimo"));
-      idActual = $(this).attr("id");
-      $("#idModalp").val(idActual);
-      $("#tituloModalp").text(titulo);
-      $("#pesoModalp").val(peso);
-      pesoModalp
-      $("#maximoModalp").val(maximo);
-      $("#precioModalp").val($(this).attr("precio")*0.10); // 10 % sobre el costo del productow2
-      $("#minimoModalp").val(minimo);
-      console.log(titulo);
-      if (titulo.includes("ACHIOTE") == true) {
-          console.log("achiote");
-          $("#etiquetaModalUnidad").text("Paquetes (Emplayado con 10 cajas)");
-      } else if (titulo.includes("MOLE ") == true) {
-          console.log("mole");
-          $("#etiquetaModalUnidad").text("Piezas");
-      } else {
-          console.log("otros");
-          $("#etiquetaModalUnidad").text("Peso en Kg");
-      }
 
-      setTimeout(() => {
-          $('#precioModalp').focus();
-          $('#precioModalp').select();
-      }, 150);
-  }); 
-  //no se usa, en cambio usamos  btnAgregarDescuento
-  $(".btnModificarPromo").click(function() {
-      peso = parseFloat($("#pesoEditar").val());
-      precio = parseFloat($("#precioEditar").val());
-      maximo = parseFloat($("#maximoEditar").val());
-      minimo = parseFloat($("#minimoEditar").val());
-      idActual = $("#idEditar").val();
-      console.log(peso);
-      console.log(precio);
-      console.log(idActual);
-      subtotal = peso * precio;
-      if (peso == "" || peso == 0) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Peso incorrecto',
-              text: 'Debes ingresar un peso',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else if (precio < minimo || precio > maximo) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Costo incorrecto',
-              text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else {
-          var idProducto = $(".cuerpoPedido span");
-          var titulosProducto = $(".cuerpoPedido .titulo");
-          var preciosProducto = $(".cuerpoPedido .precio");
-          var pesosProducto = $(".cuerpoPedido .peso");
-          var subsProducto = $(".cuerpoPedido .subtotal");
-          listaPedido = [];
-          $("#divPedido_").empty();
-          if (idProducto.length != 0) {
-              total = 0;
-              for (var i = 0; i < idProducto.length; i++) {
-                  var idArray = $(idProducto[i]).attr("idProducto");
-                  var maximoArray = $(idProducto[i]).attr("maximo");
-                  var minimoArray = $(idProducto[i]).attr("minimo");
-                  var tituloArray = $(titulosProducto[i]).html();
-                  var precioArray = $(preciosProducto[i]).html();
-                  var pesoArray = $(pesosProducto[i]).html();
-                  var subArray = $(subsProducto[i]).html();
-                  if (idArray == idActual) {
-                      subtotal = precio * peso;
-                      listaPedido.push({
-                          "id": idArray,
-                          "titulo": tituloArray,
-                          "precio": precio,
-                          "maximo": maximo,
-                          "minimo": minimo,
-                          "peso": peso,
-                          "subtotal": subtotal
-                      });
-                      $("#divPedido_").append(
-                          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-                          idArray + " maximo=" + maximo + " minimo=" + minimo +
-                          " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-                          tituloArray +
-                          "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-                          tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo +
-                          "' minimo='" + minimo + "' id='" + idArray +
-                          "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-                          precio +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-                          peso +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-                          subtotal + "</h5></center></div></div>");
-                  } else {
-                      listaPedido.push({
-                          "id": idArray,
-                          "titulo": tituloArray,
-                          "precio": precioArray,
-                          "maximo": maximoArray,
-                          "minimo": minimoArray,
-                          "peso": pesoArray,
-                          "subtotal": subArray
-                      });
-                      subtotal = precioArray * pesoArray;
-                      $("#divPedido_").append(
-                          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-                          idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
-                          " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-                          tituloArray +
-                          "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-                          tituloArray + "' peso='" + pesoArray + "' precio='" + precioArray + "' maximo='" +
-                          maximoArray + "' minimo='" + minimoArray + "' id='" + idArray +
-                          "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-                          precioArray +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-                          pesoArray +
-                          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-                          subArray + "</h5></center></div></div>");
-                  }
-                  total += subtotal;
-              }
-              $("#total").text(total);
-              json = JSON.stringify(listaPedido);
-              console.log(json);
-              //$("#modalPromo").modal('hide');
-          }
-      }
-  }); 
-  
-  // btnAgregarDescuento
-  //** */
-  $(".btnAgregarDescuento").click(function() { //al gregar producto al pedido
-      peso = $("#pesoModalp").val();
-      if($("#precioModalp").val()=='') {precio = 0;}
-      else{
-          precio = parseFloat($("#precioModalp").val());
-      }
-  
-      idActual = $("#idModal").val();
-      subtotal = peso * -precio;
-      if (peso == "" || peso == 0) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Peso incorrecto',
-              text: 'Debes ingresar un peso',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else if (precio==0 || precio=='') { //! ninguna validación para precio mínimo
-          Swal.fire({
-              icon: 'error',
-              title: 'Precio incorrecto',
-              text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else {
+  /*       $("#modalProducto").modal('show');
+        setTimeout(() => {
+            $('#pesoModal').focus();
+        }, 150); */
+});
+$("#divPedido_").on("click", ".editarProducto", function () {
+  titulo = $(this).attr("nombre");
+  peso = $(this).attr("peso");
+  precio = parseFloat($(this).attr("precio"));
+  maximo = parseFloat($(this).attr("maximo"));
+  minimo = parseFloat($(this).attr("minimo"));
+  idActual = $(this).attr("id");
+  $("#idEditar").val(idActual);
+  $("#tituloEditar").text(titulo);
+  $("#pesoEditar").val(peso);
+  $("#maximoEditar").val(maximo);
+  $("#precioEditar").val($(this).attr("precio"));
+  $("#minimoEditar").val(minimo);
+  console.log(titulo);
+  if (titulo.includes("ACHIOTE") == true) {
+    console.log("achiote");
+    $("#etiquetaEditarUnidad").text("Paquetes (Emplayado con 10 cajas)");
+  } else if (titulo.includes("MOLE ") == true) {
+    console.log("mole");
+    $("#etiquetaEditarUnidad").text("Piezas");
+  } else {
+    console.log("otros");
+    $("#etiquetaEditarUnidad").text("Peso en Kg");
+  }
+  $("#modalEditar").modal('show')
+});
+$(".btnModificar").click(function () {
+  peso = parseFloat($("#pesoEditar").val());
+  precio = parseFloat($("#precioEditar").val());
+  maximo = parseFloat($("#maximoEditar").val());
+  minimo = parseFloat($("#minimoEditar").val());
+  idActual = $("#idEditar").val();
+  console.log(peso);
+  console.log(precio);
+  console.log(idActual);
+  subtotal = peso * precio;
+  if (peso == "" || peso == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Peso incorrecto',
+      text: 'Debes ingresar un peso',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else if (precio < minimo || precio > maximo) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Costo incorrecto',
+      text: 'Por favor ingresa un costo correcto',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else {
+    var idProducto = $(".cuerpoPedido span");
+    var titulosProducto = $(".cuerpoPedido .titulo");
+    var preciosProducto = $(".cuerpoPedido .precio");
+    var pesosProducto = $(".cuerpoPedido .peso");
+    var subsProducto = $(".cuerpoPedido .subtotal");
+    listaPedido = [];
+    $("#divPedido_").empty();
+    if (idProducto.length != 0) {
+      total = 0;
+      for (var i = 0; i < idProducto.length; i++) {
+        var idArray = $(idProducto[i]).attr("idProducto");
+        var maximoArray = $(idProducto[i]).attr("maximo");
+        var minimoArray = $(idProducto[i]).attr("minimo");
+        var tituloArray = $(titulosProducto[i]).html();
+        var precioArray = $(preciosProducto[i]).html();
+        var pesoArray = $(pesosProducto[i]).html();
+        var subArray = $(subsProducto[i]).html();
+        if (idArray == idActual) {
+          subtotal = precio * peso;
           listaPedido.push({
-              "id": idActual,
-              "titulo": "DESCUENTO:"+titulo,
-              "precio": -precio,
-              "maximo": maximo,
-              "minimo": minimo,
-              "peso": peso,
-              "subtotal": subtotal
+            "id": idArray,
+            "titulo": tituloArray,
+            "precio": precio,
+            "maximo": maximo,
+            "minimo": minimo,
+            "peso": peso,
+            "subtotal": subtotal
           });
-          json = JSON.stringify(listaPedido);
-          console.log(json);
           $("#divPedido_").append(
+            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'> <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'> <h5 style='color: #333333; margin-top: 15px;' class='titulo'>" + tituloArray + "</h5></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + precio + "</h4> </div> <div class='col-3'> <div class='row'>  <span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar'   idProducto=" + idArray + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span> <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>  <button class='btn btn-default editarProducto'  nombre='" + tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idArray + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal'>" + subtotal + "</h4> </div> </div> ");
+        } else {
+          listaPedido.push({
+            "id": idArray,
+            "titulo": tituloArray,
+            "precio": precioArray,
+            "maximo": maximoArray,
+            "minimo": minimoArray,
+            "peso": pesoArray,
+            "subtotal": subArray
+          });
+          subtotal = precioArray * pesoArray;
+          $("#divPedido_").append(
+            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
+            idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
+            " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
+            tituloArray +
+            "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
+            tituloArray + "' peso='" + pesoArray + "' precio='" + precioArray + "' maximo='" +
+            maximoArray + "' minimo='" + minimoArray + "' id='" + idArray +
+            "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
+            precioArray +
+            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
+            pesoArray +
+            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
+            subArray + "</h5></center></div></div>");
+        }
+        total += subtotal;
+      }
+      $("#total").text(total);
+      json = JSON.stringify(listaPedido);
+      console.log(json);
+      $("#modalEditar").modal('hide');
+    }
+  }
+});
+
+//editar PROMOCION
+$("#divPedido_").on("click", ".promocion", function () {
+
+  //$(".promo").click(function() { 
 
 
+  var modal1 = new bootstrap.Modal(document.getElementById('modalPromo'));
+  console.info(modal1);
+  // show Modal
+  modal1.show();
 
 
+  titulo = $(this).attr("nombre");
+  peso = $(this).attr("peso");
+  precio = parseFloat($(this).attr("precio"));
+  maximo = parseFloat($(this).attr("maximo"));
+  minimo = parseFloat($(this).attr("minimo"));
+  idActual = $(this).attr("id");
+  $("#idModalp").val(idActual);
+  $("#tituloModalp").text(titulo);
+  $("#pesoModalp").val(peso);
+  pesoModalp
+  $("#maximoModalp").val(maximo);
+  $("#precioModalp").val($(this).attr("precio") * 0.10); // 10 % sobre el costo del productow2
+  $("#minimoModalp").val(minimo);
+  console.log(titulo);
+  if (titulo.includes("ACHIOTE") == true) {
+    console.log("achiote");
+    $("#etiquetaModalUnidad").text("Paquetes (Emplayado con 10 cajas)");
+  } else if (titulo.includes("MOLE ") == true) {
+    console.log("mole");
+    $("#etiquetaModalUnidad").text("Piezas");
+  } else {
+    console.log("otros");
+    $("#etiquetaModalUnidad").text("Peso en Kg");
+  }
 
-              "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo ' style='color:#e97d01'>DESCUENTO: " + titulo +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio text-danger'>-" +  precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-10' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal text-danger' style='text-align: right;padding-right: 31px;' >" +  subtotal + "</h4> </div> </div>");
+  setTimeout(() => {
+    $('#precioModalp').focus();
+    $('#precioModalp').select();
+  }, 150);
+});
+//no se usa, en cambio usamos  btnAgregarDescuento
+$(".btnModificarPromo").click(function () {
+  peso = parseFloat($("#pesoEditar").val());
+  precio = parseFloat($("#precioEditar").val());
+  maximo = parseFloat($("#maximoEditar").val());
+  minimo = parseFloat($("#minimoEditar").val());
+  idActual = $("#idEditar").val();
+  console.log(peso);
+  console.log(precio);
+  console.log(idActual);
+  subtotal = peso * precio;
+  if (peso == "" || peso == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Peso incorrecto',
+      text: 'Debes ingresar un peso',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else if (precio < minimo || precio > maximo) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Costo incorrecto',
+      text: 'Por favor ingresa un costo correcto',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else {
+    var idProducto = $(".cuerpoPedido span");
+    var titulosProducto = $(".cuerpoPedido .titulo");
+    var preciosProducto = $(".cuerpoPedido .precio");
+    var pesosProducto = $(".cuerpoPedido .peso");
+    var subsProducto = $(".cuerpoPedido .subtotal");
+    listaPedido = [];
+    $("#divPedido_").empty();
+    if (idProducto.length != 0) {
+      total = 0;
+      for (var i = 0; i < idProducto.length; i++) {
+        var idArray = $(idProducto[i]).attr("idProducto");
+        var maximoArray = $(idProducto[i]).attr("maximo");
+        var minimoArray = $(idProducto[i]).attr("minimo");
+        var tituloArray = $(titulosProducto[i]).html();
+        var precioArray = $(preciosProducto[i]).html();
+        var pesoArray = $(pesosProducto[i]).html();
+        var subArray = $(subsProducto[i]).html();
+        if (idArray == idActual) {
+          subtotal = precio * peso;
+          listaPedido.push({
+            "id": idArray,
+            "titulo": tituloArray,
+            "precio": precio,
+            "maximo": maximo,
+            "minimo": minimo,
+            "peso": peso,
+            "subtotal": subtotal
+          });
+          $("#divPedido_").append(
+            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
+            idArray + " maximo=" + maximo + " minimo=" + minimo +
+            " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
+            tituloArray +
+            "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
+            tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo +
+            "' minimo='" + minimo + "' id='" + idArray +
+            "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
+            precio +
+            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
+            peso +
+            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
+            subtotal + "</h5></center></div></div>");
+        } else {
+          listaPedido.push({
+            "id": idArray,
+            "titulo": tituloArray,
+            "precio": precioArray,
+            "maximo": maximoArray,
+            "minimo": minimoArray,
+            "peso": pesoArray,
+            "subtotal": subArray
+          });
+          subtotal = precioArray * pesoArray;
+          $("#divPedido_").append(
+            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
+            idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
+            " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
+            tituloArray +
+            "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
+            tituloArray + "' peso='" + pesoArray + "' precio='" + precioArray + "' maximo='" +
+            maximoArray + "' minimo='" + minimoArray + "' id='" + idArray +
+            "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
+            precioArray +
+            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
+            pesoArray +
+            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
+            subArray + "</h5></center></div></div>");
+        }
+        total += subtotal;
+      }
+      $("#total").text(total);
+      json = JSON.stringify(listaPedido);
+      console.log(json);
+      //$("#modalPromo").modal('hide');
+    }
+  }
+});
+
+// btnAgregarDescuento
+//** */
+$(".btnAgregarDescuento").click(function () { //al gregar producto al pedido
+  peso = $("#pesoModalp").val();
+  if ($("#precioModalp").val() == '') {
+    precio = 0;
+  } else {
+    precio = parseFloat($("#precioModalp").val());
+  }
+
+  idActual = $("#idModal").val();
+  subtotal = peso * -precio;
+  if (peso == "" || peso == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Peso incorrecto',
+      text: 'Debes ingresar un peso',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else if (precio == 0 || precio == '') { //! ninguna validación para precio mínimo
+    Swal.fire({
+      icon: 'error',
+      title: 'Precio incorrecto',
+      text: 'Por favor ingresa un costo correcto',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else {
+    listaPedido.push({
+      "id": idActual,
+      "titulo": "DESCUENTO:" + titulo,
+      "precio": -precio,
+      "maximo": maximo,
+      "minimo": minimo,
+      "peso": peso,
+      "subtotal": subtotal
+    });
+    json = JSON.stringify(listaPedido);
+    console.log(json);
+    $("#divPedido_").append(
 
 
-             /*  "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
+      "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo ' style='color:#e97d01'>DESCUENTO: " + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio text-danger'>-" + precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-10' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal text-danger' style='text-align: right;padding-right: 31px;' >" + subtotal + "</h4> </div> </div>");
+
+
+    /*  "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
               
               //eliminar promo
               "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
@@ -941,523 +927,307 @@
  */
 
 
-
-          total += subtotal;
-          $("#total").text(total);
-          //$("#modalPromo").modal('hide');
-          $("#buscarProducto").val("");
-          $("#contenedorProductos").show();
-          $("#contenedorBusqueda").hide();
-      }
-  }); 
-  
-  
-  
-  /**
-   * @Param click :: es el boton que agrega el producto del modal al list product del pedido / nota de venta
-   * 
-   */
-  $(".btnAgregar").click(function() { //a gregar producto al pedido
-      peso = $("#pesoModal").val();
-      if($("#precioModal").val()=='') {precio = 0;}
-      else{
-          precio = parseFloat($("#precioModal").val());
-      }
-  
-      idActual = $("#idModal").val();
-      subtotal = peso * precio;
-      if (peso == "" || peso == 0) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Peso incorrecto',
-              text: 'Debes ingresar un peso',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else if (precio==0 || precio=='' || precio < minimo) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Precio incorrecto',
-              text: 'Por favor ingresa un costo correcto',
-              confirmButtonText: 'Regresar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else {
-          listaPedido.push({
-              "id": idActual,
-              "titulo": titulo,
-              "precio": precio,
-              "maximo": maximo,
-              "minimo": minimo,
-              "peso": peso,
-              "subtotal": subtotal
-          });
-          json = JSON.stringify(listaPedido);
-          console.log(json);
-          $("#divPedido_").append(
-              
+    total += subtotal;
+    $("#total").text(total);
+    //$("#modalPromo").modal('hide');
+    $("#buscarProducto").val("");
+    $("#contenedorProductos").show();
+    $("#contenedorBusqueda").hide();
+  }
+});
 
 
-
-              "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +  peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +  precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" +  titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
-              titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
-              minimo + "' id='" + idActual +
-              "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" +  subtotal + '</h4> </div> </div> ');
-
-
-
-
-
-            total += subtotal;
-            $("#total").text(total);
-            $("#modalProducto").modal('hide');
-            $("#buscarProducto").val("");
-            $("#contenedorProductos").show();
-            $("#contenedorBusqueda").hide();
-      }
-  }); 
-  $("#divPedido_").on("click", ".borrar", function() {
-
-      $(this).parent().parent().parent().parent().remove();
-
-      var idProducto = $(".cuerpoPedido span");
-      var titulosProducto = $(".cuerpoPedido .titulo");
-      var preciosProducto = $(".cuerpoPedido .precio");
-      var pesosProducto = $(".cuerpoPedido .peso");
-      var subsProducto = $(".cuerpoPedido .subtotal");
-      listaPedido = [];
-      if (idProducto.length != 0) {
-          total = 0;
-          for (var i = 0; i < idProducto.length; i++) {
-              var idArray = $(idProducto[i]).attr("idProducto");
-              var tituloArray = $(titulosProducto[i]).html();
-              var precioArray = $(preciosProducto[i]).html();
-              var pesoArray = $(pesosProducto[i]).html();
-              var subArray = $(subsProducto[i]).html();
-              listaPedido.push({
-                  "id": idArray,
-                  "titulo": tituloArray,
-                  "precio": precioArray,
-                  "peso": pesoArray,
-                  "subtotal": subArray
-              });
-              subtotal = precioArray * pesoArray;
-              total += subtotal;
-          }
-          $("#total").text(total);
-          json = JSON.stringify(listaPedido);
-          console.log(json);
-      } else {
-          listaPedido = [];
-          total = 0;
-          $("#total").text(total);
-      }
-  }); 
-  
-  
-  //boton Guardar/cerrar venta
-  $("#salvarPedido").click(function() {
-      // var nombreCliente = $("#nombreCliente").val();
-      var nombreCliente = $("#nombreCliente option:selected").val(); //IDcliente
-      if (nombreCliente == "") {
-          Swal.fire({
-              icon: 'error',
-              title: 'Nombre incorrecto',
-              text: 'Debes ingresar un nombre a la orden',
-              confirmButtonText: 'Aceptar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else if (total == 0) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Upsss',
-              text: 'Debes agregar al menos 1 producto a la orden',
-              confirmButtonText: 'Aceptar',
-              confirmButtonColor: '#e97d01',
-              footer: 'Sentimos las molestias'
-          })
-      } else {
-          $("#salvarPedido").prop("disabled", true);
-          var datosCobro = new FormData();
-          console.info(json);
-
-          json.forEach((value) => { 
-
-              datosCobro.append('json[]',JSON.stringify(value)); 
-          });
-
-
-          
-          /* datosCobro.append("json", json); */
-          datosCobro.append("cliente", nombreCliente);
-          if ($("#folio").attr("folio")){
-              datosCobro.append("folio", $("#folio").attr("folio"));
-              datosCobro.append("nota", $("#nota").attr("nota"));
-          }
-
-          console.info(datosCobro);          
-          $.ajax({
-              url: "./?action=guardarPedido",//?i=0
-              method: "POST",
-              data: datosCobro,
-              cache: false,
-              contentType: false,
-              processData: false,
-              success: function(respuesta) {
-                  console.log(respuesta); 
-                  if (respuesta) {
-                      Swal.fire({
-                          icon: 'success',
-                          title: '¡Orden generada!',
-                          text: 'El cliente puede pasar a caja a pagar con su nombre o puedes seguir editando.',
-                          confirmButtonText: 'Aceptar',
-                          confirmButtonColor: '#e97d01',
-                          allowOutsideClick: false
-                      }).then((result) => {
-                          if (result.isConfirmed) {
-                              respuesta= JSON.parse(respuesta);
-                              //console.log(respuesta);
-                              $("#folio").text("Folio: "+respuesta.folio);
-                              $("#folio").attr("folio",respuesta.folio);
-                              $("#nota").text("Nota de Venta: "+respuesta.nota);
-                              $("#nota").attr("nota",respuesta.nota);
-                              $("#folio").attr("nota",nombreCliente);
-                              window.location.href = "inicio";
-                              
-                          }
-                      })
-                  } else {
-                      Swal.fire({
-                          icon: 'error',
-                          title: 'Ha ocurrido un error',
-                          text: 'Por favor intentalo nuevamente',
-                          confirmButtonText: 'Aceptar',
-                          confirmButtonColor: '#e97d01',
-                          footer: 'Sentimos las molestias'
-                      })
-                  } $("#salvarPedido").prop("disabled", false);
-              }
-          })
-      }
-  }); 
-  
-  
-  
-  //boton enviar //viejo ya no se usa
-  $("#enviarPedido").click(function() {
-      var nombreCliente = $("#nombreCliente").val();
-      if (nombreCliente == "") {
-          Swal.fire({
-              icon: 'error',
-              title: 'Nombre incorrecto',
-              text: 'Debes ingresar un nombre a la orden',
-              confirmButtonText: 'OK',
-              footer: 'Sentimos las molestias'
-          })
-      } else if (total == 0) {
-          Swal.fire({
-              icon: 'error',
-              title: 'Upsss',
-              text: 'Debes agregar al menos 1 producto a la orden',
-              confirmButtonText: 'OK',
-              footer: 'Sentimos las molestias'
-          })
-      } else {
-          $("#enviarPedido").prop("disabled", true);
-          var datosCobro = new FormData();
-          datosCobro.append("json", json);
-          datosCobro.append("cliente", nombreCliente);
-          $.ajax({
-              url: "ajax/nuevo.ajax.php?i=0",
-              method: "POST",
-              data: datosCobro,
-              cache: false,
-              contentType: false,
-              processData: false,
-              success: function(respuesta) {
-                  console.log(respuesta); 
-   if (respuesta == "ok" || respuesta == "") {
-                      Swal.fire({
-                          icon: 'success',
-                          title: '¡Orden generada!',
-                          text: 'El cliente puede pasar a caja a pagar con su nombre',
-                          confirmButtonText: 'OK',
-                          allowOutsideClick: false
-                      }).then((result) => {
-                          if (result.isConfirmed) {
-                              window.location.href = "inicio";
-                          }
-                      })
-                  } else {
-                      Swal.fire({
-                          icon: 'error',
-                          title: 'Ha ocurrido un error',
-                          text: 'Por favor intentalo nuevamente',
-                          confirmButtonText: 'OK',
-                          footer: 'Sentimos las molestias'
-                      })
-                  } $("#enviarPedido").prop("disabled", false);
-              }
-          })
-      }
-  }); 
-  
-  $("#contenedorBusqueda").on("click", "div", function() {
-      titulo = $(this).attr("nombre");
-      maximo = parseFloat($(this).attr("maximo"));
-      minimo = parseFloat($(this).attr("minimo"));
-      idActual = $(this).attr("id");
-      var datosCobro = new FormData();
-      datosCobro.append("valor", idActual);
-      $.ajax({
-          url: "./?action=traerproducto",
-          method: "POST",
-          data: datosCobro,
-          dataType: "json",
-          cache: false,
-          contentType: false,
-          processData: false,
-          success: function(respuesta) {
-              $.each(respuesta, function(id, val) {
-                  switch (id) {
-                      case 'id':
-                          idActual = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      case 'nombre':
-                          titulo = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      case 'precio':
-                          precio = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      case 'minimo':
-                          minimo = val;
-                          console.log(id);
-                          console.log(val);
-                          break;
-                      default:
-                          break;
-                  }
-              }); 
-              $("#idModal").val(idActual);
-              $("#tituloModal").text(titulo);
-              $("#pesoModal").val("");
-              $("#precioModal").val(precio);
-              $("#minimoModal").val(minimo);
-          }
-      }); 
-  if (titulo.includes("ACHIOTE") == true) {
-          console.log("achiote");
-          $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
-      } else if (titulo.includes("MOLE ") == true) {
-          console.log("mole");
-          $("#etiquetaNuevaUnidad").text("Piezas");
-      } else {
-          console.log("otros");
-          $("#etiquetaNuevaUnidad").text("Peso en Kg");
-      }
-      $("#modalProducto").modal('show')
-  })
-  var bus = [];
-  function buscar() {
-      var buscar = $("#buscarProducto").val();
-      if (buscar == "") {
-          $("#contenedorProductos").show();
-          $("#contenedorBusqueda").hide();
-      } else {
-          $("#contenedorProductos").hide();
-          $("#contenedorBusqueda").show();
-          var datosCobro = new FormData();
-          datosCobro.append("valor", buscar);
-          $.ajax({
-              url: "./?action=buscar_producto",
-              method: "POST",
-              data: datosCobro,
-              dataType: "json",
-              cache: false,
-              contentType: false,
-              processData: false,
-              success: function(respuesta) {
-
-                console.info(respuesta);
-                  $("#contenedorBusqueda").empty();
-                  $("#contenedorBusqueda").append(
-                      '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
-                      );
-                  var i = 0;
-                  var conCol = 0;
-                  
-                  $.each(respuesta, function(arreglo, valor) {
-                      var thisID;
-                      var thisNombre;
-                      var thisPrecio;
-                      var thisMinimo;
-                      var thisMaximo;
-                      var thisImagen;
-                      var thisCategoria;
-                      $.each(valor, function(id, val) {
-                          switch (id) {
-                              case 'id':
-                                  thisID = val;
-                                  break;
-                              case 'nombre':
-                                  thisNombre = val;
-                                  break;
-                              case 'precio':
-                                  thisPrecio = val;
-                                  break;
-                              case 'minimo':
-                                  thisMinimo = val;
-                                  break;
-                              case 'maximo':
-                                  thisMaximo = val;
-                                  break;
-                              case 'imagen':
-                                  thisImagen = val;
-                                  break;
-                              case 'categoria':
-                                  thisCategoria = val;
-                                  break;
-                              default:
-                                  break;
-                          }
-                      }); 
-                       if (thisImagen == "") {
-                          $("#contenedorBusqueda").append(
-                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
-                              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
-                              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
-                              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
-                              '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
-                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
-                              thisPrecio + '</span></li></ul></div></div>');
-
-                      } else {
-
-                        $("#contenedorBusqueda").append(
-                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
-                              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
-                              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
-                              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
-                              '"><div class="item-body"><figure><img src="'+thisImagen+'" data-src="'+thisImagen+'" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
-                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
-                              thisPrecio + '</span></li></ul></div></div>');
-
-
-                      } 
-
-                  });
-              }
-          })
-      }
+/**
+ * @Param click :: es el boton que agrega el producto del modal al list product del pedido / nota de venta
+ * 
+ */
+$(".btnAgregar").click(function () { //a gregar producto al pedido
+  peso = $("#pesoModal").val();
+  if ($("#precioModal").val() == '') {
+    precio = 0;
+  } else {
+    precio = parseFloat($("#precioModal").val());
   }
 
+  idActual = $("#idModal").val();
+  subtotal = peso * precio;
+  if (peso == "" || peso == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Peso incorrecto',
+      text: 'Debes ingresar un peso',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else if (precio == 0 || precio == '' || precio < minimo) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Precio incorrecto',
+      text: 'Por favor ingresa un costo correcto',
+      confirmButtonText: 'Regresar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else {
+    listaPedido.push({
+      "id": idActual,
+      "titulo": titulo,
+      "precio": precio,
+      "maximo": maximo,
+      "minimo": minimo,
+      "peso": peso,
+      "subtotal": subtotal
+    });
+    json = JSON.stringify(listaPedido);
+    console.log(json);
+    $("#divPedido_").append(
 
 
-
- $("#buscarProductoCategoria").change(function()
- {    
-      var buscar = $("#buscarProductoCategoria").val();
-
-      //console.info(buscar);
-      if (buscar == "") {
-          $("#contenedorProductos").show();
-          $("#contenedorBusqueda").hide();
-      } else {
-          $("#contenedorProductos").hide();
-          $("#contenedorBusqueda").show();
-          var datosCobro = new FormData();
-          datosCobro.append("valor", buscar);
-          $.ajax({
-              url: "./?action=buscar_producto_categoria",
-              method: "POST",
-              data: datosCobro,
-              dataType: "json",
-              cache: false,
-              contentType: false,
-              processData: false,
-              success: function(respuesta) {
-
-                console.info(respuesta);
-                  $("#contenedorBusqueda").empty();
-                  $("#contenedorBusqueda").append(
-                      '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
-                      );
-                  var i = 0;
-                  var conCol = 0;
-                  
-                  $.each(respuesta, function(arreglo, valor) {
-                      var thisID;
-                      var thisNombre;
-                      var thisPrecio;
-                      var thisMinimo;
-                      var thisMaximo;
-                      var thisImagen;
-                      var thisCategoria;
-                      $.each(valor, function(id, val) {
-                          switch (id) {
-                              case 'id':
-                                  thisID = val;
-                                  break;
-                              case 'nombre':
-                                  thisNombre = val;
-                                  break;
-                              case 'precio':
-                                  thisPrecio = val;
-                                  break;
-                              case 'minimo':
-                                  thisMinimo = val;
-                                  break;
-                              case 'maximo':
-                                  thisMaximo = val;
-                                  break;
-                              case 'imagen':
-                                  thisImagen = val;
-                                  break;
-                              case 'categoria':
-                                  thisCategoria = val;
-                                  break;
-
-                              default:
-                                  break;
-                          }
-                      }); 
-                       if (thisImagen == "") {
-                          $("#contenedorBusqueda").append(
-                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
-                              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
-                              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
-                              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
-                              '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
-                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
-                              thisPrecio + '</span></li></ul></div></div>');
-
-                      } else {
-
-                        $("#contenedorBusqueda").append(
-                              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
-                              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
-                              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
-                              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
-                              '"><div class="item-body"><figure><img src="'+thisImagen+'" data-src="'+thisImagen+'" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
-                              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
-                              thisPrecio + '</span></li></ul></div></div>');
+      "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
+      titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
+      minimo + "' id='" + idActual +
+      "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" + subtotal + '</h4> </div> </div> ');
 
 
-                      } 
+    total += subtotal;
+    $("#total").text(total);
+    $("#modalProducto").modal('hide');
+    $("#buscarProducto").val("");
+    $("#contenedorProductos").show();
+    $("#contenedorBusqueda").hide();
+  }
+});
+$("#divPedido_").on("click", ".borrar", function () {
 
-                  });
-              }
+  $(this).parent().parent().parent().parent().remove();
+
+  var idProducto = $(".cuerpoPedido span");
+  var titulosProducto = $(".cuerpoPedido .titulo");
+  var preciosProducto = $(".cuerpoPedido .precio");
+  var pesosProducto = $(".cuerpoPedido .peso");
+  var subsProducto = $(".cuerpoPedido .subtotal");
+  listaPedido = [];
+  if (idProducto.length != 0) {
+    total = 0;
+    for (var i = 0; i < idProducto.length; i++) {
+      var idArray = $(idProducto[i]).attr("idProducto");
+      var tituloArray = $(titulosProducto[i]).html();
+      var precioArray = $(preciosProducto[i]).html();
+      var pesoArray = $(pesosProducto[i]).html();
+      var subArray = $(subsProducto[i]).html();
+      listaPedido.push({
+        "id": idArray,
+        "titulo": tituloArray,
+        "precio": precioArray,
+        "peso": pesoArray,
+        "subtotal": subArray
+      });
+      subtotal = precioArray * pesoArray;
+      total += subtotal;
+    }
+    $("#total").text(total);
+    json = JSON.stringify(listaPedido);
+    console.log(json);
+  } else {
+    listaPedido = [];
+    total = 0;
+    $("#total").text(total);
+  }
+});
+
+
+//boton Guardar/cerrar venta
+$("#salvarPedido").click(function () {
+  // var nombreCliente = $("#nombreCliente").val();
+  var nombreCliente = $("#nombreCliente option:selected").val(); //IDcliente
+  if (nombreCliente == "") {
+    Swal.fire({
+      icon: 'error',
+      title: 'Nombre incorrecto',
+      text: 'Debes ingresar un nombre a la orden',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else if (total == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Upsss',
+      text: 'Debes agregar al menos 1 producto a la orden',
+      confirmButtonText: 'Aceptar',
+      confirmButtonColor: '#e97d01',
+      footer: 'Sentimos las molestias'
+    })
+  } else {
+    $("#salvarPedido").prop("disabled", true);
+    var datosCobro = new FormData();
+    console.info(json);
+
+    /*           json.forEach((value) => { 
+
+                  datosCobro.append('json[]',JSON.stringify(value)); 
+              });
+     */
+
+
+    datosCobro.append("json", json);
+    datosCobro.append("cliente", nombreCliente);
+    if ($("#folio").attr("folio")) {
+      datosCobro.append("folio", $("#folio").attr("folio"));
+      datosCobro.append("nota", $("#nota").attr("nota"));
+    }
+
+    console.info(datosCobro);
+    $.ajax({
+      url: "./?action=guardarPedido", //?i=0
+      method: "POST",
+      data: datosCobro,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (respuesta) {
+       // console.log(respuesta);
+        if (respuesta) {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Orden generada!',
+            text: 'El cliente puede pasar a caja a pagar con su nombre o puedes seguir editando.',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#e97d01',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              respuesta = JSON.parse(respuesta);
+              console.log(respuesta);
+/*               $("#folio").text("Folio: " + respuesta.folio);
+              $("#folio").attr("folio", respuesta.folio);
+              $("#nota").text("Nota de Venta: " + respuesta.nota);
+              $("#nota").attr("nota", respuesta.nota); */
+              $("#folio").attr("nota", nombreCliente);
+             window.location.href = "?view=index";
+
+            }
           })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error',
+            text: 'Por favor intentalo nuevamente',
+            confirmButtonText: 'Aceptar',
+            confirmButtonColor: '#e97d01',
+            footer: 'Sentimos las molestias'
+          })
+        }
+        $("#salvarPedido").prop("disabled", false);
       }
+    })
+  }
+});
+
+
+//boton enviar //viejo ya no se usa
+$("#enviarPedido").click(function () {
+  var nombreCliente = $("#nombreCliente").val();
+  if (nombreCliente == "") {
+    Swal.fire({
+      icon: 'error',
+      title: 'Nombre incorrecto',
+      text: 'Debes ingresar un nombre a la orden',
+      confirmButtonText: 'OK',
+      footer: 'Sentimos las molestias'
+    })
+  } else if (total == 0) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Upsss',
+      text: 'Debes agregar al menos 1 producto a la orden',
+      confirmButtonText: 'OK',
+      footer: 'Sentimos las molestias'
+    })
+  } else {
+    $("#enviarPedido").prop("disabled", true);
+    var datosCobro = new FormData();
+    json.forEach((value) => {
+
+      datosCobro.append('json[]', JSON.stringify(value));
+    });
+
+    //datosCobro.append("json", json);
+    datosCobro.append("cliente", nombreCliente);
+
+
+
+    Swal.fire({
+      title: 'Metodo de pago',
+      input: 'select',
+      inputOptions: {
+        credito: 'Credito',
+        efectivo: 'Efectivo',
+        diferido: 'Diferido',
+        tarjeta: 'Tarjeta',
+        transferencia: 'Transferencia',
+        Pendiente: 'Sin pagar'
+      },
+      inputPlaceholder: 'Selecciona una opcion',
+      inputAttributes: {
+        autocapitalize: 'off'
+      },
+      showCancelButton: true,
+      confirmButtonText: 'Enviar',
+      showLoaderOnConfirm: true,
+      preConfirm: (valor) => {
+        // Aquí puedes realizar validaciones adicionales antes de enviar el valor
+        return valor;
+      },
+      allowOutsideClick: () => !Swal.isLoading()
+    }).then((result) => {
+        if (result.isConfirmed) {
+          // Valor ingresado por el usuario
+          var valorIngresado = result.value;
+          datosCobro.append("metodoPago", valorIngresado);
+
+          console.log(datosCobro);
+
+
+          // Enviar el valor mediante una llamada AJAX con jQuery
+          $.ajax({
+            url: "ajax/nuevo.ajax.php?i=0",
+            method: "POST",
+            data: datosCobro,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (respuesta) {
+              console.log(respuesta);
+              if (respuesta == "ok" || respuesta == "") {
+                Swal.fire({
+                  icon: 'success',
+                  title: '¡Orden generada!',
+                  text: 'El cliente puede pasar a caja a pagar con su nombre',
+                  confirmButtonText: 'OK',
+                  allowOutsideClick: false
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    window.location.href = "?view=index";
+                  }
+                })
+              } else {
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Ha ocurrido un error',
+                  text: 'Por favor intentalo nuevamente',
+                  confirmButtonText: 'OK',
+                  footer: 'Sentimos las molestias'
+                })
+              }
+              $("#enviarPedido").prop("disabled", false);
+            }
+          });
+        }
+      });
+
+    }
   });
 
 
@@ -1473,30 +1243,348 @@
 
 
 
-  
-  function ocultar(event, origen,btnFin='no') {
-      if (origen == "peso" && event.keyCode == 13) {
-          $("#precioModal").focus();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   /*  $.ajax({
+      url: "ajax/nuevo.ajax.php?i=0",
+      method: "POST",
+      data: datosCobro,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (respuesta) {
+        console.log(respuesta);
+        if (respuesta == "ok" || respuesta == "") {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Orden generada!',
+            text: 'El cliente puede pasar a caja a pagar con su nombre',
+            confirmButtonText: 'OK',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "?view=index";
+            }
+          })
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha ocurrido un error',
+            text: 'Por favor intentalo nuevamente',
+            confirmButtonText: 'OK',
+            footer: 'Sentimos las molestias'
+          })
+        }
+        $("#enviarPedido").prop("disabled", false);
       }
-      if (origen == "precio" && event.keyCode == 13) {
-          //document.activeElement.blur();
-          $("."+btnFin+"").click();
-      }
+    });
+   */
+//});
+
+$("#contenedorBusqueda").on("click", "div", function () {
+  titulo = $(this).attr("nombre");
+  maximo = parseFloat($(this).attr("maximo"));
+  minimo = parseFloat($(this).attr("minimo"));
+  idActual = $(this).attr("id");
+  var datosCobro = new FormData();
+  datosCobro.append("valor", idActual);
+  $.ajax({
+    url: "./?action=traerproducto",
+    method: "POST",
+    data: datosCobro,
+    dataType: "json",
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {
+      $.each(respuesta, function (id, val) {
+        switch (id) {
+          case 'id':
+            idActual = val;
+            console.log(id);
+            console.log(val);
+            break;
+          case 'nombre':
+            titulo = val;
+            console.log(id);
+            console.log(val);
+            break;
+          case 'precio':
+            precio = val;
+            console.log(id);
+            console.log(val);
+            break;
+          case 'minimo':
+            minimo = val;
+            console.log(id);
+            console.log(val);
+            break;
+          default:
+            break;
+        }
+      });
+      $("#idModal").val(idActual);
+      $("#tituloModal").text(titulo);
+      $("#pesoModal").val("");
+      $("#precioModal").val(precio);
+      $("#minimoModal").val(minimo);
+    }
+  });
+  if (titulo.includes("ACHIOTE") == true) {
+    console.log("achiote");
+    $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
+  } else if (titulo.includes("MOLE ") == true) {
+    console.log("mole");
+    $("#etiquetaNuevaUnidad").text("Piezas");
+  } else {
+    console.log("otros");
+    $("#etiquetaNuevaUnidad").text("Peso en Kg");
   }
-  
-</script>  
-<?php
-if (isset($_REQUEST['folio']))
-{
+  $("#modalProducto").modal('show');
+})
+var bus = [];
+
+function buscar() {
+  var buscar = $("#buscarProducto").val();
+  if (buscar == "") {
+    $("#contenedorProductos").show();
+    $("#contenedorBusqueda").hide();
+  } else {
+    $("#contenedorProductos").hide();
+    $("#contenedorBusqueda").show();
+    var datosCobro = new FormData();
+    datosCobro.append("valor", buscar);
+    $.ajax({
+      url: "./?action=buscar_producto",
+      method: "POST",
+      data: datosCobro,
+      dataType: "json",
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (respuesta) {
+
+        console.info(respuesta);
+        $("#contenedorBusqueda").empty();
+        $("#contenedorBusqueda").append(
+          '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
+        );
+        var i = 0;
+        var conCol = 0;
+
+        $.each(respuesta, function (arreglo, valor) {
+          var thisID;
+          var thisNombre;
+          var thisPrecio;
+          var thisMinimo;
+          var thisMaximo;
+          var thisImagen;
+          var thisCategoria;
+          $.each(valor, function (id, val) {
+            switch (id) {
+              case 'id':
+                thisID = val;
+                break;
+              case 'nombre':
+                thisNombre = val;
+                break;
+              case 'precio':
+                thisPrecio = val;
+                break;
+              case 'minimo':
+                thisMinimo = val;
+                break;
+              case 'maximo':
+                thisMaximo = val;
+                break;
+              case 'imagen':
+                thisImagen = val;
+                break;
+              case 'categoria':
+                thisCategoria = val;
+                break;
+              default:
+                break;
+            }
+          });
+          if (thisImagen == "") {
+            $("#contenedorBusqueda").append(
+              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
+              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
+              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
+              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
+              '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+              thisPrecio + '</span></li></ul></div></div>');
+
+          } else {
+
+            $("#contenedorBusqueda").append(
+              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
+              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
+              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
+              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
+              '"><div class="item-body"><figure><img src="' + thisImagen + '" data-src="' + thisImagen + '" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+              thisPrecio + '</span></li></ul></div></div>');
+
+
+          }
+
+        });
+      }
+    })
+  }
+}
+
+
+$("#buscarProductoCategoria").change(function () {
+  var buscar = $("#buscarProductoCategoria").val();
+
+  //console.info(buscar);
+  if (buscar == "") {
+    $("#contenedorProductos").show();
+    $("#contenedorBusqueda").hide();
+  } else {
+    $("#contenedorProductos").hide();
+    $("#contenedorBusqueda").show();
+    var datosCobro = new FormData();
+    datosCobro.append("valor", buscar);
+    $.ajax({
+      url: "./?action=buscar_producto_categoria",
+      method: "POST",
+      data: datosCobro,
+      dataType: "json",
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function (respuesta) {
+
+        console.info(respuesta);
+        $("#contenedorBusqueda").empty();
+        $("#contenedorBusqueda").append(
+          '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
+        );
+        var i = 0;
+        var conCol = 0;
+
+        $.each(respuesta, function (arreglo, valor) {
+          var thisID;
+          var thisNombre;
+          var thisPrecio;
+          var thisMinimo;
+          var thisMaximo;
+          var thisImagen;
+          var thisCategoria;
+          $.each(valor, function (id, val) {
+            switch (id) {
+              case 'id':
+                thisID = val;
+                break;
+              case 'nombre':
+                thisNombre = val;
+                break;
+              case 'precio':
+                thisPrecio = val;
+                break;
+              case 'minimo':
+                thisMinimo = val;
+                break;
+              case 'maximo':
+                thisMaximo = val;
+                break;
+              case 'imagen':
+                thisImagen = val;
+                break;
+              case 'categoria':
+                thisCategoria = val;
+                break;
+
+              default:
+                break;
+            }
+          });
+          if (thisImagen == "") {
+            $("#contenedorBusqueda").append(
+              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
+              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
+              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
+              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
+              '"><div class="item-body"><figure><img src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" data-src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+              thisPrecio + '</span></li></ul></div></div>');
+
+          } else {
+
+            $("#contenedorBusqueda").append(
+              '<div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 isotope-item  pizza agregarProducto" id="' +
+              thisID + '" nombre="' + thisNombre + '" precio="' + thisPrecio +
+              '" minimo="' + thisMinimo + '" maximo="' + thisMaximo +
+              '" imagen="' + thisImagen + '" categoria="' + thisCategoria +
+              '"><div class="item-body"><figure><img src="' + thisImagen + '" data-src="' + thisImagen + '" class="img-fluid lazy entered loaded" alt="" data-ll-status="loaded"><a href="#modalDetailsItem02" class="item-body-link modal-opener"><div class="item-title"><h3>' + thisNombre +
+              '</h3></div></a></figure><ul style="padding-bottom: 32px;"><li><span class="modal-opener" >$ ' +
+              thisPrecio + '</span></li></ul></div></div>');
+
+
+          }
+
+        });
+      }
+    })
+  }
+});
+
+
+function ocultar(event, origen, btnFin = 'no') {
+  if (origen == "peso" && event.keyCode == 13) {
+    $("#precioModal").focus();
+  }
+  if (origen == "precio" && event.keyCode == 13) {
+    //document.activeElement.blur();
+    $("." + btnFin + "").click();
+  }
+}
+
+</script>   <?php
+if (isset($_REQUEST['folio'])) {
   //si existe el folio y debe traer datos.
   $venta = Productos::todalaVenta($_REQUEST['folio']);
-  foreach ($venta as $key => $value)
-  {
+  foreach($venta as $key => $value) {
     $venta[$key]['pesostring'] = $value['peso'];
   }
   // core::preprint($venta,'venta con pesostring');
   $venta = json_encode($venta);
-  echo "<script> var ventaJson = '" . $venta . "'; </script>";
+  echo "<script> var ventaJson = '".$venta.
+  "'; </script>";
 
   //    core::preprint($venta,'venta en encode');
   //correr todo para rellenar el tiket //!urgente
@@ -1504,181 +1592,163 @@ if (isset($_REQUEST['folio']))
   // correr el foreach de los productos en el json desde js y cambiar estatus a abierto.
   //asi se eliminan los prodyctos borrados desde el interfaz, sin borrarlos de la BD y queda antecedente.
   ///?hacer que guarde el producto y cambios con la tecla enter
-  
-?>
-<script>
-  //ventaJson = productos desde la BD
-  var listaPedido = [];
-  
-  
+
+  ?>
+  <script >
+    //ventaJson = productos desde la BD
+    var listaPedido = [];
+
+
   function rellenarPedido(ele) { //a gregar producto al pedido
 
     console.info("hola mundo");
 
-  ele.titulo = ele.title;
-  var idActual = ele.idActual;
-  var titulo = ele.titulo;
-  var precio = ele.precio;
-  var maximo = ele.maximo;
-  var minimo = ele.minimo;
-  var peso = ele.peso;
-  var subtotal = '';
-  subtotal = peso * precio;
-
-  
-      listaPedido.push({
-          "id": ele.idActual,
-          "titulo": ele.titulo,
-          "precio": ele.precio,
-          "maximo": ele.maximo,
-          "minimo": ele.minimo,
-          "peso": ele.peso,
-          "subtotal": subtotal
-      });
-      json = JSON.stringify(listaPedido);
-      console.log(json);
+    ele.titulo = ele.title;
+    var idActual = ele.idActual;
+    var titulo = ele.titulo;
+    var precio = ele.precio;
+    var maximo = ele.maximo;
+    var minimo = ele.minimo;
+    var peso = ele.peso;
+    var subtotal = '';
+    subtotal = peso * precio;
 
 
-      if (titulo.split(':')[0] == "DESCUENTO"){ //SI ES DESCUENTO, PONE EL ITEM DE DESCUENTO, SI ES COMPRA NORMAL LA DEJA NORMAL.
-          $("#divPedido_").append(
-              "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
-              
-              //eliminar promo
-              "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-              idActual + " maximo=" + maximo + " minimo=" + minimo +
-              " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>"+
-              "<button class='btn btn-danger borrar' idProducto=" +
-              idActual + " maximo=" + maximo + " minimo=" + minimo +
-              "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button>"+
-              "</span>"+
-              
-              //editar promo
-              "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1 pl-1 pr-0'><button class='btn btn-warning editarPromo' nombre='" +
-              titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
-              minimo + "' id='" + idActual +
-              "' style=' padding-left: 5px; padding-right: 3px; margin-top: 5px;'><i class='fas fa-pen'></i> <i class='fas fa-tag'></i></button></div>"+
-  
-              //titlo promo
-              "<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='padding-left: 5px; color: #333333; margin-top: 15px;' class='titulo'>" +
-              "<b>DESCUENTO:</b>"+titulo +
-              "</h5></div>"+
-  
-  
-              //costo etc etc
-              "<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-              -precio + "/kg"+
-              "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-              peso +
-              "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-              subtotal + "</h5></center></div></div>");
-          total += subtotal;
-          $("#total").text(total);
-      }
-      else{
+    listaPedido.push({
+      "id": ele.idActual,
+      "titulo": ele.titulo,
+      "precio": ele.precio,
+      "maximo": ele.maximo,
+      "minimo": ele.minimo,
+      "peso": ele.peso,
+      "subtotal": subtotal
+    });
+    json = JSON.stringify(listaPedido);
+    console.log(json);
+
+
+    if (titulo.split(':')[0] == "DESCUENTO") { //SI ES DESCUENTO, PONE EL ITEM DE DESCUENTO, SI ES COMPRA NORMAL LA DEJA NORMAL.
       $("#divPedido_").append(
-          "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
-          
-          "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-          idActual + " maximo=" + maximo + " minimo=" + minimo +
-          " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>"+
-          "<button class='btn btn-danger borrar' idProducto=" +
-          idActual + " maximo=" + maximo + " minimo=" + minimo +
-          "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button>"+
-          "</span>"+
-  
-         /*  <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-          titulo +
-          "</h5></div>"+ */
-  
-          /* "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-danger borrar' idProducto=" +
-          idActual + " maximo=" + maximo + " minimo=" + minimo +
-          "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button></div>"+ */
-  
-  
-          "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-warning promo' nombre='" +
-          titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
-          minimo + "' id='" + idActual +
-          "' style=' border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-tag'></i></button></div>"+
-  
-          "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-info editarProducto' nombre='" +
-          titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
-          minimo + "' id='" + idActual +
-          "' style='border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-pen'></i></button></div>"+
-  
-          "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-          titulo +
-          "</h5></div>"+
-  
-  
-          "<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-          precio +
-          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-          peso +
-          "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-          subtotal + "</h5></center></div></div>");
-      }
+        "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>" +
+
+        //eliminar promo
+        "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>" +
+        "<button class='btn btn-danger borrar' idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button>" +
+        "</span>" +
+
+        //editar promo
+        "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1 pl-1 pr-0'><button class='btn btn-warning editarPromo' nombre='" +
+        titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
+        minimo + "' id='" + idActual +
+        "' style=' padding-left: 5px; padding-right: 3px; margin-top: 5px;'><i class='fas fa-pen'></i> <i class='fas fa-tag'></i></button></div>" +
+
+        //titlo promo
+        "<div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='padding-left: 5px; color: #333333; margin-top: 15px;' class='titulo'>" +
+        "<b>DESCUENTO:</b>" + titulo +
+        "</h5></div>" +
+
+
+        //costo etc etc
+        "<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
+        -precio + "/kg" +
+        "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
+        peso +
+        "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
+        subtotal + "</h5></center></div></div>");
       total += subtotal;
-      $("#nombreCliente").val(ele.cliente_id).trigger('change');
       $("#total").text(total);
-      $("#folio").text("Folio: "+ele.id_venta);
-      $("#folio").attr("folio",ele.id_venta);
-      $("#nota").text("Nota de Venta: "+ele.id_tiket);
-      $("#nota").attr("nota",ele.id_tiket);
-  
-      //? terminar de considerar el json desde php en el js  e imprimirlo en pantalla con un foreach
-      
+    } else {
+      $("#divPedido_").append(
+        "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>" +
+
+        "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>" +
+        "<button class='btn btn-danger borrar' idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button>" +
+        "</span>" +
+
+        /*  <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
+         titulo +
+         "</h5></div>"+ */
+
+        /* "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-danger borrar' idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        "' style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-trash'></i></button></div>"+ */
+
+
+        "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-warning promo' nombre='" +
+        titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
+        minimo + "' id='" + idActual +
+        "' style=' border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-tag'></i></button></div>" +
+
+        "<div class='col-xs-1 col-sm-1 col-md-1 col-lg-1' pl-0><button class='btn btn-info editarProducto' nombre='" +
+        titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
+        minimo + "' id='" + idActual +
+        "' style='border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fas fa-pen'></i></button></div>" +
+
+        "<div class='col-xs-3 col-sm-3 col-md-3 col-lg-3'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
+        titulo +
+        "</h5></div>" +
+
+
+        "<div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
+        precio +
+        "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
+        peso +
+        "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
+        subtotal + "</h5></center></div></div>");
+    }
+    total += subtotal;
+    $("#nombreCliente").val(ele.cliente_id).trigger('change');
+    $("#total").text(total);
+    $("#folio").text("Folio: " + ele.id_venta);
+    $("#folio").attr("folio", ele.id_venta);
+    $("#nota").text("Nota de Venta: " + ele.id_tiket);
+    $("#nota").attr("nota", ele.id_tiket);
+
+    //? terminar de considerar el json desde php en el js  e imprimirlo en pantalla con un foreach
+
   }
   var sample1 = 'Venta General';
-  $(document).ready(function() {
+  $(document).ready(function () {
 
-    json = JSON.parse  (ventaJson);
-    
-    
-
-      $.each(json, function(i, item) {
-          console.log(item);
-          var subtotal = item.precio * item.peso;
-          total += subtotal;
-          $("#divPedido_").append(
+    json = JSON.parse(ventaJson);
 
 
-            "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + item.title +  "</h4></div> <div  class='col-1'> <h4 class='peso'>" +   item.peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" +   item.precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + item.id + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" +  item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + item.id + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
-            item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" +
-            minimo + "' id='" + item.id +
-            "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" +  subtotal + '</h4> </div> </div> ');
-            $("#total").text(total);
-
-      });
-
-      
-          setTimeout(() => {
+    $.each(json, function (i, item) {
+      console.log(item);
+      var subtotal = item.precio * item.peso;
+      total += subtotal;
+      $("#divPedido_").append(
 
 
+        "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + item.title + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + item.peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + item.precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + item.id + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + item.id + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
+        item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" +
+        minimo + "' id='" + item.id +
+        "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" + subtotal + '</h4> </div> </div> ');
+      $("#total").text(total);
+
+    });
 
 
+    setTimeout(() => {
 
-          },1000); 
-  });
-</script>
-<?php
-}
+
+    }, 1000);
+  }); </script> <?php
+  }
 
 ?>
-<script>
+<script >
 
 
+  $(document).ready(function () {
+    $('.js-example-basic-single').select2();
 
-
-
-
-
-
-
-
-
-
-  $(document).ready(function() {
-           $('.js-example-basic-single').select2();
-              
-      });
-</script>
+  }); </script>

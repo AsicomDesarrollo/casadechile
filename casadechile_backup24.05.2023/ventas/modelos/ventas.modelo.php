@@ -29,6 +29,8 @@ class ModeloVentas{
 
 		if($stmt->execute()){
 
+			var_dump( $stmt -> fetchAll());
+
 			return "ok";
 
 		}else{

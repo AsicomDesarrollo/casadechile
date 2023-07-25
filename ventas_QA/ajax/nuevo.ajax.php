@@ -15,28 +15,53 @@ class AjaxNuevo{
 
 	public $json;
 	public $cliente;
+	public $metodoPago;
 
 	public function ajaxNuevoPedido(){
 
 		$json = $this->json;
 		$cliente = $this->cliente;
+		$metodoPago = $this->metodoPago;
+
+/* 
+		echo "metodo de pago ";
+		var_dump($this->metodoPago) ;  */
 
 		$ultimoId = ControladorVentas::ctrTraerUltimo();
 
-		$jsonDecode = json_decode($json, true);
+		$arrayobj = new ArrayObject();
 
-		for($i = 0; $i < count($jsonDecode) ; $i++){
+		for( $a= 0; $a < count($json) ; $a++){
+			//$jsonDecode =  json_decode($json[$a], true);
+			$arrayobj->append(json_decode($json[$a], true));
+		}
 
-			$id = $jsonDecode[$i]["id"];
-			$peso = $jsonDecode[$i]["peso"];
-			$precio = $jsonDecode[$i]["precio"];
+
+		//var_dump($arrayobj);
+		$arrayobj = json_encode($arrayobj);
+		$arrayobj = json_decode($arrayobj, true);
+
+		for($i = 0; $i < count($arrayobj) ; $i++){
+
+			$idProducto = $arrayobj[$i]["id"];
+			$peso = $arrayobj[$i]["peso"];
+			$precio = $arrayobj[$i]["precio"];
+			$id_venta = $arrayobj[$i]["id_venta"];
+	
+
+			//var_dump($idProducto . " " . $peso);
+
+
+
 			
-			$guardar = ControladorVentas::ctrGuardarCompra($ultimoId["id_venta"], $cliente, $id, $peso, $precio);
-
+			$guardar = ControladorVentas::ctrGuardarCompra($id_venta, $cliente, $idProducto, $peso, $precio , $metodoPago   );
+			#var_dump($guardar);
 		}
 		
-		echo $guardar;
+		//echo $guardar;
 		//echo $ultimoId["id_venta"];
+
+		return $guardar;
 
 	}
 
@@ -48,6 +73,7 @@ NUEVO USUARIO
 $traerProducto = new AjaxNuevo();
 $traerProducto -> json = $_POST["json"];
 $traerProducto -> cliente = $_POST["cliente"];
+$traerProducto -> metodoPago = $_POST["metodoPago"];
 $traerProducto -> ajaxNuevoPedido();
 
 

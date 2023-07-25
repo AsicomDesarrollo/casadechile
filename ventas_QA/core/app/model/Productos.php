@@ -16,9 +16,10 @@ class Productos{
     }
 
     public static function ultimosFolios(){
-        $sql= "select id,cliente,folio from venta_tiket where vendedor = ".$_SESSION['id']." and metodoPago is NULL order by id DESC limit 5";
+        $sql= "select id,cliente,folio from venta_tiket where vendedor = ".$_SESSION['id']." and (metodoPago is NULL OR estatus is NULL ) order by id DESC limit 5";
         $query= Database::ExeDoIt($sql);
         $folios = Model::many_assoc($query[0]);
+        //var_dump($folios);
         return $folios;
 
     }

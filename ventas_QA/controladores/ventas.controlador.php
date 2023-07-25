@@ -6,11 +6,11 @@ class ControladorVentas{
 	GUARDAR
 	=============================================*/
 
-	static public function ctrGuardarCompra($id, $cliente, $idProducto, $peso, $precio){
+	static public function ctrGuardarCompra($id, $cliente, $idProducto, $peso, $precio, $tipo_pago){
 
 		$tabla = "compras";
 
-		$respuesta = ModeloVentas::mdlGuardarCompra($tabla, $id, $cliente, $idProducto, $peso, $precio);
+		$respuesta = ModeloVentas::mdlGuardarCompra($tabla, $id, $cliente, $idProducto, $peso, $precio , $tipo_pago);
 
 		return $respuesta;
 
