@@ -78,7 +78,7 @@ Plantilla base para todos los módulos
 
 <?php
 
-  if(isset($_SESSION["id"]) && $_SESSION["id"] >0){
+  if(isset($_SESSION["id"]) && $_SESSION["id"] > 0){
 
     include "layout_header.php";
 

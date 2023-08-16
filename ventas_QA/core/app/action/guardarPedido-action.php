@@ -61,7 +61,7 @@ if($folioVenta==null){
 }
 else {
  
-   //si trae folio //* guarda el pedido en el folio existente
+        //si trae folio //* guarda el pedido en el folio existente
         /* json: [{"id":"49","titulo":"CHILE CANICA","precio":4,"maximo":null,"minimo":0,"peso":"66","subtotal":264}]
         cliente: Venta General
         folio: 1632587943

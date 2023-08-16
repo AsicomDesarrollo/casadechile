@@ -183,7 +183,7 @@ Módulo de log in
                                             <div class="form-check form-check-primary font-size-16 py-1">
                                                 <input class="form-check-input" type="checkbox" id="remember-check">
                                                 <div class="float-end">
-                                                    <a href="auth-resetpassword-basic.html" class="text-muted text-decoration-underline font-size-14">¿Olvido su contraseña?</a>
+                                                    <a  data-bs-toggle="modal"  href="#"  data-bs-target=".bs-example-modal-center" class="text-muted text-decoration-underline font-size-14">¿Olvido su contraseña?</a>
                                                 </div>
                                                 <label class="form-check-label font-size-14" for="remember-check">
                                                     Recordarme
@@ -220,11 +220,45 @@ Módulo de log in
             <!-- end container fluid -->
         </div>
 
+
+        <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-primary">Restablecer contraseña</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close">
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Puede restablecer su contraseña desde el portal de administrador o enviando un correo al area de soporte adjuntando su correo electronico.</p>
+                        
+                        <p class="mb-0"> <a href="mailto:desarrolloSoft@asicomsystems.com.mx?subject=Restablecer%20mi%20contraseña%20de%20usuario%20de%20ventas%20Casa%20de%20chile&body=Hola%20buen%20día%20equipo%20IT.%20Solicito%20de%20su%20apoyo%20para%20la%20actualización%20de%20mi%20contraseña%20del%20portal.%20Mi%20usuario%20es:"" >Enviar correo a soporte.</a></p>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+
 <!--=====================================
 JS PERSONALIZADO
 ======================================-->
 
 <!-- <script src="vistas/js/plantilla.js"></script> -->
+<script>
+    const passwordInput = document.getElementById('password-input');
+    const passwordAddon = document.getElementById('password-addon');
+
+    passwordAddon.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordAddon.innerHTML = '<i class="mdi mdi-eye-off-outline fas fa-eye-slash font-size-18 text-muted"></i>';
+        } else {
+            passwordInput.type = 'password';
+            passwordAddon.innerHTML = '<i class="mdi mdi-eye-outline fas fa-eye font-size-18 text-muted"></i>';
+        }
+    });
+</script>
+
 <script>
     $("#logIn").click(function () {
         var datos = new FormData();

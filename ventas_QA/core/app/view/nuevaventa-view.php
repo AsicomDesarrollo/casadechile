@@ -415,6 +415,79 @@
   </div>
 </div>
  -->
+
+
+ <div id="modalEditar" class="modal" tabindex="-1">
+          <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title " style="color:#e97d01;" id="tituloEditar"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                <div class="modal-body row">
+
+                  <div class="col-md-6 col-sm-12">
+                    <div class="form-group" style="display: none;">
+                      <label>Id</label>
+                      <input type="text" class="form-control"  id="idEditar" placeholder="id">
+                    </div>
+            
+                    <div class="input-group mb-3">
+                      
+                      <span class="input-group-text"> <label id="etiquetaEditarUnidad">Kg </label> </span>
+                      <input type="number" class="form-control" placeholder="0.00" id="pesoEditar"  style="border: solid 1px lightgray;" >
+                    </div>
+                    <div class="input-group mb-3 search-wrap">
+                    
+                      <span class="input-group-text"><label>Precio $ </label></span>
+                      <input type="number" class="form-control"  id="precioEditar"  style="border: solid 1px lightgray;" >
+
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+
+                    <img class="rounded mx-auto d-block" src="https://www.montagud.com/wp-content/uploads/2020/05/Chiles-frescos-759x500-1.jpg" width="72%">
+
+                  </div>
+                  <div class="col-12 pt-3">
+                    <small class="text-warning">
+                        Recuerda que el costo debe estar dentro del máximo y el mínimo establecido
+                    </small>
+                    <div class="form-group" style="display: none;">
+                      <label>Precio Maximo</label>
+                      <input type="number" class="form-control" id="maximoEditar" placeholder="Precio máximo establecido" disabled>
+                      <small class="form-text text-muted">Precio máximo establecido para este producto</small>
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        <small class="form-text text-muted">
+                          Precio mínimo establecido para este producto
+                        </small>
+                      </label>
+                      <input type="numer" class="form-control" id="minimoEditar" placeholder="Precio mínimo de venta" disabled style="background: transparent;border: none;font-size: 2em;">
+                    </div>
+                  </div>
+         
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn-form-func forward  btnModificar" id="" >Guardar</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
   
         <div id="modalProducto" class="modal" tabindex="-1">
           <div class="modal-dialog">
@@ -588,7 +661,10 @@ $("#divPedido_").on("click", ".editarProducto", function () {
   $("#maximoEditar").val(maximo);
   $("#precioEditar").val($(this).attr("precio"));
   $("#minimoEditar").val(minimo);
+
   console.log(titulo);
+  
+
   if (titulo.includes("ACHIOTE") == true) {
     console.log("achiote");
     $("#etiquetaEditarUnidad").text("Paquetes (Emplayado con 10 cajas)");
@@ -943,6 +1019,7 @@ $(".btnAgregarDescuento").click(function () { //al gregar producto al pedido
  */
 $(".btnAgregar").click(function () { //a gregar producto al pedido
   peso = $("#pesoModal").val();
+  console.log(peso);
   if ($("#precioModal").val() == '') {
     precio = 0;
   } else {

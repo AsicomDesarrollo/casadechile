@@ -100,15 +100,18 @@ font-size: 0.7em !important;
                   <div class="col-md-12 col-sm-12 nice-select wide price-list">
             
                             <select  class="form-select  form-select-lg " id="asignacionNota"  style="height: 100%;" name="asignacionNota" >
-                                <option value="0"  class="form-control"   >Sin asignar</option>
-                                <option value="1"   class="form-control"    >Rosa Lopez</option>
-                                <option value="2"  class="form-control"    >Don gato</option>
-                                <option value="8"  class="form-control"    >Elena Sandoval</option>
-                                <option value="6"  class="form-control"    >Ana Esquivel</option>
-                    
-                            </select> 
-                            <input type="text" id="idNota" name="nota"  class="form-control" disabled>
              
+                                <?php  $empelados = Empleados::mostrarTodos(); var_dump($empelados); ?>
+                                <?php
+                                    echo '<option value="0"  class="form-control" >Sin asignar</option>';
+
+                                    foreach ($empelados as $key)
+                                    {
+                                    echo '<option value="' . $key['id'] . '"  class="form-control"  >' . $key['nombre_empleado'] . '</option>';
+                                    }
+                                ?>
+
+                            </select> 
                   </div>
 
                 <div class="modal-footer">
@@ -125,6 +128,26 @@ font-size: 0.7em !important;
 </div>
 
 <script>
+
+const datosEmpleados = new FormData();
+    
+datosEmpleados.append("empleados", true);
+
+$.ajax({
+    url: "./?action=mostrarEmpleados",
+    method: "POST",
+    data: datosEmpleados,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {
+        console.log(respuesta);
+    }
+});
+
+
+
+
 $(".asignarNota").click(function () {
 
     $("#modalAgregarNota").modal('show');

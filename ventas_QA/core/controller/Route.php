@@ -56,18 +56,25 @@ class Route {
 ************************************************************************/
 
 	public static function view($view){  
+
+	
 		// Module::$module;
 		if(isset($_GET['view']) && isset( $_SESSION["id"])){ //si view esta definido y es usuario logeado
 			if(Route::isValid('view')){
+
+		
 				include "core/app/view/".$_GET['view']."-view.php";
 			}else{
 				Route::Error("<b>404 No se encontró una vista.</b>  <b>".$_GET['view']."</b> !! - <a href='#' target='_blank'>regresar</a>");
 			}
-		}else{
+		}
+		
+		
+		else{
 			// include "core/app/view/index-view.php";
 			// <?php Route::view("index");
-			// echo "hola";
-			header("Location: ./?view=index");
+
+			//header("Location: ./?view=index");
 
 		}
 

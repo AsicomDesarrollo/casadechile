@@ -8,7 +8,7 @@ class Ruta{
 
 	public function ctrRuta(){
 
-		return "https://www.casadelchile.mx/ventas/";
+		return "http://localhost/Github/casadechile/ventas_QA/";
 	
 	}
 
@@ -18,7 +18,7 @@ class Ruta{
 
 	public function ctrRutaServidor(){
 
-		return "https://www.casadelchile.mx/ventas/";
+		return "http://localhost/Github/casadechile/ventas_QA/";
 	
 	}
 
