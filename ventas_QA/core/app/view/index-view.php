@@ -101,7 +101,7 @@ font-size: 0.7em !important;
             
                             <select  class="form-select  form-select-lg " id="asignacionNota"  style="height: 100%;" name="asignacionNota" >
              
-                                <?php  $empelados = Empleados::mostrarTodos(); var_dump($empelados); ?>
+                                <?php  $empelados = Empleados::mostrarTodos(); ?>
                                 <?php
                                     echo '<option value="0"  class="form-control" >Sin asignar</option>';
 

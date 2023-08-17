@@ -32,15 +32,20 @@
           </div>
           <div class="col-md-6 col-sm-6"  class="nice-select wide price-list" >
             <select  class="form-select  form-select-lg " id="buscarProductoCategoria"  style="height: 100%;" name="category" >
-              <option value="0"  class="form-control"    selected="selected">Ver todos</option>
-              <option value="1"   class="form-control"    >Ciles secos </option>
-              <option value="2"  class="form-control"    >Especias</option>
-              <option value="3"  class="form-control"    >Semillas</option>
-              <option value="4"  class="form-control"    >Pescado y mariscos</option>
-              <option value="5"  class="form-control"    >Frutos secos</option>
-              <option value="6"  class="form-control"    >Molidos</option>
-              <option value="7"  class="form-control"    >Moles</option>
-              <option value="8"  class="form-control"    >Otros</option>
+         
+            <?php  $categoriasProductos = Productos::mostrarCategorias(); ?>
+              <?php
+                  echo '<option value="0"  class="form-control"  selected="selected" >Ver todos</option>';
+
+                  foreach ($categoriasProductos as $key)
+                  {
+                  echo '<option value="' . $key['id'] . '"  class="form-control"  >' . $key['nombre'] . '</option>';
+                  }
+
+                  $categoriasProductos = '';
+              ?>
+
+
             </select>
           </div>
           <div class="col-md-6 col-sm-6">
@@ -133,7 +138,7 @@
             <div class="order-header" style="border-top-left-radius: 0px;border-top-right-radius: 0px;background-color: #fff;border-right: 1px solid lightgray;border-left: 1px solid lightgray;">
               <h3 class="wizard-header pb-1" name="folio" id="folio" folio="" style="color:#121921">Folio: <?php 
               $resultado = empty($_GET["folio"]) ? '' :  $_GET["folio"] ;
-              echo  $resultado  ?> <span class="btn btn-danger" style="float: inline-end;">Borrar todos </span></h3>    
+              echo  $resultado  ?> <span class="btn btn-danger" id="borrar_todo" style="float: inline-end;">Borrar todos </span></h3>    
               <div class="container p-5">
               
                 <label>Nombre del cliente</label><br>
@@ -470,7 +475,7 @@
          
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn-form-func forward  btnModificar" id="" >Guardar</button>
+                  <button type="button" class="btn-form-func forward" id="btnModificar" >Guardar</button>
                 </div>
             </div>
           </div>
@@ -512,7 +517,7 @@
                     <div class="input-group mb-3 search-wrap">
                     
                       <span class="input-group-text"><label>Precio $ </label></span>
-                      <input type="number" class="form-control"  id="precioModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'precio','btnAgregar')">
+                      <input type="number" class="form-control"  id="precioModal"  style="border: solid 1px lightgray;" onkeyup="ocultar(event, 'precio','btnAgregar')" >
 
                     </div>
                   </div>
@@ -559,6 +564,44 @@
 $("body").css("background-image", "url(/ventas/vistas/img/plantilla/fondoventa.jpg)");
 $("body").css("background-repeat", "no-repeat");
 $("body").css("background-size", "cover");
+
+
+
+/* BORRAR FILTRO DE BUSQUEDA */
+function resetFiltros() {
+    // Restablecer el valor del input 'buscarProducto'
+    document.getElementById('buscarProducto').value = '';
+
+    // Establecer el select 'buscarProductoCategoria' al valor '0'
+    document.getElementById('buscarProductoCategoria').value = '0';
+
+    $("#contenedorProductos").show();
+    $("#contenedorBusqueda").hide();
+}
+
+// Agregar un listener al elemento para el clic
+const borrarFiltrosLink = document.querySelector('.filter-box-link.isotope-reset'); // No cambiar etiqueta con esta clase que es borrar filtros 
+borrarFiltrosLink.addEventListener('click', resetFiltros);
+
+
+/* BORRAR DIVS DE CARRITO DE PRODUCTO */
+function borrarTodo() {
+    const divPedido = document.getElementById("divPedido_");
+    const cuerpoPedidoDivs = divPedido.getElementsByClassName("cuerpoPedido");
+
+    while (cuerpoPedidoDivs.length > 0) {
+        divPedido.removeChild(cuerpoPedidoDivs[0]);
+    }
+
+    total = 0;
+    $("#total").text(total);
+}
+
+// Asignar el evento al botón "borrar_todo"
+document.getElementById("borrar_todo").addEventListener("click", borrarTodo);
+
+
+
 var json;
 var total = 0;
 var idActual;
@@ -580,6 +623,9 @@ $(".agregarProducto").click(function () {
   idActual = $(this).attr("id");
   var datosCobro = new FormData();
   datosCobro.append("valor", idActual);
+
+
+
   $.ajax({
     url: "./?action=traerproducto",
     method: "POST",
@@ -589,9 +635,9 @@ $(".agregarProducto").click(function () {
     contentType: false,
     processData: false,
     success: function (respuesta) {
-
-      console.info(respuesta);
-      $.each(respuesta, function (id, val) {
+      console.log("hola mundo");
+      console.info(respuesta[0]);console.log("hola mundo");
+      $.each(respuesta[0], function (id, val) {
         switch (id) {
           case 'id':
             idActual = val;
@@ -620,7 +666,7 @@ $(".agregarProducto").click(function () {
       $("#idModal").val(idActual);
       $("#tituloModal").text(titulo);
       $("#pesoModal").val("");
-      $("#precioModal").val(minimo);
+      $("#precioModal").val(precio);
       $("#minimoModal").val(minimo);
 
 
@@ -631,7 +677,7 @@ $(".agregarProducto").click(function () {
 
     }
   });
-  if (titulo.includes("ACHIOTE") == true) {
+/*   if (titulo.includes("ACHIOTE") == true) {
     console.log("achiote");
     $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
   } else if (titulo.includes("MOLE ") == true) {
@@ -640,7 +686,7 @@ $(".agregarProducto").click(function () {
   } else {
     console.log("otros");
     $("#etiquetaNuevaUnidad").text("Peso en Kg");
-  }
+  } */
 
 
   /*       $("#modalProducto").modal('show');
@@ -649,23 +695,23 @@ $(".agregarProducto").click(function () {
         }, 150); */
 });
 $("#divPedido_").on("click", ".editarProducto", function () {
-  titulo = $(this).attr("nombre");
-  peso = $(this).attr("peso");
-  precio = parseFloat($(this).attr("precio"));
-  maximo = parseFloat($(this).attr("maximo"));
-  minimo = parseFloat($(this).attr("minimo"));
-  idActual = $(this).attr("id");
+ let  titulo = $(this).attr("nombre");
+ let  peso_aterior = $(this).attr("peso");
+ let  precio_aterior = parseFloat($(this).attr("precio"));
+ let  maximo = parseFloat($(this).attr("maximo"));
+ let  minimo = parseFloat($(this).attr("minimo"));
+ let  idActual = $(this).attr("id");
+ var subtotal_aterior = peso_aterior * precio_aterior;
+
   $("#idEditar").val(idActual);
   $("#tituloEditar").text(titulo);
-  $("#pesoEditar").val(peso);
+  $("#pesoEditar").val(peso_aterior);
   $("#maximoEditar").val(maximo);
-  $("#precioEditar").val($(this).attr("precio"));
+  $("#precioEditar").val(precio_aterior);
   $("#minimoEditar").val(minimo);
 
-  console.log(titulo);
-  
 
-  if (titulo.includes("ACHIOTE") == true) {
+/*   if (titulo.includes("ACHIOTE") == true) {
     console.log("achiote");
     $("#etiquetaEditarUnidad").text("Paquetes (Emplayado con 10 cajas)");
   } else if (titulo.includes("MOLE ") == true) {
@@ -674,103 +720,96 @@ $("#divPedido_").on("click", ".editarProducto", function () {
   } else {
     console.log("otros");
     $("#etiquetaEditarUnidad").text("Peso en Kg");
-  }
-  $("#modalEditar").modal('show')
-});
-$(".btnModificar").click(function () {
-  peso = parseFloat($("#pesoEditar").val());
-  precio = parseFloat($("#precioEditar").val());
-  maximo = parseFloat($("#maximoEditar").val());
-  minimo = parseFloat($("#minimoEditar").val());
-  idActual = $("#idEditar").val();
-  console.log(peso);
-  console.log(precio);
-  console.log(idActual);
-  subtotal = peso * precio;
-  if (peso == "" || peso == 0) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Peso incorrecto',
-      text: 'Debes ingresar un peso',
-      confirmButtonText: 'Regresar',
-      confirmButtonColor: '#e97d01',
-      footer: 'Sentimos las molestias'
-    })
-  } else if (precio < minimo || precio > maximo) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Costo incorrecto',
-      text: 'Por favor ingresa un costo correcto',
-      confirmButtonText: 'Regresar',
-      confirmButtonColor: '#e97d01',
-      footer: 'Sentimos las molestias'
-    })
-  } else {
-    var idProducto = $(".cuerpoPedido span");
-    var titulosProducto = $(".cuerpoPedido .titulo");
-    var preciosProducto = $(".cuerpoPedido .precio");
-    var pesosProducto = $(".cuerpoPedido .peso");
-    var subsProducto = $(".cuerpoPedido .subtotal");
+  } */
+
+  let divPadreFilaCarrito = $(this).parent().parent().parent().parent(); 
+  $("#modalEditar").modal('show');
+
+
+
+  $("#btnModificar").click(function () {
+
+    var total = $("#total").text();
+    total = parseFloat(total);
+
+
+    var peso_modificado = parseFloat($("#pesoEditar").val());
+    var precio_modificado = parseFloat($("#precioEditar").val());
+    var subtotal_modificado = peso_modificado * precio_modificado;
+
     listaPedido = [];
-    $("#divPedido_").empty();
-    if (idProducto.length != 0) {
-      total = 0;
-      for (var i = 0; i < idProducto.length; i++) {
-        var idArray = $(idProducto[i]).attr("idProducto");
-        var maximoArray = $(idProducto[i]).attr("maximo");
-        var minimoArray = $(idProducto[i]).attr("minimo");
-        var tituloArray = $(titulosProducto[i]).html();
-        var precioArray = $(preciosProducto[i]).html();
-        var pesoArray = $(pesosProducto[i]).html();
-        var subArray = $(subsProducto[i]).html();
-        if (idArray == idActual) {
-          subtotal = precio * peso;
-          listaPedido.push({
-            "id": idArray,
-            "titulo": tituloArray,
-            "precio": precio,
-            "maximo": maximo,
-            "minimo": minimo,
-            "peso": peso,
-            "subtotal": subtotal
-          });
-          $("#divPedido_").append(
-            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'> <div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'> <h5 style='color: #333333; margin-top: 15px;' class='titulo'>" + tituloArray + "</h5></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + precio + "</h4> </div> <div class='col-3'> <div class='row'>  <span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar'   idProducto=" + idArray + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span> <div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'>  <button class='btn btn-default editarProducto'  nombre='" + tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idArray + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal'>" + subtotal + "</h4> </div> </div> ");
-        } else {
-          listaPedido.push({
-            "id": idArray,
-            "titulo": tituloArray,
-            "precio": precioArray,
-            "maximo": maximoArray,
-            "minimo": minimoArray,
-            "peso": pesoArray,
-            "subtotal": subArray
-          });
-          subtotal = precioArray * pesoArray;
-          $("#divPedido_").append(
-            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-            idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
-            " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-            tituloArray +
-            "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-            tituloArray + "' peso='" + pesoArray + "' precio='" + precioArray + "' maximo='" +
-            maximoArray + "' minimo='" + minimoArray + "' id='" + idArray +
-            "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-            precioArray +
-            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-            pesoArray +
-            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-            subArray + "</h5></center></div></div>");
-        }
-        total += subtotal;
-      }
-      $("#total").text(total);
+
+    if (peso == "" || peso == 0) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Peso incorrecto',
+        text: 'Debes ingresar un peso',
+        confirmButtonText: 'Regresar',
+        confirmButtonColor: '#e97d01',
+        footer: 'Sentimos las molestias'
+      })
+    } else if (precio < minimo || precio > maximo) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Costo incorrecto',
+        text: 'Por favor ingresa un costo correcto',
+        confirmButtonText: 'Regresar',
+        confirmButtonColor: '#e97d01',
+        footer: 'Sentimos las molestias'
+      })
+    } else {
+
+      
+
+
+      listaPedido.push({
+        "id": idActual,
+        "titulo": titulo,
+        "precio": precio,
+        "maximo": maximo,
+        "minimo": minimo,
+        "peso": peso,
+        "subtotal": subtotal
+      });
+
       json = JSON.stringify(listaPedido);
       console.log(json);
+
+
+      divPadreFilaCarrito.remove();
+
+      $("#divPedido_").append(
+
+
+        "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso_modificado + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + precio_modificado + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'  subtotalProducto=" + subtotal + "    idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
+        titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
+        minimo + "' id='" + idActual +
+        "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" + subtotal_modificado + '</h4> </div> </div> ');
+
+
+      total = total - subtotal_aterior;
+      total = total + subtotal_modificado;
+      $("#total").text(total);
+      //$("#modalProducto").modal('hide');
+      //$("#buscarProducto").val("");
+      //$("#contenedorProductos").show();
+      
       $("#modalEditar").modal('hide');
+
+
+
     }
-  }
+    });
+
+
+
+
+
+
+
+
 });
+
 
 //editar PROMOCION
 $("#divPedido_").on("click", ".promocion", function () {
@@ -798,7 +837,7 @@ $("#divPedido_").on("click", ".promocion", function () {
   $("#precioModalp").val($(this).attr("precio") * 0.10); // 10 % sobre el costo del productow2
   $("#minimoModalp").val(minimo);
   console.log(titulo);
-  if (titulo.includes("ACHIOTE") == true) {
+/*   if (titulo.includes("ACHIOTE") == true) {
     console.log("achiote");
     $("#etiquetaModalUnidad").text("Paquetes (Emplayado con 10 cajas)");
   } else if (titulo.includes("MOLE ") == true) {
@@ -807,120 +846,14 @@ $("#divPedido_").on("click", ".promocion", function () {
   } else {
     console.log("otros");
     $("#etiquetaModalUnidad").text("Peso en Kg");
-  }
+  } */
 
   setTimeout(() => {
     $('#precioModalp').focus();
     $('#precioModalp').select();
   }, 150);
 });
-//no se usa, en cambio usamos  btnAgregarDescuento
-$(".btnModificarPromo").click(function () {
-  peso = parseFloat($("#pesoEditar").val());
-  precio = parseFloat($("#precioEditar").val());
-  maximo = parseFloat($("#maximoEditar").val());
-  minimo = parseFloat($("#minimoEditar").val());
-  idActual = $("#idEditar").val();
-  console.log(peso);
-  console.log(precio);
-  console.log(idActual);
-  subtotal = peso * precio;
-  if (peso == "" || peso == 0) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Peso incorrecto',
-      text: 'Debes ingresar un peso',
-      confirmButtonText: 'Regresar',
-      confirmButtonColor: '#e97d01',
-      footer: 'Sentimos las molestias'
-    })
-  } else if (precio < minimo || precio > maximo) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Costo incorrecto',
-      text: 'Por favor ingresa un costo correcto',
-      confirmButtonText: 'Regresar',
-      confirmButtonColor: '#e97d01',
-      footer: 'Sentimos las molestias'
-    })
-  } else {
-    var idProducto = $(".cuerpoPedido span");
-    var titulosProducto = $(".cuerpoPedido .titulo");
-    var preciosProducto = $(".cuerpoPedido .precio");
-    var pesosProducto = $(".cuerpoPedido .peso");
-    var subsProducto = $(".cuerpoPedido .subtotal");
-    listaPedido = [];
-    $("#divPedido_").empty();
-    if (idProducto.length != 0) {
-      total = 0;
-      for (var i = 0; i < idProducto.length; i++) {
-        var idArray = $(idProducto[i]).attr("idProducto");
-        var maximoArray = $(idProducto[i]).attr("maximo");
-        var minimoArray = $(idProducto[i]).attr("minimo");
-        var tituloArray = $(titulosProducto[i]).html();
-        var precioArray = $(preciosProducto[i]).html();
-        var pesoArray = $(pesosProducto[i]).html();
-        var subArray = $(subsProducto[i]).html();
-        if (idArray == idActual) {
-          subtotal = precio * peso;
-          listaPedido.push({
-            "id": idArray,
-            "titulo": tituloArray,
-            "precio": precio,
-            "maximo": maximo,
-            "minimo": minimo,
-            "peso": peso,
-            "subtotal": subtotal
-          });
-          $("#divPedido_").append(
-            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-            idArray + " maximo=" + maximo + " minimo=" + minimo +
-            " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-            tituloArray +
-            "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-            tituloArray + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo +
-            "' minimo='" + minimo + "' id='" + idArray +
-            "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-            precio +
-            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-            peso +
-            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-            subtotal + "</h5></center></div></div>");
-        } else {
-          listaPedido.push({
-            "id": idArray,
-            "titulo": tituloArray,
-            "precio": precioArray,
-            "maximo": maximoArray,
-            "minimo": minimoArray,
-            "peso": pesoArray,
-            "subtotal": subArray
-          });
-          subtotal = precioArray * pesoArray;
-          $("#divPedido_").append(
-            "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido'><span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-            idArray + " maximo=" + maximoArray + " minimo=" + minimoArray +
-            " style='background-color: #df6852; color: #ffffff; border-radius: 100%; padding-left: 0px; padding-right: 0px; margin-top: 5px;'><i class='fa fa-trash'></i></span><div class='col-xs-4 col-sm-4 col-md-4 col-lg-4'><h5 style='color: #333333; margin-top: 15px;' class='titulo'>" +
-            tituloArray +
-            "</h5></div><div class='col-xs-1 col-sm-1 col-md-1 col-lg-1'><button class='btn btn-default editarProducto' nombre='" +
-            tituloArray + "' peso='" + pesoArray + "' precio='" + precioArray + "' maximo='" +
-            maximoArray + "' minimo='" + minimoArray + "' id='" + idArray +
-            "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; padding-left: 10px; padding-right: 10px; margin-top: 5px;'><i class='fa fa-pencil'></i></button></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='precio'>" +
-            precioArray +
-            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='peso'>" +
-            pesoArray +
-            "</h5></center></div><div class='col-xs-2 col-sm-2 col-md-2 col-lg-2'><center><h5 style='color: #333333; margin-top: 15px;' class='subtotal'>" +
-            subArray + "</h5></center></div></div>");
-        }
-        total += subtotal;
-      }
-      $("#total").text(total);
-      json = JSON.stringify(listaPedido);
-      console.log(json);
-      //$("#modalPromo").modal('hide');
-    }
-  }
-});
+
 
 // btnAgregarDescuento
 //** */
@@ -967,7 +900,7 @@ $(".btnAgregarDescuento").click(function () { //al gregar producto al pedido
     $("#divPedido_").append(
 
 
-      "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo ' style='color:#e97d01'>DESCUENTO: " + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio text-danger'>-" + precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-10' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal text-danger' style='text-align: right;padding-right: 31px;' >" + subtotal + "</h4> </div> </div>");
+      "<div class='cuerpoPedido descuento row pt-4 D-"+idActual+"' id='D-"+idActual+"'> <div class='col-3' > <h4 class='titulo ' style='color:#e97d01'>DESCUENTO: " + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio text-danger'>-" + precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-10' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'  subtotalProducto=" + subtotal + "     idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div>  </div> </div> <div class='col-3'> <h4 class='subtotal text-danger' style='text-align: right;padding-right: 31px;' >" + subtotal + "</h4> </div> </div>");
 
 
     /*  "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>"+
@@ -1019,7 +952,7 @@ $(".btnAgregarDescuento").click(function () { //al gregar producto al pedido
  */
 $(".btnAgregar").click(function () { //a gregar producto al pedido
   peso = $("#pesoModal").val();
-  console.log(peso);
+ 
   if ($("#precioModal").val() == '') {
     precio = 0;
   } else {
@@ -1061,7 +994,7 @@ $(".btnAgregar").click(function () { //a gregar producto al pedido
     $("#divPedido_").append(
 
 
-      "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
+      "<div class='cuerpoPedido row pt-4 P-"+idActual+"'  id='P-"+idActual+"'> <div class='col-3'> <h4 class='titulo'>" + titulo + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'  subtotalProducto=" + subtotal + "    idProducto=" + idActual + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + idActual + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
       titulo + "' peso='" + peso + "' precio='" + precio + "' maximo='" + maximo + "' minimo='" +
       minimo + "' id='" + idActual +
       "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" + subtotal + '</h4> </div> </div> ');
@@ -1071,46 +1004,93 @@ $(".btnAgregar").click(function () { //a gregar producto al pedido
     $("#total").text(total);
     $("#modalProducto").modal('hide');
     $("#buscarProducto").val("");
-    $("#contenedorProductos").show();
-    $("#contenedorBusqueda").hide();
+    //$("#contenedorProductos").show();
+    //$("#contenedorBusqueda").hide();
   }
 });
+
+
 $("#divPedido_").on("click", ".borrar", function () {
 
-  $(this).parent().parent().parent().parent().remove();
+  var idEntrada = $(this).parent().parent().parent().parent().attr("id") ;
 
-  var idProducto = $(".cuerpoPedido span");
-  var titulosProducto = $(".cuerpoPedido .titulo");
-  var preciosProducto = $(".cuerpoPedido .precio");
-  var pesosProducto = $(".cuerpoPedido .peso");
-  var subsProducto = $(".cuerpoPedido .subtotal");
-  listaPedido = [];
-  if (idProducto.length != 0) {
-    total = 0;
-    for (var i = 0; i < idProducto.length; i++) {
-      var idArray = $(idProducto[i]).attr("idProducto");
-      var tituloArray = $(titulosProducto[i]).html();
-      var precioArray = $(preciosProducto[i]).html();
-      var pesoArray = $(pesosProducto[i]).html();
-      var subArray = $(subsProducto[i]).html();
-      listaPedido.push({
-        "id": idArray,
-        "titulo": tituloArray,
-        "precio": precioArray,
-        "peso": pesoArray,
-        "subtotal": subArray
-      });
-      subtotal = precioArray * pesoArray;
-      total += subtotal;
+  //var titulosProducto = $(".cuerpoPedido .titulo");
+  var total = $("#total").text();  
+  // Validar si es un descuento 
+  if ( idEntrada.startsWith("D-")) {
+
+    var idProducto = $(this).attr('idproducto'); 
+  var subtotalProducto = $(this).attr('subtotalProducto'); 
+      total = parseFloat(total);
+      subtotalProducto = parseFloat(subtotalProducto);
+
+      if (idProducto != 0) {
+        
+        valorDescuento = subtotalProducto.toString();
+          valorDescuento = valorDescuento.replace("-", "").replace("-", "");
+          valorDescuento = parseFloat(valorDescuento);
+          total = total + valorDescuento;
+
+
+          $("#total").text(total);
+          $(this).parent().parent().parent().parent().remove(); 
+      }
+
+  }else{
+
+
+    const divPedido = document.getElementById("divPedido_");
+    const divHijos = divPedido.getElementsByTagName("div"); // Obtener todos los divs hijos
+    const nombresP = [];
+    const nombresD = [];
+    let bandera = false;
+
+    for (let i = 0; i < divHijos.length; i++) {
+        const idHijo = divHijos[i].id.trim(); // Limpiar espacios al principio y al final del ID
+        const nombreHijo = idHijo.replace(/^P-/, '').replace(/^D-/, ''); // Quitar "P-" o "D-"
+
+        if (idHijo.startsWith("P-")) {
+            nombresP.push(nombreHijo);
+        } else if (idHijo.startsWith("D-")) {
+            nombresD.push(nombreHijo);
+
+
+        }
     }
-    $("#total").text(total);
-    json = JSON.stringify(listaPedido);
-    console.log(json);
-  } else {
-    listaPedido = [];
-    total = 0;
-    $("#total").text(total);
+
+    for (const nombreD of nombresD) {
+        if (nombresP.includes(nombreD)) {
+            bandera = true;
+
+            console.info(subtotalD);
+
+            
+            //$('.D-' + nombreD).remove();
+            //$('.P-' + idEntrada).remove();
+            
+
+        }
+    }
+
+    if (!bandera) {
+    
+
+      console.log("No se encontraron coincidencias.");
+
+
+      }
+
+      var subtotalProducto = $('.D-' + nombreD).children().children().children().children()  .attr('subtotalProducto'); 
+     
+
+
   }
+
+ 
+
+
+ 
+  
 });
 
 
@@ -1403,27 +1383,26 @@ $("#contenedorBusqueda").on("click", "div", function () {
     contentType: false,
     processData: false,
     success: function (respuesta) {
-      $.each(respuesta, function (id, val) {
+
+      //console.info(respuesta[0] );
+      $.each(respuesta[0], function (id, val) {
+
         switch (id) {
           case 'id':
             idActual = val;
-            console.log(id);
-            console.log(val);
+
             break;
           case 'nombre':
             titulo = val;
-            console.log(id);
-            console.log(val);
+           
             break;
           case 'precio':
             precio = val;
-            console.log(id);
-            console.log(val);
+           
             break;
           case 'minimo':
             minimo = val;
-            console.log(id);
-            console.log(val);
+       
             break;
           default:
             break;
@@ -1436,16 +1415,19 @@ $("#contenedorBusqueda").on("click", "div", function () {
       $("#minimoModal").val(minimo);
     }
   });
-  if (titulo.includes("ACHIOTE") == true) {
-    console.log("achiote");
-    $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
-  } else if (titulo.includes("MOLE ") == true) {
-    console.log("mole");
-    $("#etiquetaNuevaUnidad").text("Piezas");
-  } else {
-    console.log("otros");
-    $("#etiquetaNuevaUnidad").text("Peso en Kg");
-  }
+/* do {
+    if (titulo.includes("ACHIOTE") == true) {
+      console.log("achiote");
+      $("#etiquetaNuevaUnidad").text("Paquetes (Emplayado con 10 cajas)");
+    } else if (titulo.includes("MOLE ") == true) {
+      console.log("mole");
+      $("#etiquetaNuevaUnidad").text("Piezas");
+    } else {
+      console.log("otros");
+      $("#etiquetaNuevaUnidad").text("Peso en Kg");
+    }
+} while (condition); */
+$("#etiquetaNuevaUnidad").text("Peso en Kg");
   $("#modalProducto").modal('show');
 })
 var bus = [];
@@ -1470,13 +1452,15 @@ function buscar() {
       processData: false,
       success: function (respuesta) {
 
-        console.info(respuesta);
+        //console.info(respuesta);  console.info("resouesta");
+
         $("#contenedorBusqueda").empty();
         $("#contenedorBusqueda").append(
           '<span class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 50px;"></span>'
         );
         var i = 0;
         var conCol = 0;
+
 
         $.each(respuesta, function (arreglo, valor) {
           var thisID;
@@ -1487,12 +1471,15 @@ function buscar() {
           var thisImagen;
           var thisCategoria;
           $.each(valor, function (id, val) {
+            
+            
             switch (id) {
               case 'id':
                 thisID = val;
                 break;
               case 'nombre':
                 thisNombre = val;
+                
                 break;
               case 'precio':
                 thisPrecio = val;
@@ -1547,7 +1534,7 @@ function buscar() {
 $("#buscarProductoCategoria").change(function () {
   var buscar = $("#buscarProductoCategoria").val();
 
-  //console.info(buscar);
+  console.info(buscar);
   if (buscar == "") {
     $("#contenedorProductos").show();
     $("#contenedorBusqueda").hide();
@@ -1642,6 +1629,7 @@ $("#buscarProductoCategoria").change(function () {
 
 
 function ocultar(event, origen, btnFin = 'no') {
+  console.log(event + origen);
   if (origen == "peso" && event.keyCode == 13) {
     $("#precioModal").focus();
   }
@@ -1709,8 +1697,8 @@ if (isset($_REQUEST['folio'])) {
         "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>" +
 
         //eliminar promo
-        "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar'  subtotalProducto=" + subtotal + "   idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo + "  subtotalProducto=" + subtotal +
         " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>" +
         "<button class='btn btn-danger borrar' idProducto=" +
         idActual + " maximo=" + maximo + " minimo=" + minimo +
@@ -1742,8 +1730,8 @@ if (isset($_REQUEST['folio'])) {
       $("#divPedido_").append(
         "<div class='col-xs-12 col-sm-12 col-md-12 col-lg-12 cuerpoPedido' style='padding:0px !important'>" +
 
-        "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' idProducto=" +
-        idActual + " maximo=" + maximo + " minimo=" + minimo +
+        "<span class='col-xs-1 col-sm-1 col-md-1 col-lg-1 btn btn-danger borrar' subtotalProducto=" + subtotal + "  idProducto=" +
+        idActual + " maximo=" + maximo + " minimo=" + minimo + "  subtotalProducto=" + subtotal + 
         " style='border-radius: 4px; padding-left: 10px; padding-right: 10px; margin-top: 5px;>" +
         "<button class='btn btn-danger borrar' idProducto=" +
         idActual + " maximo=" + maximo + " minimo=" + minimo +
@@ -1805,7 +1793,7 @@ if (isset($_REQUEST['folio'])) {
       $("#divPedido_").append(
 
 
-        "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + item.title + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + item.peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + item.precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'   idProducto=" + item.id + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + item.id + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
+        "<div class='cuerpoPedido row pt-4'> <div class='col-3'> <h4 class='titulo'>" + item.title + "</h4></div> <div  class='col-1'> <h4 class='peso'>" + item.peso + "</h4> </div> <div class='col-2'> <h4 class='precio'>" + item.precio + "</h4> </div> <div class='col-3'> <div class='row'><div class='col-4' style='padding-left:0px' >  <button  type='button'  class=' btn btn-danger borrar'  subtotalProducto=" + subtotal  + "  idProducto=" + item.id + " maximo=" + maximo + "  minimo=" + minimo + " style='background-color: #df6852; color: #ffffff; border-radius: 100%; '><i class='fa fa-trash'></i></button> </div><div class='col-4' style='padding-left:0px' >  <button  type='button' class='btn btn-default editarProducto'  nombre='" + item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" + minimo + "'  id='" + item.id + "' style='background-color: #51bbff; color: #ffffff; border-radius: 100%; '><i class='fa fa-pencil'></i></button> </div> <div class='col-4' style='padding-left:0px'  ><button type='button' class='btn btn-warning promocion' nombre='" +
         item.title + "' peso='" + item.peso + "' precio='" + item.precio + "' maximo='" + maximo + "' minimo='" +
         minimo + "' id='" + item.id +
         "' style=' border-radius: 100%; '><i class='fas fa-tag'></i></button></div> </div> </div> <div class='col-3'> <h4 class='subtotal' style='text-align: right;padding-right: 31px;' >" + subtotal + '</h4> </div> </div> ');
