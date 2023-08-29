@@ -67,7 +67,7 @@
                                             <div class="form-floating form-floating-custom mb-3 auth-pass-inputgroup">
                                                 <input type="password" class="form-control" id="password-input" placeholder="Contraseña"  name="ingPassword" >
                                                 <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0" id="password-addon">
-                                                    <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
+                                                    <i class="mdi mdi-eye-outline fas fa-eye font-size-18 text-muted"></i>
                                                 </button>
                                                 <label for="password-input">Contraseña</label>
                                                 <div class="form-floating-icon">
@@ -124,5 +124,22 @@
 <script src="assets/libs/feather-icons/feather.min.js"></script>
 
 <script src="assets/js/pages/pass-addon.init.js"></script>
+
+
+<script type="text/javascript" >
+    const passwordInput = document.getElementById('password-input');
+    const passwordAddon = document.getElementById('password-addon');
+
+    passwordAddon.addEventListener('click', () => {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            passwordAddon.innerHTML = '<i class="mdi mdi-eye-off-outline fas fa-eye-slash font-size-18 text-muted"></i>';
+        } else {
+            passwordInput.type = 'password';
+            passwordAddon.innerHTML = '<i class="mdi mdi-eye-outline fas fa-eye font-size-18 text-muted"></i>';
+        }
+    });
+
+</script>
 
 </body>

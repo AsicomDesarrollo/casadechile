@@ -10,10 +10,11 @@
 
       <form class="app-search d-none d-lg-block">
         <div class="position-relative">
-          <input type="text" class="form-control" placeholder="Search...">
-          <span class="bx bx-search icon-sm"></span>
+          <input type="text" class="form-control rounded bg-light border-0" placeholder="Buscar...">
+          <span class="fas fa-search icon-sm"></span>
         </div>
       </form>
+
 
 
     </div>

@@ -46,7 +46,7 @@ $ruta = Ruta::ctrRuta(); //no se usa
 <!-- Bootstrap Css -->
 <link href="vistas/dist/assets/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
 <!-- Icons Css -->
-<link href="vistas/dist/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+<!-- <link href="vistas/dist/assets/css/icons.min.css" rel="stylesheet" type="text/css" /> -->
 <!-- App Css-->
 <link href="vistas/dist/assets/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
 
@@ -56,8 +56,9 @@ $ruta = Ruta::ctrRuta(); //no se usa
 <!-- dataTables -->
 <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet"/>
 <!-- Sweet Alert-->
-<link href="vistas/dist/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!--=====================================
   CSS PERSONALIZADO
   ======================================-->

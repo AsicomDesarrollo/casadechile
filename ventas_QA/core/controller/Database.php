@@ -7,10 +7,10 @@ class Database {
 		switch ($_SERVER["HTTP_HOST"]){
 			
 			case 'localhost:8080':
-				$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="casadelc_bodega";
+				$this->user="elena";$this->pass="08552376086";$this->host="localhost";$this->ddbb="casadelc_bodega";
 				break;
 			default:
-				$this->user="root";$this->pass="";$this->host="localhost";$this->ddbb="casadelc_bodega";
+				$this->user="elena";$this->pass="08552376086";$this->host="localhost";$this->ddbb="casadelc_bodega";
 				break;
 		}
 	}
@@ -21,7 +21,7 @@ class Database {
 			case 'localhost':
 			case 'localhost:8080':
 				////$this->user="alternativo";$this->pass="2r3ckl24n2l";$this->host="localhost";$this->ddbb="u157777947_alternativa";
-				$con = new mysqli("localhost","root","","casadelc_bodega");
+				$con = new mysqli("localhost","elena","08552376086","casadelc_bodega");
 				break;
 			default:
 				////$this->user="alternativo";$this->pass="2r3ckl24n2l";$this->host="localhost";$this->ddbb="u157777947_alternativa";

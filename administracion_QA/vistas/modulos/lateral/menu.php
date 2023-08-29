@@ -20,10 +20,6 @@ MENU
 
 </ul>	 -->
 
-
-
-        <!-- ========== Left Sidebar Start ========== -->
-        <div class="vertical-menu">
 <style>
     body[data-sidebar-size="sm"] .navbar-brand-box{
 
@@ -31,6 +27,16 @@ MENU
 
 
     }
+
+    .vertical-menu {
+      transition: transform 0.3s ease;
+    }
+
+    .hidden {
+      transform: translateX(-100%);
+    }
+
+
     .navbar-brand-box{
     padding-left: 3.3rem;
 
@@ -40,6 +46,8 @@ MENU
     }
 </style>
 
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
              <!-- LOGO -->
              <div class="navbar-brand-box">
                 <a href="index.html" class="logo logo-dark">
@@ -178,5 +186,37 @@ MENU
             </div>
         </div>
         <!-- Left Sidebar End -->
+
+        <script type="">
+
+
+
+
+        window.addEventListener('scroll', function() {
+          var scrollPosition = window.scrollY;
+          var windowWidth = window.innerWidth;
+          var sideMenus = document.querySelectorAll('.vertical-menu');
+          
+          if (windowWidth <= 991) {
+            sideMenus.forEach(function(sideMenu) {
+              if (scrollPosition > 100) {
+                sideMenu.classList.add('hidden');
+              } else {
+                sideMenu.classList.remove('hidden');
+              }
+            });
+          } else {
+            // Si el ancho de la ventana es mayor que 991 píxeles, asegurarse de que los menús no estén ocultos.
+            sideMenus.forEach(function(sideMenu) {
+              sideMenu.classList.remove('hidden');
+            });
+          }
+        });
+
+
+
+    
+
+        </script>
 
 

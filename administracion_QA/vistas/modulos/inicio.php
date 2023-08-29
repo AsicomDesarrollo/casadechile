@@ -124,7 +124,7 @@ $vCorGastosDia = ModeloInicio::ventasCorteGastosDia()[0];
                                     <div class="flex-shrink-0">
                                         <div class="dropdown">
                                             <a class="dropdown-toggle text-reset" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <span class="fw-semibold">Filtrar por: </span> <span class="text-muted">Hoy<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                                <span class="fw-semibold">Filtrar por: </span> <span class="text-muted">Hoy<i class="fas fa-chevron-down mdi mdi-chevron-down ms-1"></i></span>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end">
                                                 <a class="dropdown-item" href="#">Año</a>
@@ -200,7 +200,7 @@ $vCorGastosDia = ModeloInicio::ventasCorteGastosDia()[0];
                                         <div class="flex-shrink-0">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Todos<i class="mdi mdi-chevron-down ms-1"></i>
+                                                    Todos<i class="fas fa-chevron-down mdi mdi-chevron-down ms-1"></i>
                                                 </a>
 
                                                 <div class="dropdown-menu dropdown-menu-end">
@@ -264,7 +264,7 @@ $vCorGastosDia = ModeloInicio::ventasCorteGastosDia()[0];
                                                 <div class="flex-shrink-0">
                                                     <div class="dropdown">
                                                         <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                            Todo<i class="mdi mdi-chevron-down ms-1"></i>
+                                                            Todo<i class="fas fa-chevron-down mdi mdi-chevron-down ms-1"></i>
                                                         </a>
             
                                                         <div class="dropdown-menu dropdown-menu-end">
@@ -453,7 +453,7 @@ $vCorGastosDia = ModeloInicio::ventasCorteGastosDia()[0];
                                               <div class="flex-shrink-0">
                                                   <div class="dropdown">
                                                       <a class=" dropdown-toggle" href="#" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                          <span class="text-muted">View All<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                                          <span class="text-muted">View All<i class="fas fa-chevron-down mdi mdi-chevron-down ms-1"></i></span>
                                                       </a>
                               
                                                       <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton2">
@@ -610,7 +610,7 @@ $vCorGastosDia = ModeloInicio::ventasCorteGastosDia()[0];
                                         <div class="flex-shrink-0">
                                             <div class="dropdown">
                                                 <a class="dropdown-toggle text-muted" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    Monthly<i class="mdi mdi-chevron-down ms-1"></i>
+                                                    Monthly<i class="fas fa-chevron-down mdi mdi-chevron-down ms-1"></i>
                                                 </a>
     
                                                 <div class="dropdown-menu dropdown-menu-end">
